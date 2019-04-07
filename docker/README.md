@@ -1,0 +1,15 @@
+# DOCKER NOTES
+
+#### Basic Commands:
+
+- Get a docker image
+``` bash
+docker image pull <docker-image-path>
+```
+
+- Instantiate a image
+``` bash
+docker container run -p <external-portnumber>:<internal-portnumber> <image-name>
+
+# p: Stands for publish, if P is not mentioned, it will not expose the port.
+```
