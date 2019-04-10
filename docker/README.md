@@ -13,3 +13,9 @@ docker container run -p <external-portnumber>:<internal-portnumber> <image-name>
 
 # p: Stands for publish, if P is not mentioned, it will not expose the port.
 ```
+- Connect the container to the terminal
+``` bash
+docker container run -it ubuntu
+
+# it: Interactive command. It connects the container to the terminal.
+```
