@@ -19,3 +19,34 @@ docker container run -it ubuntu
 
 # it: Interactive command. It connects the container to the terminal.
 ```
+- Detached execution of a container
+```bash
+docker container run -d -p 80:8080 <image-name>
+
+# d: Means detached (in background)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
