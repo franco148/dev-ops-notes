@@ -35,6 +35,11 @@ docker container ls -a
 # For docker toolbox
 docker-machine ip
 ```
+- Stop a running container
+```bash
+docker container stop <container-id>
+```
+
 
 
 
