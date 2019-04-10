@@ -26,6 +26,15 @@ docker container run -d -p 80:8080 <image-name>
 # d: Means detached (in background)
 ```
 
+- Verify running containers
+```bash
+# For docker in Windows 10
+docker container ls
+docker container ls -a
+
+# For docker toolbox
+docker-machine ip
+```
 
 
 
