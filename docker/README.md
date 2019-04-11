@@ -40,8 +40,13 @@ docker-machine ip
 docker container stop <container-id>
 ```
 
-
-
+- Get other images (based on dockerhub images)
+```bash
+docker pull ubuntu
+#or
+docker image pull ubuntu
+#both are the same command.
+```
 
 
 
