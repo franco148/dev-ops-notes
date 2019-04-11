@@ -47,8 +47,11 @@ docker pull ubuntu
 docker image pull ubuntu
 #both are the same command.
 ```
-
-
+- Verify docker processes
+```bash
+docker ps
+docker ps -a
+```
 
 
 
