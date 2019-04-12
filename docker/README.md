@@ -53,6 +53,11 @@ docker ps
 docker ps -a
 ```
 
+- List docker images
+```bash
+docker image ls
+```
+
 
 
 
