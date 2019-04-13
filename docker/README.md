@@ -7,6 +7,11 @@
 docker image pull <docker-image-path>
 ```
 
+- List docker images
+```bash
+docker image ls
+```
+
 - Instantiate a image
 ``` bash
 docker container run -p <external-portnumber>:<internal-portnumber> <image-name>
@@ -53,10 +58,6 @@ docker ps
 docker ps -a
 ```
 
-- List docker images
-```bash
-docker image ls
-```
 
 
 
