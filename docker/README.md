@@ -69,7 +69,11 @@ docker attach 665b4a1e17b6 # By ID
 docker attach loving_heisenberg # By Name
 ```
 
-
+- Removing containers
+```bash
+docker container rm <container-id> # Removing a specific container
+docker container prune # Removing all containers
+```
 
 
 
