@@ -58,7 +58,10 @@ docker ps
 docker ps -a
 ```
 
-
+- Starting a stopped container
+```bash
+docker container start <container-id>
+```
 
 
 
