@@ -63,6 +63,18 @@ docker ps -a
 docker container start <container-id>
 ```
 
+- Attach by ID and Name
+```bash
+docker attach 665b4a1e17b6 # By ID
+docker attach loving_heisenberg # By Name
+```
+
+
+
+
+
+
+
 
 
 
