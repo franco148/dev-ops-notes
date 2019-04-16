@@ -80,6 +80,11 @@ docker container prune # Removing all containers
 docker container logs <container-id>
 ```
 
+- SSH executions
+```bash
+docker container exec <container-id> bash
+docker container exec -it <container-id> bash
+```
 
 
 
