@@ -75,6 +75,10 @@ docker container rm <container-id> # Removing a specific container
 docker container prune # Removing all containers
 ```
 
+- Logs from Docker Containers
+```bash
+docker container logs <container-id>
+```
 
 
 
