@@ -86,6 +86,20 @@ docker container exec <container-id> bash
 docker container exec -it <container-id> bash
 ```
 
+## CREATE A NEW DOCKER IMAGE WITH JDK INSTALLED IN IT
+###### STEPS
+```bash
+docker image ls
+docker container run -it ubuntu (connected to its terminal)
+apt-get update
+apt-get install # We can use the command line to install JDK, but sometimes we may not know about the correct package, so we can proceed in another way.
+apet-cache search jdk # before executing install
+                      # Choose one option from the list
+apt-get install -y openjdk-8-jdk
+javac # For verifying that java is installed.
+exit
+docker container ls # For verifying that no containers are running.
+```
 
 
 
