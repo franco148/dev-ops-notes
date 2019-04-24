@@ -121,6 +121,34 @@ docker container run -it <my-new-image-name>
 # -----------------------------------------------------------------
 ```
 
+## DOCKER FILES
+###### STEPS
+
+```dockerfile
+FROM ubuntu:latest
+MAINTAINER Franco Arratia "contact@mail.com"
+RUN apt-get update && apt-get install -y openjdk-8-jdk
+CMD ["/bin/bash"]
+```
+
+```shell
+# For creating an image from dockerfile:
+
+docker image build -t jdk-image-from-dockerfile .
+# -t: give a name
+# Example: -t <some-name> <location>
+
+docker container run -it jdk-image-from-dockerfile
+# Java should be installed there.
+```
+
+
+
+
+
+
+
+
 
 
 
