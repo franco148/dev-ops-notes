@@ -99,6 +99,26 @@ apt-get install -y openjdk-8-jdk
 javac # For verifying that java is installed.
 exit
 docker container ls # For verifying that no containers are running.
+
+# -----------------------------------------------------------------
+# Now we will create a new image from our current state: docs.docker.com for more information.
+# -----------------------------------------------------------------
+
+docker container commit [many-parameters]
+docker container commit -a "Franco Arratia franco.robert.fral@gmail.com" <container-id> <new-image-name>
+
+# -----------------------------------------------------------------
+# If the image will not be published to dockerhub, the image name my-jdk-image will be helpful locally.
+# -----------------------------------------------------------------
+
+docker image ls
+docker container prune # Remove all unused containers
+docker container run -it <my-new-image-name>
+
+
+# -----------------------------------------------------------------
+# Once executed, we should able to verify the java version that we have installed in previous steps.
+# -----------------------------------------------------------------
 ```
 
 
