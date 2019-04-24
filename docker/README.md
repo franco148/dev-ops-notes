@@ -179,7 +179,16 @@ docker container run -it <docker-image-name>
 # If the container has been stopped, re execute it with the following command.
 docker container start <container-id>
 ```
+```
+# For starting stopped containers:
+docker container start <container-id>
 
+# For reviewing the logs: It also shows the standart System.out. messages.
+docker container logs -f <container-id>
+
+# For stopping the execution of a container
+docker container stop <container-id>
+```
 
 
 
