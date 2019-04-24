@@ -131,7 +131,7 @@ RUN apt-get update && apt-get install -y openjdk-8-jdk
 CMD ["/bin/bash"]
 ```
 
-```shell
+```bash
 # For creating an image from dockerfile:
 
 docker image build -t jdk-image-from-dockerfile .
@@ -142,8 +142,16 @@ docker container run -it jdk-image-from-dockerfile
 # Java should be installed there.
 ```
 
+###### EXECUTING A JAR FILE
 
-
+```dockerfile
+FROM ubuntu:latest
+MAINTAINER Franco Arratia "contact@mail.com"
+RUN apt-get update && apt-get install -y openjdk-8-jdk
+WORKDIR /usr/local/bin/
+COPY myjarfile.jar .
+CMD ["/bin/bash"]
+```
 
 
 
