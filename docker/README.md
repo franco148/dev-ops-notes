@@ -122,6 +122,18 @@ docker container run -it <my-new-image-name>
 ```
 
 ## DOCKER FILES
+A docker file is a set of instructions that tell docker how to build your container image as a very simple but powerful syntax that you will use to create and combine binary artifacts in order to generate your desired end result.
+
+###### DOCKER FILE SYNTAX
+```dockerfile
+FROM image-name:tag
+Uses the named image as the starting point for creating your own.
+ADD some-file-on-host some-path-inside-container
+COPY some-file-on-host some-path-inside-container
+
+Use ADD and COPY to load your container with your required files.
+```
+
 ###### STEPS
 
 ```dockerfile
