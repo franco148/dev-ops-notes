@@ -130,8 +130,14 @@ FROM image-name:tag
 Uses the named image as the starting point for creating your own.
 ADD some-file-on-host some-path-inside-container
 COPY some-file-on-host some-path-inside-container
-
 Use ADD and COPY to load your container with your required files.
+RUN <some command(s)>
+Use run to execute commands within the container.
+CMD ["command", "parameters"]
+Use CMD as an entry point command to initially launch your application. Such as "catalina.sh run"
+VOLUME some-folder-between-the-container
+
+Use WORKDIR to switch within folders, between the container as you execute ADD, COPY, RUM, commands as needed.
 ```
 
 ###### STEPS
