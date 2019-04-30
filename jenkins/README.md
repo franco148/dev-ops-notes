@@ -1,5 +1,11 @@
 # JENKINS NOTES
 
+### ADITIONAL AUTOMATION
+- Setup Git repository polling
+- Deployment to our tomcat servers
+- We will setup a couple of tasks to run in parallel
+- And we will briefly explain how to setup tomcat on EC2 in Amazon Web Service
+
 ### MASTER SLAVE CONFIGURATION IN JENKINS
 ##### Different ways to start slave agent
 - The master can start the slave agents via SSH.
