@@ -15,15 +15,14 @@
 
 In Linux environment the most convenient way to start a Jenkis slave is undoubtedly to use SSH
 
-
----------------------------------------------------------------------------
-
-Connect to our dropplet via SSH.
+- Connect to our dropplet via SSH.
+```bash
 ssh root@ip
-change the password: DOJenkinsSvrPwd148
-change the password: DOJenkinsSlvPwd148
+change the password
+```
 
-Install jenkins throught the terminal
+- Install jenkins throught the terminal
+```bash
 wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | apt-key add -
  
 echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list
@@ -34,7 +33,7 @@ apt-get install jenkins
 
 less <link provided in the initial of jenkins>
 01393e4ea0504e639f4710c32c9565e1
-
+```
 
 START THE SLAVE AGENT
 * Master node will start the slave agent on the slave machine via SSH
