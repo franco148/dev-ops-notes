@@ -72,15 +72,15 @@ sudo apt-get install default-jre
 
 wget http://142.93.66.109:8080/jnlpJars/agent.jar
 ```
---------------------------------------------------------
-IN JENKINS TERMINAL (MASTER NODE)
+
+###### In jenkins terminal (Master Node)
 - Manage jenkins
 - Manage nodes
 - New node
 - add a name
 - enter required information
 
-EXECUTOR
+###### Executor
 * A jenkins executor is one of the basic building blocks which allow a build to run on a node.
 * Think of an executor as a single "Process ID", or as the basic unit of resource that jenkins executes on your machine to run a build.
 * This number executors basically specifies the maximun number of concurrent builds that jenkins may perform on this agent.
@@ -98,7 +98,6 @@ SAVE
 
 
 Launch agent via execution of command on the master
-
 
 sudo java -jar jenkins-cli.jar -s http://142.93.66.109:8080/ version
 wget http://142.93.66.109:8080/jnlpJars/jenkins-cli.jar
