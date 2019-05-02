@@ -35,12 +35,13 @@ less <link provided in the initial of jenkins>
 01393e4ea0504e639f4710c32c9565e1
 ```
 
-START THE SLAVE AGENT
+- Start the slave agent
 * Master node will start the slave agent on the slave machine via SSH
 * Automatic SSH login without password from master node to the slave is needed.
 * Master node will be running as a specific user called JENKINS to start the slave agent.
 
-IN THE MASTER
+- In master node
+```bash
 sudo -iu jenkins
 ssh-keygen -t rsa
 ssh root@slave-ip mkdir -p .ssh
@@ -51,6 +52,9 @@ Enter a root password of the slave node.
 
 From now, we can login to the slave from the master node, without password.
 ssh root@slave-ip
+
+ssh root@slave-ip mkdir -p .ssh
+```
 
 
 SLAVE NODE
