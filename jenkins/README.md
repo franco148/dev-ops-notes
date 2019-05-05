@@ -90,9 +90,9 @@ wget http://142.93.66.109:8080/jnlpJars/agent.jar
 might be I/O-bound. So the second build could take advantage of the spare I/O capacity at that moment.
 
 #of executors: 2
-Remote directory: /var/jenkins
-launch command: ssh root@ip-slave java -jar /root/bin/slave.jar
-SAVE
+- Remote directory: ```/var/jenkins```
+- Launch command: ```ssh root@ip-slave java -jar /root/bin/slave.jar```
+- SAVE
 
 
 
