@@ -231,7 +231,27 @@ The previous command will execute the bash of the OS.
 
 
 
+--------------------------------------------------------------------------------------------
+CHAPTER 7 -  TOMCAT APPLICATION
+--------------------------------------------------------------------------------------------
+SETTING UP THE IDE
+--------------------------------------------------------------------------------------------
 
+Run as: arguments:
+-Dspring.profiles.active=development
+
+--------------------------------------------------------------------------------------------
+TOMCAT BASE IMAGE
+--------------------------------------------------------------------------------------------
+FROM tomcat:9.0.17-jre8-alpine
+MAINTAINER Franco Arratia "franco.robert.fral@gmail.com"
+CMD ["catalina.sh", "run"]
+
+
+docker image build -t <some name> .
+
+docker container run -it <docker image>
+docker container run -p 8080:8080 -it <docker image>
 
 
 
