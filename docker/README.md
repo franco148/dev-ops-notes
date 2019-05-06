@@ -254,6 +254,46 @@ docker container run -it <docker image>
 docker container run -p 8080:8080 -it <docker image>
 
 
+--------------------------------------------------------------------------------------------
+Removing the default webapps
+--------------------------------------------------------------------------------------------
+
+FROM tomcat:9.0.17-jre8-alpine
+MAINTAINER Franco Arratia "franco.robert.fral@gmail.com"
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
+
+We need to expose the port if we need to use a port in a container. But we may not need to do that
+in this case, since the docker files inherits the configuration from parent ones.
+
+Ot the end, it may be useful and informative to who that is going to see our docker files.
+
+docker container run -p 80:8080 -it <docker image>
+docker container run -p 80:8080 -d <docker image>
+
+-d: Detached mode 
+
+docker container exec -it <container-id> /bin/bash
+docker container exec -it <container-id> /bin/sh
+
+Previous commands will depend on image of OS and version.
+
+FROM tomcat:9.0.17-jre8-alpine
+MAINTAINER Franco Arratia "franco.robert.fral@gmail.com"
+EXPOSE 8080
+RUN rm -rf /usr/local/tomcat/webapps/*
+CMD ["catalina.sh", "run"]
+
+
+docker container stop <container-id>
+docker image build -t <some name> .
+docker container run -p 80:8080 -d <docker image> 
+[docker container exec -it <container-id> /bin/bash
+or
+docker container exec -it <container-id> /bin/sh]
+docker container stop <container-id>
+
+
 
 
 
