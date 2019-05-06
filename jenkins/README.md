@@ -99,8 +99,8 @@ might be I/O-bound. So the second build could take advantage of the spare I/O ca
 
 Launch agent via execution of command on the master
 
-sudo java -jar jenkins-cli.jar -s http://142.93.66.109:8080/ version
-wget http://142.93.66.109:8080/jnlpJars/jenkins-cli.jar
+- sudo java -jar jenkins-cli.jar -s http://142.93.66.109:8080/ version
+- wget http://142.93.66.109:8080/jnlpJars/jenkins-cli.jar
 
 
 
