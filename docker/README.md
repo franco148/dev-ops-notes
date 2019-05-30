@@ -180,12 +180,21 @@ COPY myjarfile.jar .
 CMD ["java", "-jar", "jarfile.jar"] # Here we need to add the command we need to execute
 ```
 
-RUN IMAGE BUILD: ```docker image build -t jdk-image-from-dockerfile .```
+###### RUN IMAGE BUILD
+
+``` bash
+docker image build -t jdk-image-from-dockerfile .
+```
 It is necesary to add the dot (.) as a parameter. We just need a dot there to say we are working in this folder.
 
 Docker files will only take into account the files that are located in the current folder (. parameter means current) and subfolders from the current location.
 
-When executing this with the latest version of docker until April 2sd, 2019. I got the following error message: Get https://registry-1.docker.io/v2/library/ubuntu/manifests/latest: unauthorized: incorrect username or password
+When executing this with the latest version of docker until April 2sd, 2019. I got the following error message: 
+
+```bash
+Get https://registry-1.docker.io/v2/library/ubuntu/manifests/latest: unauthorized: incorrect username or password
+```
+
 This was solved by executing: ```docker logout```
 
 ###### EXECUTE THE CONTAINER
