@@ -217,26 +217,21 @@ docker container logs -f <container-id>
 docker container stop <container-id>
 ```
 
---------------------------------------------------------------------------------------------
-COPY vs ADD
---------------------------------------------------------------------------------------------
+###### COPY vs ADD
+
 COPY: 
-ADD: Has some extra features, for example it can work with remotes URLs, it can also
-do things like unzipping, unpacking archives. Now therefore it looks like ADD is generally more
-useful and flexible but in fact the docker peope seems to recommend that copy is preferred 
-because it is just simpler and is more obvious what copy is going to do. 
+ADD: Has some extra features, for example it can work with remotes URLs, it can also do things like unzipping, unpacking archives. Now therefore it looks like ADD is generally more useful and flexible but in fact the docker peope seems to recommend that copy is preferred because it is just simpler and is more obvious what copy is going to do. 
 
-However if you use add I just wanted to mention in case you think we are missing something
-by not using ADD.
+However if you use add I just wanted to mention in case you think we are missing something by not using ADD.
 
-
-ENTRYPOINT: Is very similar to CMD command. The difference is that we can not override the execution commands.
-But there are quite significant differences. EntryPoints will always run whereas CMD is just a default.
+ENTRYPOINT: Is very similar to CMD command. The difference is that we can not override the execution commands. But there are quite significant differences. EntryPoints will always run whereas CMD is just a default.
 
 When we are using CMD, we can change the execution command when running the container as follows
-- docker container run -it jdk-image-from-dockerfile /bin/bash
 
-The previous command will execute the bash of the OS.
+```bash
+docker container run -it jdk-image-from-dockerfile /bin/bash
+# The previous command will execute the bash of the OS.
+```
 
 
 
