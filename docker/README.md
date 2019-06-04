@@ -290,14 +290,19 @@ RUN rm -rf /usr/local/tomcat/webapps/*
 CMD ["catalina.sh", "run"]
 ```
 
-
+```bash
 docker container stop <container-id>
 docker image build -t <some name> .
 docker container run -p 80:8080 -d <docker image> 
+
 [docker container exec -it <container-id> /bin/bash
-or
+# or
 docker container exec -it <container-id> /bin/sh]
+
 docker container stop <container-id>
+```
+
+
 
 
 
