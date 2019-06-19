@@ -1,4 +1,4 @@
-##### RUNNING ELASTICSEARCH AND KIBANA IN ELASTIC CLOUD
+#### RUNNING ELASTICSEARCH AND KIBANA IN ELASTIC CLOUD
 - Go to elastic cloud web page
 - I will ask you to use AWS or Google Cloud Platform. However AWS already offers a elastic search feature, which has more funtionalities.
 
