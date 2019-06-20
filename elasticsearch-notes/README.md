@@ -18,6 +18,15 @@
 - There is also a config folder where you can find the configurations
 - bin/elasticsearch
 
+#### Installing Elasticsearch on Windows
+- Elasticsearch just consists in a bunch of jar files (archives).
+- Requires at least java 8.
+- Download the zip file.
+- bin folder contains all the jar files, like elasticsearch itself and apache lucene.
+- config folder constains the configuration files.
+- for executing the elasticsearch, we need to execute it via command pront.
+- ```bin\elasticsearch.bat```
+- 9200 is the default por for elasticsearch.
 
 
 
