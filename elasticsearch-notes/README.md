@@ -39,6 +39,14 @@
 - then execute the executable file: ```bin\kibana....```
 - It is going to run in localhost in port 5601 by default.
 
+#### Installing Kibana on Windows
+- navigate to elastic.co
+- download the appropriate file (installer zip file)
+- extract the file.
+- navigate to the new directory
+- open the command pront.
+- ```bin\kibana```
+
 
 
 
