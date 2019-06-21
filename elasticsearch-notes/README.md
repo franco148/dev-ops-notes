@@ -47,6 +47,10 @@
 - open the command pront.
 - ```bin\kibana```
 
+#### Configuring Kibana
+- the configuration file is: ```kibana.yml```
+- can configure, port, host, base, base path, host name, elasticsearch url, etc.
+
 
 
 
