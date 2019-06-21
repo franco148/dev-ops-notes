@@ -51,7 +51,9 @@
 - the configuration file is: ```kibana.yml```
 - can configure, port, host, base, base path, host name, elasticsearch url, etc.
 
-
+#### Introduction to Kibana and DevTools
+- You can use Kibana for querying some operations, since elasticsearch uses APIs for doing that, if you do not want to use kibana, you can use postman tool as well.
+- ```<Rest Verb>/<index>/<type>/<api>```
 
 
 
