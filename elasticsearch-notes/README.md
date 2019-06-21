@@ -32,6 +32,13 @@
 - The configuration file is located into config folder, it is elasticsearch.yml
 - There are some default values that we may need to change.
 
+#### Installing Kibana on Mac/Linux
+- Download Kibana for the operating system.
+- unzip ```tar -zxf kibana.....gz```
+- navigate to the new directory that has been created.
+- then execute the executable file: ```bin\kibana....```
+- It is going to run in localhost in port 5601 by default.
+
 
 
 
