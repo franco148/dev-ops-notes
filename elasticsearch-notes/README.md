@@ -28,6 +28,18 @@
 - ```bin\elasticsearch.bat```
 - 9200 is the default por for elasticsearch.
 
+#### Configuring Elasticsearch
+- The configuration file is located into config folder, it is elasticsearch.yml
+- There are some default values that we may need to change.
+
+
+
+
+
+
+
+
+
 
 
 
