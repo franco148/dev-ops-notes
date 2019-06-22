@@ -77,6 +77,11 @@ POST /product/default
 }
 ```
 
+#### Retrieving documents by ID
+
+```bash
+GET /product/default/1
+```
 
 
 
