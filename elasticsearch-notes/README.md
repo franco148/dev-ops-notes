@@ -56,6 +56,21 @@
 - ```<Rest Verb>/<index>/<type>/<api>```
 
 
+### MANAGING DOCUMENTS
+#### Creating an index
+
+```bash
+# VERB collection?queryParam
+PUT /product?pretty
+```
+
+
+
+
+
+
+
+
 
 
 
