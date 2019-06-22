@@ -83,6 +83,25 @@ POST /product/default
 GET /product/default/1
 ```
 
+#### Replacing documents
+
+```bash
+PUT /product/default/1
+{
+  "name": "Elasticsearch Course"
+  "instructor": {
+    "name": "Franco",
+    "lastName": "Arratia"
+  },
+  "price": 195
+}
+```
+
+- Let's note that _version_ metafield has changed.
+
+
+
+
 
 
 
