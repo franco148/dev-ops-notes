@@ -60,10 +60,22 @@
 #### Creating an index
 
 ```bash
-# VERB collection?queryParam
+# VERB index?queryParam
 PUT /product?pretty
 ```
 
+#### Adding documents
+
+```bash
+POST /product/default
+{
+  "name": "Elasticsearch Course"
+  "instructor": {
+    "name": "Franco",
+    "lastName": "Arratia"
+  }
+}
+```
 
 
 
