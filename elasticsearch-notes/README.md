@@ -99,6 +99,15 @@ PUT /product/default/1
 
 - Let's note that _version_ metafield has changed.
 
+#### Updating documents
+
+```bash
+POST /product/default/1/_update
+{
+  "doc": { "price": 95, "tags": [ "elasticsearch" ] }
+}
+```
+
 
 
 
