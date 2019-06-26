@@ -108,6 +108,18 @@ POST /product/default/1/_update
 }
 ```
 
+#### Scripted updates
+- Apart from specifying the new values for fields directly within in an update query, it is also possible to use scripts. Perhaps I want to increase the price of my course by 10. Instead of first retrieving the document to find the current price, and then updating the document with the previous price plus 10, Elasticsearch can do this for me in a single query.
+
+```bash
+POST /product/default/1/_update
+{
+  "script": "ctx._source.price += 10"
+}
+
+GET /product/default/1
+```
+[Reference](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-scripting.html)
 
 
 
