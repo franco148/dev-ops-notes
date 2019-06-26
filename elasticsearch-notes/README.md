@@ -119,7 +119,7 @@ POST /product/default/1/_update
 
 GET /product/default/1
 ```
-[Reference](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-scripting.html)
+[Reference to Scripted Updates](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-scripting.html)
 
 
 
