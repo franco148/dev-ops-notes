@@ -121,8 +121,24 @@ GET /product/default/1
 ```
 [Reference to Scripted Updates](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-scripting.html)
 
+#### Upserts
+- Update a document if it exists.
 
+```bash
+DELETE /product/default/1
 
+POST /product/default/1/_update
+{
+  "script": "ctx._source.price += 5",
+  "upsert": {
+    "price": 100
+  }
+}
+
+# So what this query means, is that if the document already exists, the script is run and the price is increased by 5. If the document does not already exists, then the object for the "upsert" key is added as the document.
+
+GET /product/default/1
+```
 
 
 
