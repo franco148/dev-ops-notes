@@ -140,8 +140,14 @@ POST /product/default/1/_update
 GET /product/default/1
 ```
 
-
-
+### MAPPING
+#### Dynamic Mapping
+#### Meta Fields
+#### Field Data Types
+#### Adding Mapping to Existing Indices
+#### Changing Existing Mappings
+#### Upserts
+#### Upserts
 
 
 
