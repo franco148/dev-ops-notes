@@ -4,4 +4,5 @@ Important notes regarding to Docker, Docker Swarm, Kubernetes, Jenkins, etc.
 #### Topics
 - [Docker Notes](https://github.com/franco148/dev-ops-notes/tree/master/docker)
 - [Jenkins Notes](https://github.com/franco148/dev-ops-notes/tree/master/jenkins)
-- [Kubernetes Notes]()
+- [Kubernetes Notes](not yet)
+- [Elasticsearch Notes](https://github.com/franco148/dev-ops-notes/tree/elasticsearch-notes/elasticsearch-notes)
