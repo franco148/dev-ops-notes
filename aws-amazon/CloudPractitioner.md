@@ -47,7 +47,10 @@ There are many virtualization softwares available like:
 
 Now typically virtualization allows us to run multiple operating system on a single hardware.
 
-
+#### On-Demand & Self Service
+###### Challenges
+- On-Demand does not always means that you will be able to launch instances at any given point of time.
+- Event a Cloud provider has limits, though it might be high, these limits are definitely reached.
 
 
 
