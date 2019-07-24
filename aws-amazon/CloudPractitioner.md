@@ -52,7 +52,14 @@ Now typically virtualization allows us to run multiple operating system on a sin
 - On-Demand does not always means that you will be able to launch instances at any given point of time.
 - Event a Cloud provider has limits, though it might be high, these limits are definitely reached.
 
+#### Elasticity
+- Elasticity deals with adding and removing capacity, whenever it is needed in the environment.
+- Capacity generally refers to mostly processing & memory.
+- It is like a rubber band. 
 
+#### Scalability
+- Horizontal Scalability: Adding or removing instances from pool like cluster farm.
+- Vertical Scalability: Adding or removing resource for existing servers.
 
 
 
