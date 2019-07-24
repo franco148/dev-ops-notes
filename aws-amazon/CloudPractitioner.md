@@ -1,7 +1,7 @@
 # AWS CERTIFIED CLOUD PRACTITIONER
 
 ### Fundamentals of Cloud Computing Platform.
-##### Data Center Approach
+#### Data Center Approach
 - Requirement: Your company wants to host their website.
 - Solution: 
   * Choose the DataCenter/Hosting Provider
@@ -21,7 +21,7 @@ Due to some big promotion, server capacity needs to be increased from 4GB RAM to
 - Cloud Way:
   * Stop the server & change the instance size.
 
-##### Cloud computing
+#### Cloud computing
 Cloud computing is a model in which computing resource are available as a service.
 - 3 important characteristic of Cloud Computing:
   * On-demand & self serviced \[Any time launch without manual intervention\]
@@ -34,10 +34,18 @@ There are 3 types of Cloud Computing models.
 - Platform as a service           \[Google App Engine\]
 - Infrastructure as a service     \[AWS, Linode, Digital Ocean\]
 
+#### Architecture of Cloud Environments
 
+###### Cloud is Data Center secretly
+Cloud from behind the scenes is data center only.
+Virtualization allows us to run multiple OS on a single hardware.
+There are many virtualization softwares available like:
+- VMware Workstation / vSphere
+- KVM
+- XEN
+- VirtualBox
 
-
-
+Now typically virtualization allows us to run multiple operating system on a single hardware.
 
 
 
