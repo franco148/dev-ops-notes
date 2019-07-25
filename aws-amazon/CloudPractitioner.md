@@ -62,8 +62,11 @@ Now typically virtualization allows us to run multiple operating system on a sin
 - Vertical Scalability: Adding or removing resource for existing servers.
 
 
-
-
+### Core AWS Services.
+#### Pay as you go Model
+- Pay as you consume model allows organizations to scale their resources well and only pay for what they have used.
+- Generally, the model works based on hourly costs.
+- This model is terrific especially due to AWS Marketplace support.
 
 
 
