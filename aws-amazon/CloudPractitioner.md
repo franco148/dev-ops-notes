@@ -104,6 +104,24 @@ Now typically virtualization allows us to run multiple operating system on a sin
 - That is it!
 - After configure Multi-factor authentication, next time you will need to login, an MFA code will be required.
 
+#### Creating our first IAM user
+If someone gets your root account, he can do everything. However if someone gets far account of your name user, you can immediately restrict the access or block the access of the attacker. 
+
+- Go to Services dropdown
+- Choose IAM
+- Go to users option
+- Add user
+- Fill required fields.
+- Set the required permissions.
+- Once done. The console will show you what is the link you require for accessing with the user.
+- Then we can also configure the multi-factor authentication for this new user.
+
+
+
+
+
+
+
 
 
 
