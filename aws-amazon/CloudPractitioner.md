@@ -68,6 +68,23 @@ Now typically virtualization allows us to run multiple operating system on a sin
 - Generally, the model works based on hourly costs.
 - This model is terrific especially due to AWS Marketplace support.
 
+#### AWS Global Infrastructure
+###### Availability Zone
+- AWS Data Centers are organized into Availability Zones (AZ)
+- Each availability zone are located at lower-risk locations.
+- There are multiple AZ and each of them is separate by geographic region.
+- Each AZ is designed for independent failure zone.
+- Thus, they are physically separated.
+- The AZ are inter-connected with high speed private links.
+- Each availability zone are located at lower-risk locations.
+
+###### AWS Regions
+- Each region contains two or more availability zones.
+- AWS has 16 number of regions worldwide as of 2017.
+
+###### AWS Global Infrastructure
+- AWS currently operates on 16 regions across the world with 44 availability zones.
+
 
 
 
