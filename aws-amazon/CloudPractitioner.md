@@ -85,8 +85,12 @@ Now typically virtualization allows us to run multiple operating system on a sin
 ###### AWS Global Infrastructure
 - AWS currently operates on 16 regions across the world with 44 availability zones.
 
-
-
+#### Setting up the lab
+###### Create a free account
+- Link: https://aws.amazon.com/free
+- Add required information
+- Fill out the required fields and choose Personal account.
+- Once you finished the steps. You will receive a email.
 
 
 
