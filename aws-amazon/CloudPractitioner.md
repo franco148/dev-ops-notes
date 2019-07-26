@@ -116,7 +116,42 @@ If someone gets your root account, he can do everything. However if someone gets
 - Once done. The console will show you what is the link you require for accessing with the user.
 - Then we can also configure the multi-factor authentication for this new user.
 
+#### Launching First EC2 Instance
+- Go to Services or search in search field typing EC2.
+- Choose EC2
+- Go to instances
+- Before launching an instance, first create a key pair
+- Choose create key pair, and fill the fields. Basically this is going to be the private key.
+- Then choose launch EC2 instance
+- Choose a operating system
+- Click on: Configure instance needed.
+- Click on: Add storage
+- Nex, next
+- Security group configuration: Add a name
+- Review and launch
+- IN the modal choose, Select a key pair, and select the one created previously.
+- Check the checkbox.
+- Launch Instance.
+- Click on the instance ID generated in the platform.
+- We can connect through the public IP.
+- With MobaXTerm. telnet ip
+- In order to connect to the instance. We can do it via SSH
+- ``` ssh ec2-user@ip ``` But it is going to fail asking the private key.
+- Give the key some permissions. chmod 640 keyname.pem
+- ``` ssh -i ~/path/keyname.pem ec2-user@ip ``` for fixing previous issue. Then you are going to be connected to your instance
 
+###### Installing required tools into our EC2
+- yum -y install nginx
+- service nginx status
+- If it is stopped: service nginx start
+- netstat -ntlp
+-  
+
+###### Adding a new rule for connecting through a different ports
+- Choose create security groups
+- Add the required values to the fields
+- telnet ip port - It should work now.
+- And accessing via a browser it should display a nginx page once it is installed.
 
 
 
