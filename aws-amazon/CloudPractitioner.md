@@ -153,9 +153,15 @@ If someone gets your root account, he can do everything. However if someone gets
 - telnet ip port - It should work now.
 - And accessing via a browser it should display a nginx page once it is installed.
 
+###### Document - Installation Commands
+Amazon has come up with the new Amazon Linux 2 OS.
 
+If you are using Amazon Linux 2, the commands to install nginx will slightly change. Here are the new updated commands:
 
-
+```bash
+    amazon-linux-extras install nginx1.12
+    systemctl start nginx
+```
 
 
 
