@@ -196,7 +196,19 @@ Within the option we are going to have Inbound Rules and Outbound Rules.
   - Now add a new rule, and DENY all traffic, after that ping should not work anymore.
 
 
+#### Blok & object Storage Mechanism
+###### Block Storage
+- In block storage, the data is stored in terms of blocks
+- Data stored in blocks are normally read or written entirely a whole block at the same time.
+- Most of the file systems are based on block devices.
 
+Examples of some commands to verify it.
+- blockdev --getbsz /dev/sda
+- lsblk
+
+- Every block has an address and application can be called via SCSI call via it's address.
+- There is no storage side meta-data associated with the block except the address.
+- Thus block has no description, no owner.
 
 
 
