@@ -164,11 +164,15 @@ If you are using Amazon Linux 2, the commands to install nginx will slightly cha
     systemctl start nginx
 ```
 
+#### Understanding basics of firewall & TCP/IP
+| Type          | Protocol      | Port Range  | Source       |
+| ------------- |:-------------:|:-----------:|:------------:|
+| SSH           | TCP           | 22          | 10.0.5.57/32 |
 
+- Allow on port 22 only from the IP 10.0.5.57
 
-
-
-
+Note:
+> Wireshark is an appplication to capture the network traffic which includes the TCP/IP packages
 
 
 
