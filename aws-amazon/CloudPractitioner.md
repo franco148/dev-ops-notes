@@ -149,6 +149,7 @@ If someone gets your root account, he can do everything. However if someone gets
 
 ###### Adding a new rule for connecting through a different ports
 - Choose create security groups
+- Inbound - Add a new rule
 - Add the required values to the fields
 - telnet ip port - It should work now.
 - And accessing via a browser it should display a nginx page once it is installed.
