@@ -174,6 +174,65 @@ If you are using Amazon Linux 2, the commands to install nginx will slightly cha
 Note:
 > Wireshark is an appplication to capture the network traffic which includes the TCP/IP packages
 
+#### Understanding basics of firewall & TCP/IP
+
+###### NACL is Stateless
+- Network ACL are stateless in nature.
+- They operate at the subnet level instead of instance level like Security Groups
+- All subnets in VPC must be associated with NACL.
+- By default, Network ACL contains full allow in INBOUND and OUTBOUND.
+
+###### Configuration
+For configuring a ACL network perform the following steps:
+- Go to Services.
+- Type VPC in the search field.
+- In the Filter by VPC field you are going to have options (it is going to appear one that was created when the instance was being created.)
+- Scrolling down, you are going to see in Security section `Network ACLs`. Click on that option.
+
+Within the option we are going to have Inbound Rules and Outbound Rules.
+- In Rule# column, the lower the value, the more priority it has. (* means higher value)
+- Example
+  - Ping to the public IP, it is going to work
+  - Now add a new rule, and DENY all traffic, after that ping should not work anymore.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
