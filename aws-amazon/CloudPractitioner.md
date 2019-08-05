@@ -252,6 +252,40 @@ Something to realize is that you can not stop an instance-store instance, it onl
 - AWS EC2 is regarded as compute based service.
 - Compute generally refers to Memory & CPU
 
+#### EBS Portability
+- AWS Elastic Block Store is based on Network Attached Storage.
+- Since the storage are attached via network, they can be easily detached as well hence providing the portability based feature.
+
+Here some practical steps:
+- Go to EC2 Dashboard.
+- Go to Elastic Block Store section and click Volumes menu.
+- Create volume and fill all the fields.
+- It is recommended to have the AvailabilityZone the same as the instance that is being executed. So if you are connected in different availability zone then it will not work.
+- Create Volume, it will show us available state, so it is ready for attach to a EC2 instance.
+- Rename it to portable.
+
+You will need your EC2 instance running, and then connect to it for applying the following operations
+- ssh -i keypair.pem ec2-user@public-ip
+- sudo su -
+- lsblk : we will see all the volumes.
+- Now we can attach the previous volume created to this instance.
+- When we are in volume dashboar, click on actions -> Attach Volume -> choose the instance 
+- Once performed previous operations, you should able to see the new volume in you block devices section.
+- lsblk
+- For creating a file system into the volume created: mkfs.ext4 /dev/xvdf (which is the volume that has been attached)
+- mkdir /somefolder
+- mount /dev/xvdf /somefolder
+- cd somefolder
+- touch somefolder.txt
+- echo "This is EBS Portability lecture" > somefolder.txt
+- cat somefolder.txt
+- cd ..
+- umount /somefolder
+- df -h 
+- We can also detach throught the UI with detach option, and then from IN USE, in will change to AVAILABLE state, then you can use it in a different instance.
+
+
+
 
 
 
