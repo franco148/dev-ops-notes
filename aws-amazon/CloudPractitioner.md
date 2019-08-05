@@ -211,7 +211,26 @@ Examples of some commands to verify it.
 - Thus block has no description, no owner.
 
 #### Instance store volumes
+AWS Instance Store provides a temporary block storage volumes for use with EC2.
+This storage is located on the disks that are physically attached to the host computer.
+Size of instance store varies depending on your instance type.
 
+###### Steps:
+- Going to Launch Instance
+- Community AMIs
+- We can see in Root device type section the option for instance store (temporary storage).
+- Click in the option. It is going to be filtered all the images that support this feature.
+- For this example we choose amzn-ami-minimal-pv-2016.03.1.x86_64-s3 - ami-008c056c
+- Press select button
+- It will show us multiple options, we will use the enabled ones but with option SMALL.
+- Click on Configure Instance Details button.
+- Click on Add Storage button.
+- Leave all by default and press Review and Launch.
+- Press launch.
+- Select the required key.
+- Launch Instance.
+- Go to your instance.
+- One thing to notice is that, if you scroll down, in the RootDeviceType option, you will see instance-store
 
 
 
