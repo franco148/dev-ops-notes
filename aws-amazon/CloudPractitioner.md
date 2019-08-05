@@ -232,8 +232,16 @@ Size of instance store varies depending on your instance type.
 - Go to your instance.
 - One thing to notice is that, if you scroll down, in the RootDeviceType option, you will see instance-store
 
+###### Important Points for Instance Store.
+- Data in instance store is lost in following situation.
+  - The underlying disk drive fails.
+  - The instance stops.
+  - The instance terminates.
+- Instance store are included in the cost of EC2 instance, so they are quite cost effective.
+- If planning to use instance store, make sure you backup your data to central storage places like S3.
 
-
+Connect to your Instance throught SSH. Then execute ```df -h```. You are going to see the following message ```/media/ephemeral10``` which means is a temporary device.
+Something to realize is that you can not stop an instance-store instance, it only has reboot, and terminate options. It does not matter if you specifically executes a command for shutting it down, it will be terminated.
 
 
 
