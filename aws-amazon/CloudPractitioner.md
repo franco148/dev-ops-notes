@@ -243,9 +243,14 @@ Size of instance store varies depending on your instance type.
 Connect to your Instance throught SSH. Then execute ```df -h```. You are going to see the following message ```/media/ephemeral10``` which means is a temporary device.
 Something to realize is that you can not stop an instance-store instance, it only has reboot, and terminate options. It does not matter if you specifically executes a command for shutting it down, it will be terminated.
 
+#### Elastic Block Store (EBS)
+- AWS Elastic Block Store is a persistent block storage volumes for use with EC2.
+- Each EBS volume is designed for 99.9999% availability & are automatically replicated within its availability zone.
+- EBS can be elastic in nature, thus supports dynamic increase in capacity, performance and can change instance type of live volumes.
 
-
-
+###### Compute != Storage
+- AWS EC2 is regarded as compute based service.
+- Compute generally refers to Memory & CPU
 
 
 
