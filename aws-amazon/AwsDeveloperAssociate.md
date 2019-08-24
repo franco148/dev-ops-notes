@@ -5,7 +5,7 @@
     <tr>
         <th>AWS Certified</th>
         <th colspan="4">Role - Based Certifications</th>
-        <th>AWS Certified</th>
+        <th>Specialty Certifications</th>
     </tr>
     <tr>
         <td>Profesional</td>
@@ -25,6 +25,11 @@
           <b>DevOps Engineer</b><br>
           <i>- Profesional</i>
         </td>
+        <td>
+          AWS Certified<br>
+          <b>Advanced Networking</b><br>
+          <i>- Specialty</i>
+        </td>
     </tr>
     <tr>
         <td>Associate</td>
@@ -43,6 +48,11 @@
           AWS Certified<br>
           <b>SysOps Administrator</b><br>
           <i>- Associate</i>
+        </td>
+        <td>
+          AWS Certified<br>
+          <b>Big Data</b><br>
+          <i>- Specialty</i>
         </td>
     </tr>
     <tr>
@@ -65,6 +75,11 @@
           AWS Certified<br>
           <b>Cloud Practitioner</b><br>
           <i>- Optional</i>
+        </td>
+        <td>
+          AWS Certified<br>
+          <b>Security</b><br>
+          <i>- Specialty</i>
         </td>
     </tr>
     <tr>
