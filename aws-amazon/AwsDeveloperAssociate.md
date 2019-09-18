@@ -92,8 +92,19 @@
 </table>
 
 
-
-
+#### AWS Management Console
+- Go to our account
+- Click on Billing Dashboard
+- In left side are a menu: Cost Management -> Budgets Click on it.
+- Create a budget
+- Cost Budget
+- Set budget
+- Fill the required fields.
+- Spend money would be configured form 0.01 $us
+- Click on configure alerts.
+- Fill required fields.
+- Confirm budget.
+- Create.
 
 
 
