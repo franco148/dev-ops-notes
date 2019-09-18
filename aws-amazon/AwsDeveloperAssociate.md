@@ -91,6 +91,40 @@
     </tr>
 </table>
 
+#### AWS topics structure
+- Amazon EC2
+- Amazon ECR
+- Amazon ECS
+- Amazon Elastic Beanstalk
+- AWS Lambda
+- Elastic Load Balancing
+- Amazon CloudFront
+- Amazon Kinesis
+- Amazon Route S3
+- Amazon S3
+- Amazon RDS
+- Amazon DynamoDB
+- Amazon DynamoDB Accelerator
+- Amazon ElastiCache
+- Amazon SQS
+- Amazon SNS
+- AWS Step Functions
+- Amazon SWF
+- Amazon API Gateway
+- Amazon SES
+- Amazon Cognito
+- IAM
+- Amazon CloudWatch
+- Amazon EC2 System Manager
+- AWS CloudFormation
+- AWS CloudTrail
+- AWS CodeCommit
+- AWS CodeBuild
+- AWS CodeDeploy
+- AWS CodePipeline
+- AWS X-Ray
+- AWS KMS
+
 
 #### AWS Management Console
 - Go to our account
