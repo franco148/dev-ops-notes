@@ -177,7 +177,7 @@ For big enterprises it is used something called:
 - Never use the ROOT account except for initial setup. 
 - Never use ROOT IAM Credentials
 
-#### IAM Hands-On
+##### IAM Hands-On
 1. Go to AWS Console
 2. Select IAM in the services dashboard: Remember that this operations are global, it is not specific for a region.
 3. Delete your root access keys: Is the first operation that we will need to do (This is going to be performed).
@@ -223,8 +223,54 @@ After performed all the steps above, you should see all green status for IAM Man
 
 8. In IAM dashboar we can assign an alias to the conection. Press customize link and add a name. So the link is going to change based on the name added. It is going to be used for signIn into our AWS console.
 
+#### What is EC2?
+- EC2 is one of most popular of AWS offering 
+- It mainly consists in the capability of : 
+  - Launching virtual machines in the cloud.
+  - Renting virtual machines (EC2) 
+  - Storing data on virtual drives (EBS) 
+  - Distributing load across machines (ELB) 
+  - Scaling the services using an auto-scaling group (ASG)
+- Knowing EC2 is fundamental to understand how the Cloud works
 
+##### Hands-On: Launching an EC2 Instance running Linux
+- We’ll be launching our first virtual server using the AWS Console 
+- We’ll get a first high level approach to the various parameters 
+- We’ll learn how to start / stop / terminate our instance.
 
+1. Go to AWS console
+2. Go to EC2 Service
+   - Before continue, make sure that you are in the region that is close to you.
+3. Launch Instance: Choose an Amazon Machine Image (AMI)
+   - For our case we are going to choose ```Amazon Linux 2 AMI```
+4. Select the AMI: Choose an instance type
+   - Select t2.micro
+   - Then press NEXT: Configure instance details
+5. Step 3: Configure Instance Details
+   - For this first scenario, leave all fields with their default values.
+   - Click NEXT: Add Storage
+6. Step 4: Add Storage
+   - For this first scenario, leave all fields with their default values.
+   - Click NEXT: Add Tags
+7. Step 5: Add Tags. 
+   - Tags are basically key value pairs which allow you to just identify that Instance and classify it.
+   - Example: Name -> FirstInstance
+   - It can be added as many tags as required.
+   - Click NEXT: Configure Security Group
+8. Step 6: Configure Security Group
+   - This is going to be basically a firewall for the instance.
+   - The following fields are filled.
+     - Security group name: ```ec2a-security-group```
+     - Description: ```Create with my first EC2 Instance```
+   - Click on Review and Lunch
+9. Step 7: Review Instance Lunch
+   - There is a WARNING message that says: ```Your security group is open to the world```. This needs to be fixed, but for now it is ok.
+   - Click on LAUNCH
+10. Select an existing key pair or create a new key pair.
+    - For now choose create a new key pair
+    - Add a key pair name and download it.
+    - Then press in LAUNCH INSTANCES
+    - Then View Instances
 
 
 
