@@ -140,6 +140,68 @@
 - Confirm budget.
 - Create.
 
+#### IAM Introduction
+- IAM (Identity and Access Management)
+- Your whole AWS security is there:
+  - Users
+  - Groups
+  - Roles
+- Root account should never be used (and shared)
+- Users must be created with proper permissions 
+- IAM is at the center of AWS 
+- Policies are written in JSON (JavaScript Object Notation): Defines what each of the above can and cannot do.
+
+
+
+- IAM has a globalview: It will be across all the regions
+- Permissions are governed by Policies (JSON) 
+- MFA (Multi Factor Authentication) can be setup 
+- IAM has predefined “managed policies” 
+- We’ll see IAM policies in details in the future 
+- It’s best to give users the minimal amount of permissions they need to perform their job (least privilege principles)
+
+
+For big enterprises it is used something called:
+##### IAM Federation 
+- Big enterprises usually integrate their own repository of users with IAM 
+- This way, one can login into AWS using their company credentials 
+- Identity Federation uses the SAML standard (Active Directory)
+
+##### Summary
+
+- One IAM User per PHYSICAL PERSON: Do not share with anyone, your account is your account!
+- One IAM Role per Application 
+- IAM credentials should NEVER BE SHARED 
+- Never, ever, ever, ever, write IAM credentials in code. EVER. 
+- And even less, NEVER EVER EVER COMMIT YOUR IAM credentials 
+- Never use the ROOT account except for initial setup. 
+- Never use ROOT IAM Credentials
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
