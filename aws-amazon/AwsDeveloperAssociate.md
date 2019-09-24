@@ -322,8 +322,22 @@ We can also see in `Security Groups` section a `view inbound rules` which shows 
   - Double click, and we are inside the machine.
   - exit for closing the connection.
 
+#### Security Groups?
+##### Introduction
 
+1. Security Groups are the fundamental of network security in AWS 
+2. They control how traffic is allowed into or out of our EC2 Machines.
+3. It is the most fundamental skill to learn to troubleshoot networking issues 
+4. In this lecture, we’ll learn how to use them to `allow`, `inbound` and `outboundport`
 
+###### Hands-On
+- When you are located in a instance, you can click on `Description tab -> security group -> link before inbound rules`
+- Or you can navigate in the left menu to `Network & Security -> Security Groups`
+- In the security groups we have some tabs `DESCRIPTION | INBOUND | OUTBOUND | TAGS`
+  - Under `inbound`: This is all the rules that will allow traffic into our EC2 machine. And by default, there is no rules and we have to add rules.
+  - Under `outbound`: By default all traffic is enabled out of the machine. And that means that the machine can communicate everything, everywhere (that is fine by the way).
+  - Under `Tags` is if you want to add a name tag, or whatever you want for your EC2 for your security group
+- What happens when we delete the default `inbound` rule? So when you try to connect again, while the port 22 is not allowed it will just wait, and wait and wait TIME OUT. That is because we are not allowing nothing in port 22.
 
 
 
