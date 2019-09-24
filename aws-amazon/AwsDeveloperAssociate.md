@@ -339,13 +339,57 @@ We can also see in `Security Groups` section a `view inbound rules` which shows 
   - Under `Tags` is if you want to add a name tag, or whatever you want for your EC2 for your security group
 - What happens when we delete the default `inbound` rule? So when you try to connect again, while the port 22 is not allowed it will just wait, and wait and wait TIME OUT. That is because we are not allowing nothing in port 22.
 
+##### Deeper Dive
 
+1. Security groups are acting as a “firewall” on EC2 instances 
+2. They regulate: 
+   - Access to Ports 
+   - Authorised IP ranges –IPv4 and IPv6 
+   - Control of inbound network (from other to the instance) 
+   - Control of outbound network (from the instance to other)
 
+###### Example
+<table>
+    <tr>
+        <th>Type</th>
+        <th>Protocol</th>
+        <th>Port Range</th>
+        <th>Source</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>HTTP</td>
+        <td>TCP</td>
+        <td>80</td>
+        <td>0.0.0.0/0</td>
+        <td>Test http page</td>
+    </tr>
+    <tr>
+        <td>SSH</td>
+        <td>TCP</td>
+        <td>22</td>
+        <td>192.149.196.85/32</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Custom TCP Rule</td>
+        <td>TCP</td>
+        <td>4567</td>
+        <td>0.0.0.0/0</td>
+        <td>My App</td>
+    </tr>
+</table>
 
+###### Good to know
 
-
-
-
+1. Can be attached to multiple instances 
+2. Locked down to a region / VPC combination 
+3. Does live “outside” the EC2 –if traffic is blocked the EC2 instance won’t see it 
+4. _It’s good to maintain one separate security group for SSH access_
+5. If your application is not accessible (time out), then it’s a security group issue 
+6. If your application gives a “connection refused“ error, then it’s an application error or it’s not launched 
+7. All inbound traffic is `blocked` by default 
+8. All outbound traffic is `authorised` by default
 
 
 
