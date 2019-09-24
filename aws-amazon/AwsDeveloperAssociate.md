@@ -221,7 +221,9 @@ For big enterprises it is used something called:
 
 After performed all the steps above, you should see all green status for IAM Management dashboard.
 
-8. In IAM dashboar we can assign an alias to the conection. Press customize link and add a name. So the link is going to change based on the name added. It is going to be used for signIn into our AWS console.
+8. In IAM dashboard we can assign an alias to the conection. Press customize link and add a name. So the link is going to change based on the name added. It is going to be used for signIn into our AWS console.
+
+```https://fraldemoacc.signin.aws.amazon.com/console```
 
 #### What is EC2?
 - EC2 is one of most popular of AWS offering 
@@ -272,7 +274,28 @@ After performed all the steps above, you should see all green status for IAM Man
     - Then press in LAUNCH INSTANCES
     - Then View Instances
 
+##### How to SSH into your EC2 Instance
+###### Linux / Mac OSX
 
+1. We’ll learn how to SSH into your EC2 instance using Linux / Mac 
+2. SSH is one of the most important function. It allows you to control a remote machine, all using the command line.
+
+> On the TAB Description we can see some important information regarding to public IPs and DNS. And this is basically how we can connect over the web to our EC2 Instance.
+We can also see in `Security Groups` section a `view inbound rules` which shows us the enable ports for this instance.
+
+> We need to follow these steps:
+   
+   - Open the terminal
+   - Execute the following command. `ssh ec2-user@<public-ec2-ip>` where _ec2-user_ is basically the Linux user into our Amazon Linux machine, and _@_ basically defines the IP.
+   - But you may get a `Permission Denied` error message. That is because we need to use the key (.pem file)
+   - `ssh -i <pem-file> ec2-user@<public-ec2-ip>`
+   - At this time I get another error message (exam question): `WARNING: UNPROTECTED PRIVATE KEY FILE!` _Permissions 0644 for 'pem file' are too open_ So basically because the private key is accesible by others it will say bad permissions, and it will not allow you to SSH into that machine.
+   - So to fix the previous error: `chmod 0400 <pem-file>`
+   - `ssh -i <pem-file> ec2-user@<public-ec2-ip>`
+   - So the connection should be success!
+   - `whoami` command should show _ec2-user_
+
+3. We will see how we can configure OpenSSH ```~/.ssh/configto``` facilitate the SSH into our EC2 instance
 
 
 
