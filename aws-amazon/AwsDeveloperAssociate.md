@@ -297,10 +297,30 @@ We can also see in `Security Groups` section a `view inbound rules` which shows 
 
 3. We will see how we can configure OpenSSH ```~/.ssh/configto``` facilitate the SSH into our EC2 instance
 
+###### Windows
 
+1. We’ll learn how to SSH into your EC2 instance using Windows 
+2. SSH is one of the most important function. It allows you to control a remote machine, all using the command line.
+3. We will configure all the required parameters necessary for doing SSH on Windows using the free tool Putty.
 
-
-
+###### Steps
+- Install Putty
+- Run putty and go to PuTTygen. Using this tool we are going to convert the key we have downloaded from the EC2 console and we are going to convert it into a format that puTTY likes, which is called PPK.
+  - Click on File menu
+  - Load private key
+  - Select the private key. `It will show a message: Successfully imported foreign key.....`
+  - Click on `Save private key`, then choose a location where to save the new ppk file.
+  - Click on `Save` and close the generator
+- Go to the `programs` menu and choose putty.
+  - Enter the IP address of our ec2 machine in the following format: `ec2-user@<ec2-instance-ip>`
+  - We can save the session giving it a name, and clicking on `save` button.
+  - Click twice in the instance and you may get an error message like: `No supported authentication methods available .....`. It is because we haven't linked our private key file. Close the window.
+  - Go to putty again, and load the instance.
+  - Go to `connection -> SSH -> Auth -> <Here we can find a field 'private key file for authentication'>`
+  - Browser and load the ppk file, but dot not close the window yet!
+  - Go to `Session` then save it again selecting the right session name.
+  - Double click, and we are inside the machine.
+  - exit for closing the connection.
 
 
 
