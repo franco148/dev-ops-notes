@@ -392,6 +392,61 @@ We can also see in `Security Groups` section a `view inbound rules` which shows 
 8. All outbound traffic is `authorised` by default
 
 
+#### Private vs Public IP (IPv4)
+
+1. Networking has two sorts of IPs. IPv4 and IPv6: 
+   - IPv4: 1.160.10.240 
+   - IPv6: 3ffe: 1900:4545:3:200:f8ff:fe21:67cf 
+2. In my example, I will only be using IPv4. 
+3. IPv4 is still the most common format used online. 
+4. IPv6 is newer and solves problems for the Internet of Things (IoT).
+5. IPv4 allows for 3.7 billion different addresses in the public space 
+6. IPv4: [0-255].[0-255].[0-255].[0-255].
+
+##### Fundamental Differences
+
+1. Public IP: 
+   - Public IP means the machine can be identified on the internet (WWW) 
+   - Must be unique across the whole web (not two machines can have the same public IP). 
+   - Can be geo-located easily
+
+2. Private IP: 
+   - Private IP means the machine can only be identified on a private network only 
+   - The IP must be unique across the private network 
+   - BUT two different private networks (two companies) can have the same IPs. 
+   - Machines connect to WWW using an internet gateway (a proxy) 
+   - Only a specified range of IPs can be used as private I
+
+3. Elastic IPs
+
+1. When you stop and then start an EC2 instance, it can change its public IP. 
+2. If you need to have a fixed public IP for your instance, you need an Elastic IP 
+3. An Elastic IP is a public IPv4 IP you own as long as you don’t delete it 
+4. You can attach it to one instance at a time
+5. With an ElasticIPaddress, you can mask the failure of an instance or software by rapidly remapping the address to another instance in your account. 
+6. You can only have 5 Elastic IP in your account (you can ask AWS to increase that).
+7. Overall, `try to avoid using Elastic IP`: 
+   - They often reflect poor architectural decisions 
+   - Instead, use a random public IP and register a DNS name to it 
+   - Or, as we’ll see later, use a Load Balancer and don’t use a public IP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
