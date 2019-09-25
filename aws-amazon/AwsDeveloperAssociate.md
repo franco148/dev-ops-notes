@@ -430,13 +430,34 @@ We can also see in `Security Groups` section a `view inbound rules` which shows 
    - Instead, use a random public IP and register a DNS name to it 
    - Or, as we’ll see later, use a Load Balancer and don’t use a public IP
 
+##### Hands-On
 
+1. By default, your EC2 machine comes with: 
+   - A private IP for the internal AWS Network 
+   - A public IP, for the WWW. 
+2. When we are doing SSH into our EC2 machines: 
+   - We can’t use a private IP, because we are not in the same network 
+   - We can only use the public IP. 
+3. If your machine is stopped and then started, `the public IP can change`
 
+###### Steps
+- Connect SSH with the instance.
+- So if we use the private IP, nothing happens, because we are not in the same network.
+- But if we stop our instance, the IP is lost, and when we start again, the public IP changes.
 
-
-
-
-
+- We can see also Elastic IPs in the left menu.
+  - `Network and Security -> Elastic IPs`
+  - Click on `Allocate new address` then `Allocate`. So we get an elastic IP.
+- Once allocated a elastic IP, what we can do is right click and associate that address with our instance
+  - Right click -> Associate Address -> Fill all the fields -> click on Associate
+  - If we go back to our instance, we can find that the IPv4 public IP now is the ALLOCATED ONE.
+  - Now if we stop the instance and restart it, the same IP will be associated.
+- For removing the Elastic IP
+  - Right click on the instance -> Networking -> Disassociate Elastic IP Address -> Yes, disassociate
+  - Go to elastic IPs -> Right click -> Release Elastic IP -> Release
+  - It is not good idea to have enable it, because if we do not use it we are going to be billed for it.
+- Once release the Elastic IP.
+  - Next time a new public IP will be assigned to our instance.
 
 
 
