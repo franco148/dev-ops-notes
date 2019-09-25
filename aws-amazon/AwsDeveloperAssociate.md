@@ -541,19 +541,120 @@ We can also see in `Security Groups` section a `view inbound rules` which shows 
 3. If everything went well, copying the public IP generated for the instance to a brower, we can see the changes there.
 4. We should also able to SSH into that new EC2 Instance machine.
 
+#### EC2 Instance Launch Types
 
+1. On Demand Instances: short workload, predictable pricing 
+2. Reserved Instances: long workloads (>= 1 year) 
+3. Convertible Reserved Instances: long workloads with flexible instances 
+4. Scheduled Reserved Instances: launch within time window you reserve 
+5. Spot Instances: short workloads, for cheap, can lose instances 
+6. Dedicated Instances: no other customers will share your hardware 
+7. Dedicated Hosts: book an entire physical server, control instance placement
 
+##### EC2 On Demand
 
+- Pay for what you use (billing per second, after the first minute) 
+- Has the highest cost but no upfront payment • No long term commitment
+- Recommended for short-term and un-interrupted workloads, where you can't predict how the application will behave.
 
+##### EC2 Reserved Instances
 
+- Up to 75% discount compared to On-demand 
+- Pay upfront for what you use with long term commitment 
+- Reservation period can be 1 or 3 years 
+- Reserve a specific instance type 
+- Recommended for steady state usage applications (think database)
 
+##### Convertible Reserved Instance 
 
+- can change the EC2 instance type 
+- Up to 54% discount 
 
+##### Scheduled Reserved Instances 
 
+- launch within time window you reserve 
+- When you require a fraction of day / week / month
+  
+##### Spot Instances
 
+- Can get a discount of up to 90% compared to On-demand 
+- You bid a price and get the instance as long as its under the price 
+- Price varies based on offer and demand 
+- Spot instances are reclaimed with a 2 minute notification warning when the spot price goes above your bid
 
+- Used for batch jobs, Big Data analysis, or workloads that are resilient to failures. 
+- Not great for critical jobs or databases
 
+##### Dedicated Instances
 
+- Instances running on hardware that’s dedicated to you 
+- May share hardware with other instances in same account 
+- No control over instance placement (can move hardware after Stop / Start)
+
+<table>
+    <tr>
+        <th>Characteristic</th>
+        <th>Dedicated Instances</th>
+        <th>Dedicated Hosts</th>
+    </tr>
+    <tr>
+        <td>Enables the use of dedicated physical servers</td>
+        <td>X</td>
+        <td>X</td>
+    </tr>
+    <tr>
+        <td>Per instance billing (subject to a $2 per region free)</td>
+        <td>X</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Per host billing</td>
+        <td></td>
+        <td>X</td>
+    </tr>
+    <tr>
+        <td>Visibility of sockets, cores, host ID</td>
+        <td></td>
+        <td>X</td>
+    </tr>
+    <tr>
+        <td>Affinity between a host and instance</td>
+        <td></td>
+        <td>X</td>
+    </tr>
+    <tr>
+        <td>Targeted instance placement</td>
+        <td></td>
+        <td>X</td>
+    </tr>
+    <tr>
+        <td>Automatic instance placement</td>
+        <td>X</td>
+        <td>X</td>
+    </tr>
+    <tr>
+        <td>Add capacity using an allocation request</td>
+        <td></td>
+        <td>X</td>
+    </tr>
+</table>
+
+##### Dedicated Hosts
+
+- Physical dedicated EC2 server for your use 
+- Full control of EC2 Instance placement 
+- Visibility into the underlying sockets / physical cores of the hardware 
+- Allocated for your account for a 3 year period reservation 
+- More expensive
+- Useful for software that have complicated licensing model (BYOL – Bring Your Own License) 
+- Or for companies that have strong regulatory or compliance needs
+
+###### Which host is right for me?
+
+- *On demand*: coming and staying in resort whenever we like, we pay the full price 
+- *Reserved*: like planning ahead and if we plan to stay for a long time, we may get a good discount. 
+- *Spot instances*: the hotel allows people to bid for the empty rooms and the highest bidder keeps the rooms. You can get kicked out at any time 
+- *Dedicated Hosts*: We book an entire building of the resort
 
 
 
