@@ -651,10 +651,10 @@ We can also see in `Security Groups` section a `view inbound rules` which shows 
 
 ###### Which host is right for me?
 
-- *On demand*: coming and staying in resort whenever we like, we pay the full price 
-- *Reserved*: like planning ahead and if we plan to stay for a long time, we may get a good discount. 
-- *Spot instances*: the hotel allows people to bid for the empty rooms and the highest bidder keeps the rooms. You can get kicked out at any time 
-- *Dedicated Hosts*: We book an entire building of the resort
+- **On demand**: coming and staying in resort whenever we like, we pay the full price 
+- **Reserved**: like planning ahead and if we plan to stay for a long time, we may get a good discount. 
+- **Spot instances**: the hotel allows people to bid for the empty rooms and the highest bidder keeps the rooms. You can get kicked out at any time 
+- **Dedicated Hosts**: We book an entire building of the resort
 
 
 
