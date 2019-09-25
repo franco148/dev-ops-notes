@@ -496,6 +496,74 @@ We can also see in `Security Groups` section a `view inbound rules` which shows 
   - `"Hello world from $(hostname -f)" > /var/www/html/index.html`
   - Once performed the previous operation, you will see those changes in your browser.
   
+#### EC2 User Data
+
+1. It is possible to bootstrap our instances using an `EC2 User data` script. 
+2. `bootstrapping` means launching commands when a machine starts 
+3. That script is `only run once` at the instance `first start` 
+4. EC2 user data is used to automate boot tasks such as: 
+   - Installing updates 
+   - Installing software 
+   - Downloading common files from the internet 
+   - Anything you can think of 
+5. The EC2 User Data Script runs with the root user
+
+##### Hands-On
+
+1. We want to make sure that this EC2 instance has an Apache HTTP server installed on it–to display a simple web page 
+2. For it, we are going to write a user-data script. 
+3. This script will be executed at the first boot of the instance. 
+4. Let’s get hands on!
+
+###### Steps
+
+1. Terminate the instances or instance that we created as a example.
+2. We will create another one choosing `Amazon Linux 2 AMI` again.
+   - `t2.micro` instance
+   - Configure the instance details
+   - Advance Details: Here we have a USER DATA field.
+   - In the user data field we first will need `#!/bin/bash` in the top, otherwise it will not work. `Remember, EC2 User Data is automatically run with the sudo command`
+   ```bash
+   #!/bin/bash
+   
+   # install httpd (Linux 2 version)
+   yum update -y
+   yum install -y httpd.x86_64
+   systemctl start httpd.service
+   systemctl enable httpd.service
+   echo "Hello World from $(hostname -f)" > /var/www/html/index.html
+   ```
+   - Click on next
+   - For security group, we will use an existing one. And this is perfect because it allows SSH and the port 80, which we configured from before.
+   - Click on Review and Launch.
+   - Click on Launch. So we can use the existing keypair.
+   - Click on Laucn Instances (It is completed.)
+3. If everything went well, copying the public IP generated for the instance to a brower, we can see the changes there.
+4. We should also able to SSH into that new EC2 Instance machine.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
