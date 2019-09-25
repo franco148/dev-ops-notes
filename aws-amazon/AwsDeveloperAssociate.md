@@ -656,26 +656,102 @@ We can also see in `Security Groups` section a `view inbound rules` which shows 
 - **Spot instances**: the hotel allows people to bid for the empty rooms and the highest bidder keeps the rooms. You can get kicked out at any time 
 - **Dedicated Hosts**: We book an entire building of the resort
 
+#### EC2 Pricing
 
+- EC2 instances prices (per hour) varies based on these parameters: 
+  - Region you’re in 
+  - Instance Type you’re using 
+  - On-Demand vs Spot vs Reserved vs Dedicated Host 
+  - Linux vs Windows vs Private OS (RHEL, SLES, Windows SQL) 
+- You are billed by the second, with a minimum of 60 seconds. 
 
+- You also pay for other factors such as storage, data transfer, fixed IP public addresses, load balancing 
+- *You do not pay for the instance if the instance is stopped*
 
+###### Example
 
+- t2.small in US-EAST-1 (VIRGINIA), cost $0.023 per Hour 
+- If used for: 
+  - 6 seconds, it costs $0.023/60 =  $0.000383 (minimum of 60 seconds) 
+  - 60 seconds, it costs $0.023/60 =  $0.000383 (minimum of 60 seconds) 
+  - 30 minutes, it costs $0.023/2 =  $0.0115 
+  - 1 month, it costs $0.023 * 24 * 30 = $16.56 (assuming a month is 30 days) 
+  - X seconds (X > 60), it costs $0.023 * X / 3600 
+  
+- The best way to know the pricing is to consult the pricing page: https://aws.amazon.com/ec2/pricing/on-demand/
 
+##### What is an AMI?
 
+- As we saw, AWS comes with base images such as: 
+  - Ubuntu 
+  - Fedora 
+  - RedHat 
+  - Windows 
+  - Etc… 
+- These images can be customised at runtime using EC2 User data
+- But what if we could create our own image, ready to go? 
+- That’s an AMI –an image to use to create our instances 
+- AMIs can be built for Linux or Windows machines
 
+##### Why would you use a custom AMI?
 
+- Using a custom built AMI can provide the following advantages: 
+  - Pre-installed packages needed 
+  - Faster boot time (no need for long ec2 user data at boot time) 
+  - Machine comes configured with monitoring / enterprise software 
+  - Security concerns –control over the machines in the network 
+  - Control of maintenance and updates of AMIs over time 
+  - Active Directory Integration out of the box 
+  - Installing your app ahead of time (for faster deploys when auto-scaling) 
+  - Using someone else’s AMI that is optimised for running an app, DB, etc… 
+  
+- **AMI are built for a specific AWS region (!)**
 
+##### EC2 Instances Overview
 
+- Instances have 5 distinct characteristics advertised on the website: 
+  - The RAM (type, amount, generation) 
+  - The CPU (type, make, frequency, generation, number of cores) 
+  - The I/O (disk performance, EBS optimisations) 
+  - The Network (network bandwidth, network latency) 
+  - The Graphical Processing Unit (GPU) 
+  
+- It may be daunting to choose the right instance type (there are over 50 of them) https://aws.amazon.com/ec2/instance-types/ 
+- https://ec2instances.info/can help with summarizing the types of instances 
+- R/C/P/G/H/X/I/F/Z/CR are specialised in RAM, CPU, I/O, Network, GPU 
+- M instance types are balanced 
+- T2/T3 instance types are “burstable
 
+##### Burstable Instances (T2)
 
+**What does that even mean?** Burstable instances is a concept that oeverall, the instance is okay CPU performance.
 
+- AWS has the concept of burstable instances (T2 machines)
+- Burst means that overall, the instance has OK CPU performance. 
+- When the machine needs to process something unexpected (a spike in load for example), it can burst, and CPU can be VERY good. 
+- If the machine bursts, it utilizes “burst credits” 
+- If all the credits are gone, the CPU becomes BAD 
+- If the machine stops bursting, credits are accumulated over time
 
+- Burstable instances can be amazing to handle unexpected traffic and getting the insurance that it will be handled correctly 
+- If your instance consistently runs low on credit, you need to move to a different kind of non-burstable instance (all the ones described before)
 
+##### T2 Unlimited
 
+- Nov 2017: It is possible to have an “unlimited burst credit balance” 
+- You pay extra money if you go over your credit balance, but you don’t lose in performance
 
+- Overall, it is a new offering, so be careful, costs could go high if you’re not monitoring the health of your instances
+- Read more here: https://aws.amazon.com/blogs/aws/new-t2-unlimitedgoing-beyond-the-burst-with-high-performance/
 
+##### EC2 –Checklist 
 
-
+- Know how to SSH into EC2 (and change .pemfile permissions) 
+- Know how to properly use security groups 
+- Know the fundamental differences between private vs public vs elastic IP 
+- Know how to use User Data to customize your instance at boot time 
+- Know that you can build custom AMI to enhance your OS
+- EC2 instances are billed by the second and can be easily created and thrown away, welcome to the cloud!
 
 
 
