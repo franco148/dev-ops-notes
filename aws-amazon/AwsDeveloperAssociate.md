@@ -459,10 +459,43 @@ We can also see in `Security Groups` section a `view inbound rules` which shows 
 - Once release the Elastic IP.
   - Next time a new public IP will be assigned to our instance.
 
+#### Launching an Apache Server on EC2
+1. Let’s leverage our EC2 instance
+2. We’ll install an Apache Web Server to display a web page 
+3. We’ll create an index.html that shows the hostname of our machine
 
-
-
-
+###### Steps
+- First connect throught SSH to our EC2 instance
+- Run the following commands
+  ```batch
+  sudo su
+  
+  #It is important to keep all the packages updated.
+  yum update -y 
+  
+  # Install httpd
+  yum install -y httpd.x86_64
+  
+  # Start the service
+  ## Common error: If you get bash: systemctl command not found. Make sure you are using Amazon Linux 2, not Amazon Linux.
+  systemctl start httpd.service
+  
+  # To ensure that the system remains enabled across reboots, we say enable httpd.service
+  systemctl enable httpd.service
+  
+  # Let vefity if the service is ON, it should display a html response.
+  curl localhost:80
+  ```
+- We can also open throught a browser with the public IP. But we may get an timeout issue, why does it happen? It may be due to the SECURITY GROUPS
+- So until now we have enabled only port 22 for SSH connections.
+- For fixing this issue we need to apply a new Security Group.
+  - Go to `Network & Security -> Security Groups -> Inbound`
+  - Add a new rule: `HTTP - TCP - 80 - 0.0.0.0/0 - Allow HTTP traffic for Apache`
+  - Go back to the browser and we can see a response page from the httpd service.
+- So now we can basically add some content to `var/www/html/`
+  - `"Hello world from $(hostname -f)" > /var/www/html/index.html`
+  - Once performed the previous operation, you will see those changes in your browser.
+  
 
 
 
