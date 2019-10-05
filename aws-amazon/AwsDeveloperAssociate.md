@@ -754,6 +754,63 @@ We can also see in `Security Groups` section a `view inbound rules` which shows 
 - EC2 instances are billed by the second and can be easily created and thrown away, welcome to the cloud!
 
 
+#### What is load balancing?
+
+Basically a load balancer is a server that will front your application and it will forward all the internet traffic to your instances of your applications downstream.
+- Load balancers are servers that forward internet traffic to multiple servers (EC2 Instances) downstream.
+
+##### Why use a load balancer?
+
+- Spread load across multiple downstream instances
+- Expose a single point of access (DNS) to your application
+- Seamlessly handle failures of downstream instances
+- Do regular health checks to your instances
+- Provide SSL termination (HTTPS) for your websites
+- Enforce stickiness with cookies
+- High availability across zones
+- Separate public traffic from private traffic
+
+##### Why use and EC2 Load Balancer?
+
+- An ELB (EC2 Load Balancer) is a managed load balancer
+  - AWS guarantees that it will be working
+  - AWS takes care of upgrades, maintenance, high availability
+  - AWS provides only a few configuration knobs
+- It costs less to setup your own load balancer but it will be a lot more effort on your end.
+- It is integrated with many AWS offerings / services
+
+##### Types of load balancer on AWS
+
+- AWS has 3 kinds of Load Balancers
+
+- Classic Load Balancer (v1 - old generation) - 2009
+- Application Load Balancer (v2 - new generation) - 2016
+- Network Load Balancer (v2 - new generation) - 2017
+- Overall, it is recommended to use the newer / v2 generation load balancers as they provide more features
+
+- You can setup internal (private) or external (public) ELBs
+
+##### Health Checks
+
+- Health Checks are crucial for Load Balancers
+- They enable the load balancer to know if instances it forwards traffic to are available to reply to requests
+- The health check is done on a port and a route (/health is common)
+- If the response is not 200 (OK), then the instance is unhealthy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
