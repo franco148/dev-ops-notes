@@ -847,10 +847,49 @@ Basically a load balancer is a server that will front your application and it wi
   - Load Balancer Errors 503 means at capacity or no registered target
 - If the LB can’t connect to your application, check your security groups!
 
+###### Load Balancers Hands On
 
-
-
-
+1. Go to Services -> left menu -> Load Balancing -> Load Balancers
+2. Create Load Balancer
+   - As we can see, we have the classic load balancer, but that is "Previous Generation" and that is deprecated. And then we have "Application Load Balancer" and we have "Network Load Balancer" for high performance.
+   - Since we do not need to take into account Network Load Balancer for this time, we will choose the other one.
+3. Create "Application Load Balancer"
+   - We need to fill all the fields.
+   - We will choose `internet-facing` because we want it to be public. But if we want it to be private we need to choose `internal`
+   - Choose the right IP version
+   - Define the protocols
+   - Choose the required availability zones.
+   - Then next: `Configure Security Settings`.
+4. Step 2 click next.
+   - We will need to create a new security group. Give it a name: `web-ap-load-balancer-first`
+   - Leave the fields as default for now.
+   - Nex: `Configure Routing`
+5. Configure Routing
+   - This time we will need to create a new `target group` giving a name.
+   - Protocol `HTTP`
+   - Port `80`
+   - Target type leave it as `instance`
+   - Heal check options as default.
+   - Next: `Register Targets
+6. Register Targets
+   - Click on the running instance
+   - Click on `Add to registered`
+   - Next: `Review`
+7. Review
+8. Create
+9. In Load Balancers Dashboard it may take a while in `provisioning` state
+   - It will change to `ACTIVE` state
+   - To verify if that works, copy the DNS in the browser, it should display the web page configured in previous steps.
+   - After configuring it, we can access to our EC2 instance through the load balancer or the IP. So there is are some steps only through the LoadBalancer.
+   - That security groups can reference security groups.
+   - If we take a look, in our panel, we have the different EC2 instances security groups, as well as our LoadBalancer ones. 
+   - For adding the security group:
+     - Choose the EC2 instance security group
+     - Go to Inbound tab -> Edit
+     - Make that the call only comes from the load balancer (typing sg).
+     - Then save the changes.
+     - After applied the changes, we will not able to access the page via IP anymore.
+     - So that is a very secure setup, because now we guarantee that only the load balancer can talk to our HTTP instances on port 80. It also demostrate how to use basically a Security Group in another Security Group rule.
 
 
 
