@@ -849,7 +849,7 @@ Basically a load balancer is a server that will front your application and it wi
 
 ###### Load Balancers Hands On
 
-1. Go to Services -> left menu -> Load Balancing -> Load Balancers
+1. Go to `Services -> left menu -> Load Balancing -> Load Balancers`
 2. Create Load Balancer
    - As we can see, we have the classic load balancer, but that is "Previous Generation" and that is deprecated. And then we have "Application Load Balancer" and we have "Network Load Balancer" for high performance.
    - Since we do not need to take into account Network Load Balancer for this time, we will choose the other one.
