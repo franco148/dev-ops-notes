@@ -10,8 +10,19 @@
   - We have a consumer reads the message and it process the messages and store the attibute of the message in the DB.
   - Once the consumer reads the message and then it process the message but the back end DB is down or there is bug in the consumer code. Under this scenario there is no way the consumer can read this same message again from the message broker.
 
+### What is Apache Kafka?
+- Apache kafka is a scalable, reliable, high volume and high throughput distributed messaging system.
+- Apache kafka is mainly used for sharing high volume data from one system to another system in real time and retention of data.
+- LinkedIn started their development in 2009 and implemented in 2010 as their architecture solution.
+- It was outsourced to Apache software foundation by 2011. Currently this is one of the mostly used tools in Apache software foundation.
 
-
+##### Advantages
+- Messages are not removed from the topic as soon as the consumers consume it.
+- Kafka is Horizontally scalable.
+- Kafka has stronger ordering guarantees than a traditional messaging system.
+- Kafka can handle high volume and it has very high throughput.
+- Kafka design supports loosely coupled Producers and Consumers.
+- Kafka can also be used as a storage system.
 
 
 
