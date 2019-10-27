@@ -25,6 +25,7 @@
 - Kafka can also be used as a storage system.
 
 Kafka architecture
+Instalation process
 
 
 
