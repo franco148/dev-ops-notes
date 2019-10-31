@@ -7,4 +7,4 @@ Important notes regarding to Docker, Docker Swarm, Kubernetes, Jenkins, etc.
 - [Kubernetes Notes](not yet)
 - [Elasticsearch Notes](https://github.com/franco148/dev-ops-notes/tree/elasticsearch-notes/elasticsearch-notes)
 - [AWS Notes](https://github.com/franco148/dev-ops-notes/blob/master/aws-amazon)
-- [Kafka Notes]()
+- [Kafka Notes](https://github.com/franco148/dev-ops-notes/blob/master/kafka)
