@@ -27,6 +27,7 @@
 Kafka architecture
 Instalation process
 Review
+kafka notes
 
 
 
