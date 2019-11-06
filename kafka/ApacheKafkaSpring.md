@@ -24,11 +24,7 @@
 - Kafka design supports loosely coupled Producers and Consumers.
 - Kafka can also be used as a storage system.
 
-Kafka architecture
-Instalation process
-Review
-kafka notes
-Reviewing new topics
+
 
 
 
