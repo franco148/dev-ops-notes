@@ -25,8 +25,13 @@
 - Kafka can also be used as a storage system.
 
 
-##### Summary
-Here new information of kafka and spring boot, explore github actions ,more notes
+### Core Internals of Apache Kafka
+##### Zookeeper and Kafka Broker
+- Go to the binaries folder
+- Edit ```server.properties``` file
+- Edit line ```advertised.listeners=PLAINTEXT://<yourhost>:<port>```
+- Then launch the kafka broker.
+
 
 
 
