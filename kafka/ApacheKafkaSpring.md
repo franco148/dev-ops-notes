@@ -32,6 +32,19 @@
 - Edit line ```advertised.listeners=PLAINTEXT://<yourhost>:<port>```
 - Then launch the kafka broker.
 
+##### Hands On
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
