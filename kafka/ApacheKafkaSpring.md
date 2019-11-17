@@ -33,6 +33,7 @@
 - Then launch the kafka broker.
 
 ##### Hands On
+- Steps for installing kafka
 
 
 
