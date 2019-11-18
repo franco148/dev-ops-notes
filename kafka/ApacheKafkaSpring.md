@@ -34,6 +34,7 @@
 
 ##### Hands On
 - Steps for installing kafka
+- Installing from zip file.
 
 
 
