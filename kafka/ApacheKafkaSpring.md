@@ -35,6 +35,7 @@
 ##### Hands On
 - Steps for installing kafka
 - Installing kafka from zip file
+- Updating properties file
 
 
 
