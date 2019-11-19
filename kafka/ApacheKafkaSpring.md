@@ -32,11 +32,14 @@
 - Edit line ```advertised.listeners=PLAINTEXT://<yourhost>:<port>```
 - Then launch the kafka broker.
 
-##### Hands On
-- Steps for installing kafka
-- Installing kafka from zip file
-- Updating properties file
-
+##### Partitions, Producers, Consumers and Retention Period in Topic
+- The retention period of records in Kafka is configurable
+- The **default retention period** is **7 days**. The retention period is specific to topic. So in the Cluster each topic can have their own retention period.
+- The retention attribute is available in the server.properties of the apache kafka distribution.
+  - The attribute is **log.retention.hours=168**
+- Lets us say the retention period is one day then in this case then record will be discarded after one day to free up some space in the cluster.
+- Irrespective of all the consumers have consumed the message, the record will sit in the cluster until the retention period expires.
+- The performance of Kafka is consistent with respect to data size so holding the data for a long time is not an issue here.
 
 
 
