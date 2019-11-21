@@ -41,7 +41,7 @@
 - Irrespective of all the consumers have consumed the message, the record will sit in the cluster until the retention period expires.
 - The performance of Kafka is consistent with respect to data size so holding the data for a long time is not an issue here.
 
-
+#### aaaaaaaaaaaaaaaaaaaaaaa
 
 
 
