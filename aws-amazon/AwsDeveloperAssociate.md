@@ -944,7 +944,9 @@ ASG Brain dump
 - Having instances under an ASG means that if they get terminated for whatever reason, the ASG will restart them. Extra safety!
 - ASG can terminate instances marked as unhealthy by an LB (and hence replace them)
 
-
+###### Auto Scaliong Groups Hands On
+1. Go to `left menu -> Auto Scaling Groups`
+2. Press on `Create Auto Scaling Group`
 
 
 
