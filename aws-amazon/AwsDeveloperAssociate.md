@@ -754,6 +754,7 @@ We can also see in `Security Groups` section a `view inbound rules` which shows 
 - EC2 instances are billed by the second and can be easily created and thrown away, welcome to the cloud!
 
 
+## AWS Fundamentals ELB + ASG + EBS
 #### What is load balancing?
 
 Basically a load balancer is a server that will front your application and it will forward all the internet traffic to your instances of your applications downstream.
