@@ -192,9 +192,19 @@ ssh -i remote-key remote_user@remote_host # It will be connected to remote-serve
 docker rm -fv remote-host
 ```
 
+##### Install plugins in Jenkins (SSH Plugin)
+1. Go to the main dashboard
+2. `Manage Jenkins -> Manage Plugins`
+3. Go to `all plugins` tab, and look for `ssh` plugin.
+4. Click in the required plugin and install it. Then restart jenkins.
+5. `Manage Jenkins -> Manage Plugins -> Installed` then verify if the previous plugin has been installed.
 
-
-
+##### Integrate jenkins with remote-server
+1. `Manage Jenkins -> System configuration`
+2. Then look for `ssh remote hosts` section.
+3. Then fill all the required fields there. We may need to add the credentials first in CREDENTIALS menu.
+4. During the creation of the credentials, we will need to add the remote-key content into the jenkins.
+5. Then after test the connection, it should be successful.
 
 
 
