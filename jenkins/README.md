@@ -106,7 +106,16 @@ Launch agent via execution of command on the master
 
 # JENKINS & DOCKER
 
-
+#### Docker & Jenkins SSH
+1. First create a folder, then create a Dockerfile in it with the following content.
+``` bash
+FROM centos
+RUN yum -y install openssh-server
+RUN useradd remote_user && \
+    echo "123456" | passwd remote_user --stdin && \
+	mkdir /home/remote_user/.ssh && \
+	chmod 700 /home/remote_user/.ssh
+```
 
 
 
