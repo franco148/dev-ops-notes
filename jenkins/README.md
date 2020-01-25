@@ -109,6 +109,7 @@ Launch agent via execution of command on the master
 #### Docker & Jenkins SSH
 1. First create a folder, then create a Dockerfile in it with the following content.
 ``` bash
+# First Part
 FROM centos
 RUN yum -y install openssh-server
 RUN useradd remote_user && \
@@ -117,7 +118,29 @@ RUN useradd remote_user && \
 	chmod 700 /home/remote_user/.ssh
 ```
 
+2. We will need a SSH key. So then we need to generate it.
+``` bash
+# Command: ssh-keygen -f <some-name>
+ssh-keygen -f remote-key
+ls
+# We will need to copy the file .pub into the container, with this key the jenkins will able to communicate with the remote server.
+```
 
+3. Continue working on Dockerfile
+``` bash
+# Second Part
+FROM centos
+RUN yum -y install openssh-server
+RUN useradd remote_user && \
+    echo "123456" | passwd remote_user --stdin && \
+	mkdir /home/remote_user/.ssh && \
+	chmod 700 /home/remote_user/.ssh
+COPY remote-key.pub /home/remote_user/.ssh/authorized_keys
+RUN chown remote_user:remote_user -R /home/remote_user && \
+	chmod 600 /home/remote_user/.ssh/authorized_keys
+RUN /usr/sbin/sshd-keygen > /dev/null 2>&1
+CMD /usr/sbin/sshd -D	
+```
 
 
 
