@@ -106,6 +106,9 @@ Launch agent via execution of command on the master
 
 # JENKINS & DOCKER
 
+
+
+
 #### Docker & Jenkins SSH
 1. First create a folder, then create a Dockerfile in it with the following content.
 ``` bash
@@ -142,7 +145,52 @@ RUN /usr/sbin/sshd-keygen > /dev/null 2>&1
 CMD /usr/sbin/sshd -D	
 ```
 
+4. Create the docker compose which will contain Jenkins and remote host images.
+``` bash
+# docker-compose.yml
+version: '3'
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins
+    ports:
+      - "8080:8080"
+    volumes:
+      - $PWD/jenkins_home:/var/jenkins_home
+    networks:
+      - net
+  remote_host:
+    container_name: remote-host
+    image: remote-host
+    build:
+      context: centos7 #cento7 is the folder in which we have the dockerfile for centos.
+    networks:
+      - net
+networks:
+  net:
+```
 
+5. Once the docker-compose file is created we need to execute the following:
+``` bash
+docker-compose build
+
+docker-compose up -d 
+
+docker ps
+
+# Verify if jenkins has connection to remote-host
+docker exec -it  jenkins bash # Starting jenkins container.
+ping remote_host # This command should work
+ssh remote_user@remote_host # Trying to connect from jenkins to remote-server
+
+# Now trying to connect from jenkins to remote-server with ssh key.
+docker cp remote-key jenkins:/tmp # Copying the ssh key into the jenkins container
+docker exec -it jenkins bash # Here we can verify if the ssh is copied.
+ssh -i remote-key remote_user@remote_host # It will be connected to remote-server
+
+# Only as a note: the following command is executed for removing the container
+docker rm -fv remote-host
+```
 
 
 
