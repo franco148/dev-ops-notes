@@ -205,6 +205,8 @@ docker rm -fv remote-host
 3. Then fill all the required fields there. We may need to add the credentials first in CREDENTIALS menu.
 4. During the creation of the credentials, we will need to add the remote-key content into the jenkins.
 5. Then after test the connection, it should be successful.
+6. After that we can create the jobs that will be executed in the remote-server.
+
 
 
 
