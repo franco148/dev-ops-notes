@@ -105,9 +105,133 @@ Launch agent via execution of command on the master
 
 
 # JENKINS & DOCKER
+#### Docker Installation
 
+``` bash
+Config file /lib/systemd/system/docker.service
+```
 
+##### CentOS
+``` bash
+# Utilities
+sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 
+# Add to the docker repository
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+# Install docker
+sudo yum install docker-ce -y
+
+# Start the service
+sudo systemctl start docker
+
+# Initialize with the system (once the OS starts)
+sudo systemctl enable docker
+
+# Add the user to the docker group
+# whoami # To know the user name.
+sudo usermod -aG docker <result_of_whoami_command>
+
+# Exit from the sesion
+exit
+
+# Init docker container again with the user and test.
+docker run hello-world
+```
+##### Fedora
+The installation is similar to CentOS, we only need to change the repository URL.
+
+``` bash
+# Utilities
+sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+
+# Add to the docker repository
+sudo yum-config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+
+# Install docker
+sudo yum install docker-ce -y
+
+# Initialize with the system (once the OS starts)
+sudo systemctl enable docker
+
+# Add the user to the docker group
+# whoami # To know the user name.
+sudo usermod -aG docker <result_of_whoami_command>
+
+# Exit from the sesion
+exit
+
+# Init docker container again with the user and test.
+docker run hello-world
+```
+
+##### Ubuntu
+``` bash
+# Update the repositories
+sudo apt-get update
+
+# Install the utilities
+sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y
+ 
+# Add the gpg
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+# Add the repositories
+ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+# Update the repositories again
+ sudo apt-get update
+
+# Docker installation
+ sudo apt-get install docker-ce
+
+# Start with the system.
+sudo systemctl enable docker
+
+# Add the user to the docker group
+# whoami # To know the user name.
+sudo usermod -aG docker <result_of_whoami_command>
+
+# Exit from the sesion
+exit
+
+# Init docker container again with the user and test.
+docker run hello-world
+```
+
+##### Debian
+``` bash
+# Update the repositories
+sudo apt-get update
+
+# Install the utilities
+sudo apt-get install apt-transport-https ca-certificates curl gnupg2 software-properties-common -y
+
+# Add the gpg 
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+
+# Add the repositories
+ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
+
+# Update the repositories again
+ sudo apt-get update
+
+# Docker installation
+ sudo apt-get install docker-ce
+
+# Start with the system.
+sudo systemctl enable docker
+
+# Add the user to the docker group
+# whoami # To know the user name.
+sudo usermod -aG docker <result_of_whoami_command>
+
+# Exit from the sesion
+exit
+
+# Init docker container again with the user and test.
+docker run hello-world
+```
 
 #### Docker & Jenkins SSH
 1. First create a folder, then create a Dockerfile in it with the following content.
