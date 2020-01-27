@@ -233,6 +233,37 @@ exit
 docker run hello-world
 ```
 
+#### Jenkins Installation (Docker image)
+1. Current link for docker jenkins: https://hub.docker.com/r/jenkins/jenkins/
+2. Execute command: `docker pull jenkins/jenkins`, read the oficial documentation for more information.
+3. Verify with: `docker images`
+4. Create a folder where we will save some jenkins information.
+5. Give it some permissions to the folder: `chown 1000 jenkins`
+6. Create a `docker-compose.yml` file inside jenkins folder.
+``` yaml
+version: '3'
+services:
+  jenkins:
+    container_name: jenkins
+      image: jenkins/jenkins
+      ports:
+        - "9555": "8080"
+      volumes:
+        - $PWD/jenkins_home:/var/jenkins_home
+      networks:
+        - jenkins_net
+networks:
+  - jenkins_net
+```
+7. Then execute the following command: `docker-compose up -d`
+8. We can see the image running with: `docker ps`
+9. If we want to see what docker has executed: `docker logs -f`
+10. Go to `localhost:<specified_port>` for accessing to docker.
+11. `cat jenkins_home/secrets/initialAdminPassword`. Copy and paste as initial password. So another option is access to the image with: `docker exec -it jenkins bash`, then `cat jenkins_home/secrets/initialAdminPassword`
+12. We can install suggested plugins as initial operation.
+13. Just follow all the steps until complete the process.
+
+
 #### Docker & Jenkins SSH
 1. First create a folder, then create a Dockerfile in it with the following content.
 ``` bash
