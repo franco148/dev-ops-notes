@@ -241,6 +241,7 @@ docker run hello-world
 5. Give it some permissions to the folder: `chown 1000 jenkins`
 6. Create a `docker-compose.yml` file inside jenkins folder.
 ``` yaml
+# docker-compose.yml for linux
 version: '3'
 services:
   jenkins:
@@ -254,6 +255,23 @@ services:
         - jenkins_net
 networks:
   - jenkins_net
+```
+
+``` yaml
+# docker-compose.yml for windows
+version: '3'
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins
+    ports:
+      - "5001:8080"
+    volumes:
+      - //d/LEARNING/DevOps/jenkins/jenkins_home:/var/jenkins_home
+    networks:
+      - net
+networks:
+  net:
 ```
 7. Then execute the following command: `docker-compose up -d`
 8. We can see the image running with: `docker ps`
