@@ -248,7 +248,7 @@ services:
     container_name: jenkins
       image: jenkins/jenkins
       ports:
-        - "9555": "8080"
+        - "9555:8080"
       volumes:
         - $PWD/jenkins_home:/var/jenkins_home
       networks:
