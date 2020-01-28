@@ -277,7 +277,7 @@ networks:
 8. We can see the image running with: `docker ps`
 9. If we want to see what docker has executed: `docker logs -f`
 10. Go to `localhost:<specified_port>` for accessing to docker.
-11. `cat jenkins_home/secrets/initialAdminPassword`. Copy and paste as initial password. So another option is access to the image with: `docker exec -it jenkins bash`, then `cat jenkins_home/secrets/initialAdminPassword`
+11. `cat jenkins_home/secrets/initialAdminPassword`. Copy and paste as initial password. So another option is access to the image with: Ubuntu: `docker exec -it jenkins bash` and Windows: `winpty docker exec -it jenkins bash`, then `cat jenkins_home/secrets/initialAdminPassword`
 12. We can install suggested plugins as initial operation.
 13. Just follow all the steps until complete the process.
 
