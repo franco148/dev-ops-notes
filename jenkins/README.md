@@ -258,7 +258,7 @@ networks:
 ```
 
 ``` yaml
-# docker-compose.yml for windows
+# docker-compose.yml for windows version 1
 version: '3'
 services:
   jenkins:
@@ -273,11 +273,30 @@ services:
 networks:
   net:
 ```
+
+``` yaml
+# docker-compose.yml for windows version 2
+version: '3'
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins
+    ports:
+      - "5001:8080"
+    volumes:
+      - jenkinsdata:/var/jenkins_home
+    networks:
+      - net
+networks:
+  net:
+volumes:
+  jenkinsdata:
+```
 7. Then execute the following command: `docker-compose up -d`
 8. We can see the image running with: `docker ps`
 9. If we want to see what docker has executed: `docker logs -f`
 10. Go to `localhost:<specified_port>` for accessing to docker.
-11. `cat jenkins_home/secrets/initialAdminPassword`. Copy and paste as initial password. So another option is access to the image with: Ubuntu: `docker exec -it jenkins bash` and Windows: `winpty docker exec -it jenkins bash`, then `cat jenkins_home/secrets/initialAdminPassword`
+11. `cat jenkins_home/secrets/initialAdminPassword`. Copy and paste as initial password. So another option is access to the image with: Ubuntu: `docker exec -it jenkins bash` and Windows: `winpty docker exec -it jenkins bash`, then `cat /var/jenkins_home/secrets/initialAdminPassword`
 12. We can install suggested plugins as initial operation.
 13. Just follow all the steps until complete the process.
 
