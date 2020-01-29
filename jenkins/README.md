@@ -453,7 +453,7 @@ docker ps
 # Verify if jenkins has connection to remote-host
 docker exec -it  jenkins bash # Starting jenkins container.
 ping remote_host # This command should work
-ssh remote_user@remote_host # Trying to connect from jenkins to remote-server
+ssh remote_user@remote_host # Trying to connect from jenkins to remote-server, but it will ask the remote_host password.
 
 # Now trying to connect from jenkins to remote-server with ssh key.
 docker cp remote-key jenkins:/tmp # Copying the ssh key into the jenkins container
@@ -478,6 +478,19 @@ docker rm -fv remote-host
 4. During the creation of the credentials, we will need to add the remote-key content into the jenkins.
 5. Then after test the connection, it should be successful.
 6. After that we can create the jobs that will be executed in the remote-server.
+
+Here some notes regarding to some issues.
+``` bash
+Looks like you're using keyfile authentication, so you'll get this error from Jenkins if you haven't set the permissions correctly on your .ssh folder and/or ~/.ssh/authorized_keys file.
+
+the .ssh folder should have drwx------ permissions (read/write/execute owner only)
+the authorized_keys file should have -rw------- permissions (read/write owner only)
+
+To fix it:
+
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+```
 
 
 
