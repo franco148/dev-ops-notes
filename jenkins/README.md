@@ -329,7 +329,10 @@ MOSTRAR=true
 
 /opt/script.sh $NOMBRE $APELLIDO $MOSTRAR
 ```
-
+6. Another option is to add the parameters in jenkins, and then use them in the script. Which means without defining the parameters in the script text field.
+```bash
+/opt/script.sh $NOMBRE $APELLIDO $MOSTRAR
+```
 
 #### Docker & Jenkins SSH
 1. First create a folder, then create a Dockerfile in it with the following content.
