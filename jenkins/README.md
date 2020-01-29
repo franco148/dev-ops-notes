@@ -300,6 +300,36 @@ volumes:
 12. We can install suggested plugins as initial operation.
 13. Just follow all the steps until complete the process.
 
+#### Jinkins first steps
+Basically Jenkins is for executing some tasks in remote machines. So for that we can create some tasks.
+
+###### Execute an script with our first job.
+1. Create the scrip file
+```bash
+#!/bin/bash
+
+NOMBRE=$1
+APELLIDO=$2
+MOSTRAR=$3
+
+if [ "$MOSTRAR" = "true" ]; then
+	echo "Hola, $NOMBRE, $APELLIDO"
+else
+	echo "Si quieres ver el nombre, selecciona la casilla de MOSTRAR"
+fi
+```
+2. Set perssions: `chmod +x script.sh`
+3. copy the script to the container with: `docker cp script.sh <container-name>:/opt` in this case: `docker cp script.sh jenkins:/opt`
+4. Go to jenkins dashboard and create a `Job -> Build -> Execute Shell`
+5. Add the reference to the script file as follows.
+```bash
+NOMBRE=MyName
+APELLIDO=MyLastName
+MOSTRAR=true
+
+/opt/script.sh $NOMBRE $APELLIDO $MOSTRAR
+```
+
 
 #### Docker & Jenkins SSH
 1. First create a folder, then create a Dockerfile in it with the following content.
