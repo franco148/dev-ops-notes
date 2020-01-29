@@ -335,7 +335,7 @@ MOSTRAR=true
 ```
 
 #### Docker & Jenkins SSH
-1. First create a folder, then create a Dockerfile in it with the following content.
+1. First create a folder(in this case with name centos8), then create a Dockerfile in it with the following content.
 ``` bash
 # First Part
 FROM centos
@@ -370,9 +370,30 @@ RUN /usr/sbin/sshd-keygen > /dev/null 2>&1
 CMD /usr/sbin/sshd -D	
 ```
 
+Previous scripts does not work with the latest centos version, but it does if we specifically execute centos7 as follows:
+```bash
+FROM centos:7
+
+RUN yum -y install openssh-server
+
+RUN useradd remote_user && \
+    echo "123456" | passwd remote_user --stdin && \
+	mkdir /home/remote_user/.ssh && \
+	chmod 700 /home/remote_user/.ssh
+	
+COPY remote-key.pub /home/remote_user/.ssh/authorized_keys
+
+RUN chown remote_user:remote_user   -R /home/remote_user && \
+    chmod 600 /home/remote_user/.ssh/authorized_keys
+
+RUN /usr/sbin/sshd-keygen > /dev/null 2>&1
+
+CMD /usr/sbin/sshd -D
+```
+
 4. Create the docker compose which will contain Jenkins and remote host images.
 ``` bash
-# docker-compose.yml
+# docker-compose.yml in linux
 version: '3'
 services:
   jenkins:
@@ -388,16 +409,42 @@ services:
     container_name: remote-host
     image: remote-host
     build:
-      context: centos7 #cento7 is the folder in which we have the dockerfile for centos.
+      context: centos8 #cento8 is the folder in which we have the dockerfile for centos.
     networks:
       - net
 networks:
   net:
 ```
 
+``` bash
+# docker-compose.yml in windows
+version: '3'
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins
+    ports:
+      - "8080:8080"
+    volumes:
+      - $PWD/jenkins_home:/var/jenkins_home
+    networks:
+      - net
+  remote_host:
+    container_name: remote-host
+    image: remote-host
+    build:
+      context: centos8 #cento8 is the folder in which we have the dockerfile for centos.
+    networks:
+      - net
+networks:
+  net:
+volumes:
+  jenkinsdata:
+```
+
 5. Once the docker-compose file is created we need to execute the following:
 ``` bash
-docker-compose build
+docker-compose build # For recreating the container that was already created.
 
 docker-compose up -d 
 
