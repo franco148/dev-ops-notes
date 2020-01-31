@@ -197,6 +197,19 @@ exit
 
 # Init docker container again with the user and test.
 docker run hello-world
+
+# Install docker compose
+# Step 1
+$which docker-compose
+/usr/bin/docker-compose
+
+# Step 2
+$sudo rm /usr/bin/docker-compose
+curl -L https://github.com/docker/compose/releases/download/1.24.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+
+# Step 3
+chmod +x ~/docker-compose
+sudo mv ~/docker-compose /usr/local/bin/docker-compose
 ```
 
 ##### Debian
@@ -254,7 +267,7 @@ services:
     networks:
       - jenkins_net
 networks:
-  - jenkins_net
+  - jenkins_net:
 ```
 
 ``` yaml
