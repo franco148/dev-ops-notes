@@ -246,13 +246,13 @@ version: '3'
 services:
   jenkins:
     container_name: jenkins
-      image: jenkins/jenkins
-      ports:
-        - "9555:8080"
-      volumes:
-        - $PWD/jenkins_home:/var/jenkins_home
-      networks:
-        - jenkins_net
+    image: jenkins/jenkins
+    ports:
+      - "9555:8080"
+    volumes:
+      - $PWD/jenkins_home:/var/jenkins_home
+    networks:
+      - jenkins_net
 networks:
   - jenkins_net
 ```
