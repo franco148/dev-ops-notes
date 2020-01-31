@@ -267,7 +267,7 @@ services:
     networks:
       - jenkins_net
 networks:
-  - jenkins_net:
+  jenkins_net:
 ```
 
 ``` yaml
