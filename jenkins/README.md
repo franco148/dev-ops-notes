@@ -597,7 +597,38 @@ insert into info values('UserA', 'LastNameA', 21);
 2. Create a new user which is going to have a `programatic access` and with permissions to `Amazon S3: Amazon S3 Full Acess`.
 3. Once a new user is created, we will able to download a `csv file` with the credentials that we will require for accessing to S3.
 
+###### Take MySQL backup and store it to S3
+1. Manually we can follow the following steps:
+``` bash
+# Access to the container
+docker exec -it remote-host bash
 
+# Create the backup
+mysqldump -u root -h mysql_host -p<mypassword> <databasename> > /tmp/db.sql
+
+# Add required environment variables for AWS
+export AWS_ACCESS_KEY_ID=<AccessKeyID>
+export AWS_SECRET_ACCESS_KEY=<SecretAcessKey>
+
+# Copy backup to S3
+aws s3 cp <my-backup-path> s3://<my-backed-name>
+```
+2. Create a script for performing the previous process automatically.
+``` bash
+# The backupd will be uploaded to amazon from the remote-host
+docker exec -it remote-host bash
+
+# Create the script
+vi /tmp/script.sh
+
+# Script content
+#!/bin/bash
+DATE=$(date +%H-%M-%S)
+DB_HOST=$1
+DB_PASSWORD=$2
+DB_NAME=$3
+mysqldump -u root -h $DB_HOST -p$DB_PASSWORD $DB_NAME > /tmp/mysqldb-$DATE.sql
+```
 
 
 
