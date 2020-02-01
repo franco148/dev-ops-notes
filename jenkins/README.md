@@ -592,7 +592,10 @@ create table info (name varchar(20), lastname varchar(20), age int(2));
 desc info;
 insert into info values('UserA', 'LastNameA', 21);
 ```
-
+###### Configuring AWS
+1. Create a bucket with default configuration.
+2. Create a new user which is going to have a `programatic access` and with permissions to `Amazon S3: Amazon S3 Full Acess`.
+3. Once a new user is created, we will able to download a `csv file` with the credentials that we will require for accessing to S3.
 
 
 
