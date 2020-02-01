@@ -547,9 +547,39 @@ mysql -u root -p
 
 # Then we can create databases, tables, insert information to them, etc.
 ```
+##### Connecting to AWS
+###### Installing MySQL Client and AWS CLI to Remote-Host
+1. Update the docker file.
+```bash
+FROM centos:7
 
+RUN yum -y install openssh-server
 
+RUN useradd remote_user && \
+    echo "123456" | passwd remote_user --stdin && \
+	mkdir /home/remote_user/.ssh && \
+	chmod 700 /home/remote_user/.ssh
+	
+COPY remote-key.pub /home/remote_user/.ssh/authorized_keys
 
+RUN chown remote_user:remote_user   -R /home/remote_user && \
+    chmod 600 /home/remote_user/.ssh/authorized_keys
+
+RUN /usr/sbin/sshd-keygen > /dev/null 2>&1
+
+RUN yum -y install mysql
+
+RUN yum -y install epel-release && \
+    yum -y install python-pip && \
+    pip install --upgrade pip && \
+    pip install awscli
+
+CMD /usr/sbin/sshd -D
+```
+2. Once updated the docker file, we will need to execute `docker-compose build` command for updating our containers.
+3. We may get an error message to upgrade pip version. So we can add a command to Dockerfile for upgrading in the Container. `Add the new command after python-pip`
+4. Then recreate the remote_host `docker-compose up -d`
+5. Verify if phyton pip is installed.
 
 
 
