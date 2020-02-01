@@ -580,8 +580,18 @@ CMD /usr/sbin/sshd -D
 3. We may get an error message to upgrade pip version. So we can add a command to Dockerfile for upgrading in the Container. `Add the new command after python-pip`
 4. Then recreate the remote_host `docker-compose up -d`
 5. Verify if phyton pip is installed.
+6. Once `mysql client` and `aws cli` are installed, then we can connect from `remote_host` to the `mysql_host`.
+```bash
+# Connecting to the remote machine
+mysql -u root -h mysql_host -p
 
-
+show databases;
+create database testdb;
+use testdb;
+create table info (name varchar(20), lastname varchar(20), age int(2));
+desc info;
+insert into info values('UserA', 'LastNameA', 21);
+```
 
 
 
