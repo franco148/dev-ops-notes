@@ -634,8 +634,11 @@ export AWS_ACCESS_KEY_ID=<AccessKeyID> && \
 export AWS_SECRET_ACCESS_KEY=$AWS_SECRET && \
 aws s3 cp /tmp/mysqldb-$DATE.sql s3://$BUCKET_NAME
 ```
-
-
+3. Once everything is configure, we will need to create the secrets in jenkins.
+4. We will need to give some permissions to the script file stored in the `remote-host` container: `chmod +x /tmp/script.sh`
+5. Create a new job in jenkins, and then add the required parameters to this. In this case not sensitive information like DB_HOST, DB_NAME and BUCKET_NAME.
+6. For sensitive information in jenkins check `use secret text(s) or file(s)` in `Build Environment` section. Add them by `Secret Text` option.
+7. Add the required command in `Build` section: `/tmp/script.sh <list of parameters>`
 
 
 
