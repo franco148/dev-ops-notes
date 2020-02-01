@@ -439,7 +439,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - $PWD/jenkins_home:/var/jenkins_home
+      - jenkinsdata:/var/jenkins_home
     networks:
       - net
   remote_host:
@@ -503,6 +503,50 @@ To fix it:
 - `chmod 600 ~/.ssh/authorized_keys`
 
 #### Docker & AWS
+##### Create a MySQL container
+1. First we will edit our docker-compose.yml file
+``` bash
+# docker-compose.yml in linux
+version: '3'
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins
+    ports:
+      - "8080:8080"
+    volumes:
+      - ${PWD}/jenkins_home:/var/jenkins_home
+    networks:
+      - net
+  remote_host:
+    container_name: remote-host
+    image: remote-host
+    build:
+      context: centos8 #cento8 is the folder in which we have the dockerfile for centos.
+    networks:
+      - net
+  mysql_host:
+    container_name: mysql-db
+    image: mysql:5.7
+    environment:
+      - "MYSQL_ROOT_PASSWORD=123456"
+    volumes:
+      - ${PWD}/db_data:/var/lib/mysql
+    networks:
+      - net
+networks:
+  net:
+```
+2. Once the new docker container with mysql image has been created, we can verify following these commands:
+``` bash
+# Access to the mysql container
+docker exec -it mysql-db bash
+
+# Login to mysql database
+mysql -u root -p
+
+# Then we can create databases, tables, insert information to them, etc.
+```
 
 
 
