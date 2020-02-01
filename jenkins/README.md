@@ -640,7 +640,42 @@ aws s3 cp /tmp/mysqldb-$DATE.sql s3://$BUCKET_NAME
 6. For sensitive information in jenkins check `use secret text(s) or file(s)` in `Build Environment` section. Add them by `Secret Text` option.
 7. Add the required command in `Build` section: `/tmp/script.sh <list of parameters>`
 
-
+###### Make the Script permanent in remote-host
+1. Add a new volume for remote-host
+```bash
+version: '3'
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins
+    ports:
+      - "8080:8080"
+    volumes:
+      - ${PWD}/jenkins_home:/var/jenkins_home
+    networks:
+      - jnet
+  remote_host:
+    container_name: remote-host
+    image: remote-host
+    build:
+      context: centos7
+    volumes:
+      - ${PWD}/centos7/dbscript.sh:/tmp/dbscript.sh
+    networks:
+      - jnet
+  mysql_host:
+    container_name: mysql-db
+    image: mysql:5.7
+    environment:
+      - "MYSQL_ROOT_PASSWORD=123456"
+    volumes:
+      - ${PWD}/db_data:/var/lib/mysql
+    networks:
+      - jnet
+networks:
+  jnet:
+```
+2. Give permissions to the script: `chmod +x scriptfile`
 
 
 
