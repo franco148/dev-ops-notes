@@ -611,11 +611,11 @@ export AWS_ACCESS_KEY_ID=<AccessKeyID>
 export AWS_SECRET_ACCESS_KEY=<SecretAcessKey>
 
 # Copy backup to S3
-aws s3 cp <my-backup-path> s3://<my-backed-name>
+aws s3 cp <my-backup-path> s3://<my-bucket-name>
 ```
 2. Create a script for performing the previous process automatically.
 ``` bash
-# The backupd will be uploaded to amazon from the remote-host
+# The backup will be uploaded to amazon from the remote-host
 docker exec -it remote-host bash
 
 # Create the script
@@ -627,7 +627,12 @@ DATE=$(date +%H-%M-%S)
 DB_HOST=$1
 DB_PASSWORD=$2
 DB_NAME=$3
-mysqldump -u root -h $DB_HOST -p$DB_PASSWORD $DB_NAME > /tmp/mysqldb-$DATE.sql
+AWS_SECRET=$4
+BUCKET_NAME=$5
+mysqldump -u root -h $DB_HOST -p$DB_PASSWORD $DB_NAME > /tmp/mysqldb-$DATE.sql && \
+export AWS_ACCESS_KEY_ID=<AccessKeyID> && \
+export AWS_SECRET_ACCESS_KEY=$AWS_SECRET && \
+aws s3 cp /tmp/mysqldb-$DATE.sql s3://$BUCKET_NAME
 ```
 
 
