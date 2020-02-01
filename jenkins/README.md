@@ -263,7 +263,7 @@ services:
     ports:
       - "9555:8080"
     volumes:
-      - $PWD/jenkins_home:/var/jenkins_home
+      - ${PWD}/jenkins_home:/var/jenkins_home
     networks:
       - jenkins_net
 networks:
