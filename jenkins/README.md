@@ -719,6 +719,34 @@ If we want to execute the jobs using CURL with parameters, we will need to execu
 curl -u "jenkins:1234" -H "$crumb" -X POST http://jenkins.local:8080/job/ansible-job2/buildWithParameters?key=value&key=value
 ```
 
+#### Jenkins & Email
+###### With AWS
+1. We need to install a plugin `mailer`
+2. Go to `Manage Jenkins -> System Configuration -> Notification by Email (SMTP)`
+3. For this we need an email server/service. If we do not have one, we can use the one that AWS provides us like SES.
+  - Use the `Server Name` that we can see there in `SMTP Settings` section.
+  - We will need to use the SMTP credentials there. It will create a IAM user only for email operations.
+  - The credentials can be downloaded in the csv file.
+  - We will need to use one of the ports available for SMTP in AWS.
+
+###### With GMAIL
+1. Look for smtp gmail settings. So we will use it in our jenkins configuration
+  - smtp.gmail.com
+2. But it may not work, we will need to look for: LET LESS SECURE APPS ACCESS YOUR ACCOUNT (aplicaciones menos seguras gmail)
+3. Just enable it.
+
+###### Integrate email notification to our jobs
+- We will only need to add a new task `email notification` as a `Post Action` of the job.
+
+
+
+
+
+
+
+
+
+
 
 
 
