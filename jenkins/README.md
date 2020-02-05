@@ -679,7 +679,65 @@ networks:
 
 #### Docker Tips & Tricks
 ##### Available Environment Variables
-- Look for JENKINS SET ENVIRONMENT VARIABLES
+- Look for JENKINS ENVIRONMENT VARIABLES
+- Go to section: JENKINS SET ENVIRONMENT VARIABLES.
+- We can use them directly.
+
+##### Create our own environment variables.
+- We can define it in: `Manage jenkins -> System Configuration -> Environment Variables`
+
+##### Change Jenkins URL
+- `Manage jenkins -> System Configuration -> Jenkins Location`
+
+##### Trigger jobs with CRON
+- Go to the JOB
+- Go to the settings `execution trigger -> execute periodically`
+- Then add the settings based on CRON syntax: See CronTab https://crontab.guru
+  - Example: `0 3 * * *` But jenkins will show us an warning message which says that onother jobs may be scheduled at the same time, So adding H instead of 0 will fix it. Because it means that during 60 minutos, jenkins will see which time is the best momento to execute the job.
+  
+##### Create a user with permissions for executing a JOB.
+- Go to the console where we can manage the roles.
+- Give it read and write to the TASKS
+- Create the user and assign the role.
+
+##### Trigger jobs with CURL
+1. Without Parameters
+
+It will be required to have a script file: e.g. `crumb.sh`
+```bash
+crumb=$(curl -u "jenkins:1234" -s 'http://jenkins.local:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)')
+
+curl -u "jenkins:1234" -H "$crumb" -X POST http://jenkins.local:8080/job/ansible-job2/build
+
+# Obviusly we will need to execute our jobs. Above is only an example.
+```
+We will need to execute the previous script.
+
+2. With Parameters.
+If we want to execute the jobs using CURL with parameters, we will need to execute the following:
+```bash
+curl -u "jenkins:1234" -H "$crumb" -X POST http://jenkins.local:8080/job/ansible-job2/buildWithParameters?key=value&key=value
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
