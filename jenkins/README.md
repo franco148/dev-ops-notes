@@ -677,6 +677,9 @@ networks:
 ```
 2. Give permissions to the script: `chmod +x scriptfile`
 
+#### Docker Tips & Tricks
+##### Available Environment Variables
+- Look for JENKINS SET ENVIRONMENT VARIABLES
 
 
 
