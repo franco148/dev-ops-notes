@@ -677,7 +677,7 @@ networks:
 ```
 2. Give permissions to the script: `chmod +x scriptfile`
 
-#### Docker Tips & Tricks
+#### Jenkins Tips & Tricks
 ##### Available Environment Variables
 - Look for JENKINS ENVIRONMENT VARIABLES
 - Go to section: JENKINS SET ENVIRONMENT VARIABLES.
@@ -738,7 +738,57 @@ curl -u "jenkins:1234" -H "$crumb" -X POST http://jenkins.local:8080/job/ansible
 ###### Integrate email notification to our jobs
 - We will only need to add a new task `email notification` as a `Post Action` of the job.
 
-
+#### Jenkins & Git
+- First look for `gitlab ce docker`
+- Update our docker compose based on the previous result from https://docs.gitlab.com/omnibus/docker/
+```bash
+version: '3'
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins
+    ports:
+      - "8080:8080"
+    volumes:
+      - ${PWD}/jenkins_home:/var/jenkins_home
+    networks:
+      - jnet
+  remote_host:
+    container_name: remote-host
+    image: remote-host
+    build:
+      context: centos7
+    volumes:
+      - ${PWD}/centos7/dbscript.sh:/tmp/dbscript.sh
+    networks:
+      - jnet
+  mysql_host:
+    container_name: mysql-db
+    image: mysql:5.7
+    environment:
+      - "MYSQL_ROOT_PASSWORD=123456"
+    volumes:
+      - ${PWD}/db_data:/var/lib/mysql
+    networks:
+      - jnet
+  gitlab_server:
+    container_name: git-server
+    hostname: gitlab.example.com
+    ports:
+      - "443:443"
+      - "80:80"
+    restart: always
+    volumes:
+      - /srv/gitlab/config:/etc/gitlab
+      - /srv/gitlab/logs:/var/log/gitlab
+      - /srv/gitlab/data:/var/opt/gitlab
+    image:gitlab/gitlab-ce
+    networks:
+      - jnet
+networks:
+  jnet:
+```
+- Then execute the command `docker-compose up -d`
 
 
 
