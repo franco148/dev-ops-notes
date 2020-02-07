@@ -742,6 +742,7 @@ curl -u "jenkins:1234" -H "$crumb" -X POST http://jenkins.local:8080/job/ansible
 - First look for `gitlab ce docker`
 - Update our docker compose based on the previous result from https://docs.gitlab.com/omnibus/docker/
 ```bash
+# docker-compose for linux
 version: '3'
 services:
   jenkins:
@@ -787,6 +788,46 @@ services:
       - jnet
 networks:
   jnet:
+```
+
+```bash
+# docker-compose for windows
+version: '3'
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins
+    ports:
+      - "5001:8080"
+    volumes:
+      - jenkinsdata:/var/jenkins_home
+    networks:
+      - net
+  remote_host:
+    container_name: remote-host
+    image: remote-host
+    build:
+      context: centos8
+    networks:
+      - net 
+  gitlab_server:
+    container_name: git-server
+    hostname: gitlab.example.com
+    ports:
+      - "443:443"
+      - "80:80"
+    restart: always
+    volumes:
+      - jenkinsdata:/etc/gitlab
+      - jenkinsdata:/var/log/gitlab
+      - jenkinsdata:/var/opt/gitlab
+    image:gitlab/gitlab-ce
+    networks:
+      - jnet
+networks:
+  net:
+volumes:
+  jenkinsdata:
 ```
 - Then execute the command `docker-compose up -d`
 
