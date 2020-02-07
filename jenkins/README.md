@@ -821,9 +821,9 @@ services:
       - jenkinsdata:/etc/gitlab
       - jenkinsdata:/var/log/gitlab
       - jenkinsdata:/var/opt/gitlab
-    image:gitlab/gitlab-ce
+    image: gitlab/gitlab-ce
     networks:
-      - jnet
+      - net
 networks:
   net:
 volumes:
