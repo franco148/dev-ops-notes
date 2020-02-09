@@ -831,7 +831,18 @@ volumes:
 ```
 - Then execute the command `docker-compose up -d`
 
-
+##### Create a Repository in GitLab
+- Gitlab is going to take a little long to start, once it is ready, we will need to change the password (minimum characters 8).
+- Once changed the password, we can login in it with `roor` user and the password changed previously.
+- Since our hostname is gitlab.example.com, we will need to expose it as it is defined. So for that we well need to update our hosts file like:
+```bash
+sudo vi /etc/hosts
+<my-ip> gitlab.example.com
+```
+Then we can access to it through the specified name.
+- Then we will need to create a `group` in which we are going to save our projects: `jenkinsci`
+- After that create a new project: `maven`
+- After that we will able to integrate it with our jenkins server.
 
 
 
