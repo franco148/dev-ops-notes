@@ -783,7 +783,7 @@ services:
       - /srv/gitlab/config:/etc/gitlab
       - /srv/gitlab/logs:/var/log/gitlab
       - /srv/gitlab/data:/var/opt/gitlab
-    image:gitlab/gitlab-ce
+    image: gitlab/gitlab-ce
     networks:
       - jnet
 networks:
