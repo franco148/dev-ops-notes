@@ -850,9 +850,45 @@ After all previous steps:
 - Clone our repository, and create a java app in it.
 - 
 
+##### Git Hooks
+- Events when something happens.
+- Let's enter to the jenkins server machine and verify perform the following commands.
+```bash
+docker exec -it jenkins bash
+cd /var/opt/gitlab/git-data/repositories/jenkinsci/maven.git
+mkdir custom_hooks
+vi post-receive
+```
+File.
+```bash
+#!/bin/bash
 
 
+# Get branch name from ref head
 
+if ! [ -t 0 ]; then
+  read -a ref
+fi
+IFS='/' read -ra REF <<< "${ref[2]}"
+branch="${REF[2]}"
+
+if [ $branch == "master" ]; then
+crumb=$(curl -u "jenkins:1234" -s 'http://jenkins:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)')
+curl -u "jenkins:1234" -H "$crumb" -X POST http://jenkins:8080/job/maven/build?delay=0sec
+
+  if [ $? -eq 0 ] ; then
+    echo "*** Ok"
+  else
+    echo "*** Error"
+  fi
+fi
+```
+Giving access to the script. This is going to be execute everytime some changes are added into the master branch.
+```bash
+chmod +x post-receive
+cd ..
+chown git:git custom_hooks/ -R
+```
 
 
 
