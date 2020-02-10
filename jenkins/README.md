@@ -847,7 +847,8 @@ Then we can access to it through the specified name.
 After all previous steps:
 - We will need to create a user which can be used by our Jenkins Server. This user will also need to have a 8 long password.
 - We will need to give the new user access to the project that we created previously.
-
+- Clone our repository, and create a java app in it.
+- 
 
 
 
