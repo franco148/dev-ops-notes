@@ -859,6 +859,7 @@ cd /var/opt/gitlab/git-data/repositories/jenkinsci/maven.git
 mkdir custom_hooks
 vi post-receive
 ```
+
 File.
 ```bash
 #!/bin/bash
