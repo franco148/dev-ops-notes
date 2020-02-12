@@ -884,6 +884,7 @@ curl -u "jenkins:1234" -H "$crumb" -X POST http://jenkins:8080/job/maven/build?d
   fi
 fi
 ```
+
 Giving access to the script. This is going to be execute everytime some changes are added into the master branch.
 ```bash
 chmod +x post-receive
