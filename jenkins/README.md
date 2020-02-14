@@ -835,6 +835,7 @@ volumes:
 - Gitlab is going to take a little long to start, once it is ready, we will need to change the password (minimum characters 8).
 - Once changed the password, we can login in it with `roor` user and the password changed previously.
 - Since our hostname is gitlab.example.com, we will need to expose it as it is defined. So for that we well need to update our hosts file like:
+
 ```bash
 sudo vi /etc/hosts
 <my-ip> gitlab.example.com
