@@ -894,7 +894,7 @@ chown git:git custom_hooks/ -R
 ```
 
 
-
+Here we need to ask about jenkinsx
 
 
 
