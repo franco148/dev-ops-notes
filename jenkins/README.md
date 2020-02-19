@@ -910,7 +910,14 @@ job('job_dsl_example') {
 }
 ```
 3. Once saved the previous piece of code, and then execute the build. It will create a new job with the name specified in the code. In this case `job_dsl_example`
+4. Piece of code for adding a description in the job created automatically.
+```batch
+job('job_dsl_example') {
 
+    description('This is my awesome Job')
+}
+
+```
 
 
 
