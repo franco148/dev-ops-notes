@@ -902,7 +902,14 @@ chown git:git custom_hooks/ -R
   - Second adding the required commands into the text box.
 
 Second approach example:
-1. 
+1. We need to look for jenkins + dsl for having more details about this plugin.
+2. We need the following piece of code for creating a new job.
+```batch
+job('job_dsl_example') {
+
+}
+```
+3. Once saved the previous piece of code, and then execute the build. It will create a new job with the name specified in the code. In this case `job_dsl_example`
 
 
 
