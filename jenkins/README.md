@@ -996,7 +996,36 @@ job('job_dsl_example') {
     }
 }
 ```
+9. Jenkins DSL and Post Steps (Mailer)
+```batch
+job('job_dsl_example') {
 
+    description('This is my awesome Job')
+  
+    parameters {
+        stringParam('Planet', defaultValue = 'world', description = 'This is the world')
+	booleanParam('FLAG', true)
+        choiceParam('OPTION', ['option 1 (default)', 'option 2', 'option 3'])
+    }
+
+    scm {
+        git('https://github.com/jenkins-docs/simple-java-maven-app', 'master')
+    }
+
+    triggers {
+        cron('H 5 * * 7')
+    }
+
+    steps {
+        shell("echo 'Hello World'")
+        shell("echo 'Hello World2'")
+    }
+
+    publishers {
+        mailer('me@example.com', true, true)
+    }
+}
+```
 
 
 
