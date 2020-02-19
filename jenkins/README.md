@@ -923,8 +923,7 @@ job('job_dsl_example') {
 job('job_dsl_example') {
 
     description('This is my awesome Job')
-
-  
+    
     parameters {
         stringParam('Planet', defaultValue = 'world', description = 'This is the world')
 	booleanParam('FLAG', true)
@@ -933,7 +932,24 @@ job('job_dsl_example') {
 
 }
 ```
+6. Source Control Management with DSL.
+```batch
+job('job_dsl_example') {
 
+    description('This is my awesome Job')
+
+    parameters {
+        stringParam('Planet', defaultValue = 'world', description = 'This is the world')
+	booleanParam('FLAG', true)
+        choiceParam('OPTION', ['option 1 (default)', 'option 2', 'option 3'])
+    }
+
+    scm {
+        git('https://github.com/jenkins-docs/simple-java-maven-app', 'master')
+    }
+}
+
+```
 
 
 
