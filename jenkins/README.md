@@ -892,9 +892,17 @@ chmod +x post-receive
 cd ..
 chown git:git custom_hooks/ -R
 ```
+#### Jenkins & DSL
+- It is a plugin for creating jobs automatically. First, we will need to install it. Look for `jenkins dsl`
 
+1. We will create a new job. This is going to be a parent job.
+2. Once the Job is created go to `build -> process Job DSLs`
+3. For this, we will have two approaches for it. 
+  - First using a file
+  - Second adding the required commands into the text box.
 
-Here we need to ask about jenkinsx, adding new changes
+Second approach example:
+1. 
 
 
 
