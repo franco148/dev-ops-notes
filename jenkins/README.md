@@ -918,7 +918,21 @@ job('job_dsl_example') {
 }
 
 ```
+5. For specifying parameter, we need the following.
+```batch
+job('job_dsl_example') {
 
+    description('This is my awesome Job')
+
+  
+    parameters {
+        stringParam('Planet', defaultValue = 'world', description = 'This is the world')
+	booleanParam('FLAG', true)
+        choiceParam('OPTION', ['option 1 (default)', 'option 2', 'option 3'])
+    }
+
+}
+```
 
 
 
