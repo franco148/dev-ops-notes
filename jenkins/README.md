@@ -1103,10 +1103,10 @@ job('job_dsl_maven') {
     }
 }
 ```
-Important link to take into account: https://stackoverflow.com/questions/35347269/javax-mail-authenticationfailedexception-535-5-7-8-username-and-password-not-ac
+Important link to take into account: https://stackoverflow.com/questions/35347269/javax-mail-authenticationfailedexception-535-5-7-8-username-and-password-not-ac, https://www.360logica.com/blog/email-notification-in-jenkins/
 
 
-
+#### CI/CD Definitions
 
 
 
