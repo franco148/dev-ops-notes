@@ -1071,7 +1071,38 @@ job('job_dsl_example') {
 
 ```
 11. If we want to have more than one job created, we can define a new `job` command below the first one.
+12. Build Maven Job with DSL.
+```batch
+job('job_dsl_maven') {
 
+    description('Maven dsl project')
+
+    scm {
+        git('https://github.com/jenkins-docs/simple-java-maven-app', 'master', {node -> node / 'extensions' << '' })
+    }
+  
+    steps {
+        maven {
+            mavenInstallation('jenkins-maven')
+            goals('-B -DskipTests clean package')
+        }
+        maven {
+            mavenInstallation('jenkins-maven')
+            goals('test')
+        }
+        shell('''
+            echo ************RUNNING THE JAR************************     
+            java -jar /var/jenkins_home/workspace/gitlab-maven-job/target/my-app-1.0-SNAPSHOT.jar
+        ''')
+    }
+
+    publishers {
+        archiveArtifacts('target/*.jar')
+        archiveJunit('target/surefire-reports/*.xml')
+        //mailer('franco.robert.fral@gmail.com', true, true)
+    }
+}
+```
 
 
 
