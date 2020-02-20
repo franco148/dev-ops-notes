@@ -1099,10 +1099,11 @@ job('job_dsl_maven') {
     publishers {
         archiveArtifacts('target/*.jar')
         archiveJunit('target/surefire-reports/*.xml')
-        //mailer('franco.robert.fral@gmail.com', true, true)
+        mailer('franco.robert.fral@gmail.com', true, true)
     }
 }
 ```
+Important link to take into account: https://stackoverflow.com/questions/35347269/javax-mail-authenticationfailedexception-535-5-7-8-username-and-password-not-ac
 
 
 
