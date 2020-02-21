@@ -1168,7 +1168,43 @@ pipeline {
     }
 }
 ```
+###### Timeouts
+5. When a task takes some time and we need to specify a time for waiting it.
+```bash
+pipeline {
+    agent any
+    stages {
+        stage('Deploy') {
+            steps {
+                retry(3) {
+                    sh 'echo hola'
+                }
 
+                timeout(time: 3, unit: 'SECONDS') {
+                    sh 'sleep 5'
+                }
+            }
+        }
+    }
+}
+
+#########
+
+pipeline {
+    agent any
+    stages {
+        stage('Deploy') {
+            steps {
+                timeout(time: 2, unit: 'SECONDS') {
+                    retry(5) {
+                        sh 'sleep 3'
+                    }
+                }
+            }
+        }
+    }
+}
+```
 
 
 
