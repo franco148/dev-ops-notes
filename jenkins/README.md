@@ -1152,7 +1152,22 @@ pipeline {
     }
 }
 ```
-
+###### Retry
+4. Means that we can try as much as the value is specified in the parameter.
+```bash
+pipeline {
+    agent any
+    stages {
+        stage('Timeout') {
+            steps {
+                retry(3) {
+                    sh 'No voy a funcionar :c'
+                }
+            }
+        }
+    }
+}
+```
 
 
 
