@@ -1256,7 +1256,24 @@ pipeline {
     }
 }
 ```
-
+###### Credentials
+8. We can use the credentials created/defined in previous examples.
+```bash
+pipeline {
+    agent any
+    
+    environment {
+        secretito = credentials('TEST')
+    }
+    stages {
+        stage('Example stage 1') {
+            steps {
+                sh 'echo $secretito'
+            }
+        }
+    }
+}
+```
 
 
 
