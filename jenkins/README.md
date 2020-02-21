@@ -904,14 +904,14 @@ chown git:git custom_hooks/ -R
 Second approach example:
 1. We need to look for jenkins + dsl for having more details about this plugin.
 2. We need the following piece of code for creating a new job.
-```batch
+```bash
 job('job_dsl_example') {
 
 }
 ```
 3. Once saved the previous piece of code, and then execute the build. It will create a new job with the name specified in the code. In this case `job_dsl_example`
 4. Piece of code for adding a description in the job created automatically.
-```batch
+```bash
 job('job_dsl_example') {
 
     description('This is my awesome Job')
@@ -919,7 +919,7 @@ job('job_dsl_example') {
 
 ```
 5. For specifying parameter, we need the following.
-```batch
+```bash
 job('job_dsl_example') {
 
     description('This is my awesome Job')
@@ -933,7 +933,7 @@ job('job_dsl_example') {
 }
 ```
 6. Source Control Management with DSL.
-```batch
+```bash
 job('job_dsl_example') {
 
     description('This is my awesome Job')
@@ -951,7 +951,7 @@ job('job_dsl_example') {
 
 ```
 7. DSL triggers. We know that the triggers are managed by `cron`
-```batch
+```bash
 job('job_dsl_example') {
 
     description('This is my awesome Job')
@@ -972,7 +972,7 @@ job('job_dsl_example') {
 }
 ```
 8. Steps and Jenkins DSL.
-```batch
+```bash
 job('job_dsl_example') {
 
     description('This is my awesome Job')
@@ -997,7 +997,7 @@ job('job_dsl_example') {
 }
 ```
 9. Jenkins DSL and Post Steps (Mailer)
-```batch
+```bash
 job('job_dsl_example') {
 
     description('This is my awesome Job')
@@ -1027,7 +1027,7 @@ job('job_dsl_example') {
 }
 ```
 10. Jenkins DSL and Ansible
-```batch
+```bash
 job('job_dsl_example') {
 
     description('This is my awesome Job')
@@ -1072,7 +1072,7 @@ job('job_dsl_example') {
 ```
 11. If we want to have more than one job created, we can define a new `job` command below the first one.
 12. Build Maven Job with DSL.
-```batch
+```bash
 job('job_dsl_maven') {
 
     description('Maven dsl project')
@@ -1107,9 +1107,66 @@ Important link to take into account: https://stackoverflow.com/questions/3534726
 
 
 #### Jenkins Pipeline - Jenkinsfile
+###### First pipeline
 1. Let's create a new job but as a jenkins pipeline job.
 2. In the pipeline section, we can specify the pipeline commands or take it from a SCM (Like DSL).
-3. 
+```bash
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+}
+
+```
+###### Multiple steps
+3. We can have more than one step in a stage.
+```bash
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh 'echo "Este es mi primer pipeline"'
+                sh '''
+                    echo "Por cierto, puedo ejecutar más acciones aquí"
+                    ls -lah
+                '''
+            }
+        }
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
