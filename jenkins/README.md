@@ -1106,7 +1106,10 @@ job('job_dsl_maven') {
 Important link to take into account: https://stackoverflow.com/questions/35347269/javax-mail-authenticationfailedexception-535-5-7-8-username-and-password-not-ac, https://www.360logica.com/blog/email-notification-in-jenkins/
 
 
-#### CI/CD Definitions
+#### Jenkins Pipeline - Jenkinsfile
+1. Let's create a new job but as a jenkins pipeline job.
+2. In the pipeline section, we can specify the pipeline commands or take it from a SCM (Like DSL).
+3. 
 
 
 
