@@ -1205,7 +1205,37 @@ pipeline {
     }
 }
 ```
-
+###### Post Actions
+6. It is the last tasks when the job finishes.
+```bash
+pipeline {
+    agent any
+    stages {
+        stage('Test') {
+            steps {
+                sh 'echo "Fail!"; exit 1'
+            }
+        }
+    }
+    post {
+        always {
+            echo 'Siempre me voy a ejecutar :D'
+        }
+        success {
+            echo 'Solo me ejecutaré si el build no falla'
+        }
+        failure {
+            echo 'Solo me ejecutaré si el build falla'
+        }
+        unstable {
+            echo 'Solo me ejecutaré si me marco como inestable'
+        }
+        changed {
+            echo 'El pipeline estaba fallando pero ahora está correcto o visceversa'
+        }
+    }
+}
+```
 
 
 
