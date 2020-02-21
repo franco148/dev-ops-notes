@@ -1236,7 +1236,26 @@ pipeline {
     }
 }
 ```
+###### Environment Variables
+7. Defining enironment variables for the jo.
+```bash
+pipeline {
+    agent any
 
+    environment {
+        NOMBRE = 'ricardo'
+        APELLIDO    = 'gonzalez'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                sh 'echo $NOMBRE $APELLIDO'
+            }
+        }
+    }
+}
+```
 
 
 
