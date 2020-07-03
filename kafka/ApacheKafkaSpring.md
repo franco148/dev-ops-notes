@@ -40,14 +40,14 @@
 - Even if the messages are consumed, it will still be there for some 'retention time'
 
 ##### Partitions, Producers, Consumers and Retention Period in Topic
-- **Partition is where the message lives inside the topic**
+- **<ins>Partition is where the message lives inside the topic</ins>**
   - Each partition is an ordered, inmutable sequence of records.
   - Each record is assigned a sequencial number called offset.
   - Each partition is independent of each other
   - Ordering is guaranteed only at the partition level.
   - Partition continuosly grows as new records are produced.
   - All the records are persisted in a commit log in the file system where Kafka is installed.
-- **Each topic will be created with one or more partitions**
+- **<ins>Each topic will be created with one or more partitions</ins>**
 
 - The retention period of records in Kafka is configurable
 - The **default retention period** is **7 days**. The retention period is specific to topic. So in the Cluster each topic can have their own retention period.
@@ -57,8 +57,8 @@
 - Irrespective of all the consumers have consumed the message, the record will sit in the cluster until the retention period expires.
 - The performance of Kafka is consistent with respect to data size so holding the data for a long time is not an issue here.
 
-
-- ddddddddddddddddddddddddddddd
+##### Setting up Zookeeper & Kafka Broker
+- We can find all the required steps [here](https://github.com/franco148/dev-ops-notes/blob/master/kafka/SetupKafka.md).
 
 
 
