@@ -1,4 +1,7 @@
 # APACHE KAFKA AND SPRING FRAMEWORK
+### Apache kafka installation
+- We will need to go to the oficial website wich is [here](https://kafka.apache.org/downloads). We will need to download the version that is recommended in the documentation.
+- Download the binaries, and unzip it.
 ### Why apache kafka
 - Messaging is one of the popular trend in sharing the data between the applications/systems real time.
 - There are two popular legacy messaging solutions **Publish-Subscribe(Topic) and Queue**
