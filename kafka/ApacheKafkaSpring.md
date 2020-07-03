@@ -60,10 +60,17 @@
 ##### Setting up Zookeeper & Kafka Broker
 - We can find all the required steps [here](https://github.com/franco148/dev-ops-notes/blob/master/kafka/SetupKafka.md).
 
+##### Sending Kafka Messages With Key and Value
+- Kafka Message sent from producer has two properties
+  - Key (optional): 
+  - Value: 
 
-
-
-
+##### Consumer Offsets
+- Consumer have three options to read (this is helpful when we want to read from a specific message (offset))
+  - from-beginning
+  - latest
+  - specific offset
+- Consumer offsets behaves like a bookmark for the consumer to start reading the messages from the point it left off.
 
 
 
