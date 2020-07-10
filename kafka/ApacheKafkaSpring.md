@@ -72,8 +72,9 @@
   - specific offset
 - Consumer offsets behaves like a bookmark for the consumer to start reading the messages from the point it left off.
 
-
-
+#### Log and Retention Policy
+1. Go to `config` folder and open `server.properties`
+2. Look for `log.dirs`, the default value is `/tmp/kafka-logs`
 
 
 
