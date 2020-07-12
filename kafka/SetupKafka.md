@@ -280,6 +280,10 @@ kafka-topics.bat --zookeeper localhost:2181 --describe --topic <topic-name>
 ## Alter the min insync replica
 ```
 kafka-topics.bat --alter --zookeeper localhost:2181 --topic library-events --config min.insync.replicas=2
+
+# Warning: --zookeeper is deprecated and will be removed in a future version of Kafka.
+# Use --bootstrap-server instead to specify a broker to connect to.
+# Completed updating config for entity: topic 'test-topic-replicated'.
 ```
 
 
