@@ -105,6 +105,8 @@ Now typically virtualization allows us to run multiple operating system on a sin
 - After configure Multi-factor authentication, next time you will need to login, an MFA code will be required.
 
 #### Creating our first IAM user
+AWS Identity and Access Management is a service that allows you to control access to AWS resources (e.g. AWS EC2, S3, etc).
+
 If someone gets your root account, he can do everything. However if someone gets far account of your name user, you can immediately restrict the access or block the access of the attacker. 
 
 - Go to Services dropdown
