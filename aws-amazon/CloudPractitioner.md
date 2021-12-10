@@ -126,6 +126,13 @@ If someone gets your root account, he can do everything. However if someone gets
 - An IAM user does not have to be an actual person.
 - Each an IAM user has its own security credentials (password & access key) to use AWS resources.
 
+###### Important characteristics of IAM Groups
+- IAM groups let you specify permissions for multiple users, which can make it easier to manage the permissions for those users.
+- A group can contain many users, and a user can belong to multiple groups.
+- Groups can not be nested; they can contain only users, not other groups.
+- There is no default group that automatically includes all users in the AWS account. If you want to have a group like that, you need to create it and assign each new user to it.
+- Default limit for groups in an AWS account is 300.
+
 #### Setting up a billing alarm
 - Go to your account name
 - Choose `My Billing Dashboard`
