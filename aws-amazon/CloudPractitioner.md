@@ -118,6 +118,14 @@ If someone gets your root account, he can do everything. However if someone gets
 - Once done. The console will show you what is the link you require for accessing with the user.
 - Then we can also configure the multi-factor authentication for this new user.
 
+###### Important characteristics of IAM Users
+- By default, a brand new IAM user does not have permissions to do any AWS operations or to access any AWS resources.
+- IAM users allow you to assign permissions individually to each user.
+- IAM users are not billed separately.
+- AWS activity performed by users in your account is billed to your account.
+- An IAM user does not have to be an actual person.
+- Each an IAM user has its own security credentials (password & access key) to use AWS resources.
+
 #### Setting up a billing alarm
 - Go to your account name
 - Choose `My Billing Dashboard`
