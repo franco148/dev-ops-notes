@@ -140,6 +140,15 @@ If someone gets your root account, he can do everything. However if someone gets
 - It will show some options like `Receive free tier usage alerts` in `Cost Management Preferences` section.
 - (As a initial case, we will not need to check `Receive Billing Alerts` because for that we need to setup budgets first)
 
+-- --
+###### Setting up a Billing Alarm
+- Go to account name, then `Billing Dashboard`
+- There are some approaches for setting up the billing alarm
+- 1. **Budgets**: This service is not free, it costs like 2 cents per day.
+- 2. **Free Tier Usage Alert**: Once we are alredy are in `Billing Dashboard`, we can go to:
+- 2.1. Billing Preferences -> Check` Receive Free Tier Usage Alert`
+- 3. In the same dashboard, we are going to see another check `Receive Billing Alerts`. However we will not need to check it because it uses the budgets.
+
 #### Launching First EC2 Instance
 - Go to Services or search in search field typing EC2.
 - Choose EC2
