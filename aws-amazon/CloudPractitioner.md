@@ -154,6 +154,8 @@ If someone gets your root account, he can do everything. However if someone gets
   - External users do not need to have accounts in AWS
   - Improves security (you do not have to embed long-term credentials in your application)
 
+###### IAM Best Practices
+- Go to `docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html`
 
 #### Setting up a billing alarm
 - Go to your account name
