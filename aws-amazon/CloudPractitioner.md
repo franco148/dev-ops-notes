@@ -133,6 +133,13 @@ If someone gets your root account, he can do everything. However if someone gets
 - There is no default group that automatically includes all users in the AWS account. If you want to have a group like that, you need to create it and assign each new user to it.
 - Default limit for groups in an AWS account is 300.
 
+###### Important characteristics of IAM Policies
+- Policy define permissions in aws.
+- Policies are attached to IAM identities (identities = user, groups, or roles).
+- Most users have multiple policies that together represent permissions for that user.
+- Most policies in AWS are stored in JSON documents.
+
+
 #### Setting up a billing alarm
 - Go to your account name
 - Choose `My Billing Dashboard`
