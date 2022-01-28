@@ -144,6 +144,16 @@ If someone gets your root account, he can do everything. However if someone gets
 - MFA can be enabled for IAM users or the AWS root account.
 - MFA adds extra security as it requires users to provide unique authentication from an AWS supported MFA mechanism.
 
+###### Identity Federation
+- Identity Federation is a mechanism which gives external users access to AWS resources
+- It uses IAM identity providers (Amazon, Facebook, Google).
+- Sample use case scenarios
+  - If your organization already has its own identity system (eg. Microsoft Active Directory)
+  - A web and mobile applications which require access to AWS resources.
+- Why to use it?
+  - External users do not need to have accounts in AWS
+  - Improves security (you do not have to embed long-term credentials in your application)
+
 
 #### Setting up a billing alarm
 - Go to your account name
