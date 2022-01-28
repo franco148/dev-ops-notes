@@ -139,6 +139,11 @@ If someone gets your root account, he can do everything. However if someone gets
 - Most users have multiple policies that together represent permissions for that user.
 - Most policies in AWS are stored in JSON documents.
 
+###### Main characteristics of Multi-Factor Authentication (MFA)
+- MFA helps protect your AWS resources.
+- MFA can be enabled for IAM users or the AWS root account.
+- MFA adds extra security as it requires users to provide unique authentication from an AWS supported MFA mechanism.
+
 
 #### Setting up a billing alarm
 - Go to your account name
