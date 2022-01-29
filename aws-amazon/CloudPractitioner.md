@@ -197,6 +197,12 @@ If someone gets your root account, he can do everything. However if someone gets
 - Give the key some permissions. chmod 640 keyname.pem
 - ``` ssh -i ~/path/keyname.pem ec2-user@ip ``` for fixing previous issue. Then you are going to be connected to your instance
 
+###### Assign elastic IP address to our EC2 Instance
+- Since the IP is not static, which means it changes every time we stop and relaunch our instances. So for avoiding it we can assign a elastic IP address.
+- When the `elastic IP` is not assigned to any instance, then there will be costs associated to it.
+- When the EC2 instance which has `elastic IP` associated to it is stopped, it will also cause costs.
+
+
 ###### Installing required tools into our EC2
 - yum -y install nginx
 - service nginx status
