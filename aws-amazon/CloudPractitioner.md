@@ -1,5 +1,13 @@
 # AWS CERTIFIED CLOUD PRACTITIONER
 
+### AWS Main Notes
+###### Free Tier Information
+- https://aws.amazon.com/free/compute/?p=ft&c=nhp&z=2&awswt=223
+
+###### Connect to our EC2 Instances
+- https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/session-manager.html
+
+
 ### Fundamentals of Cloud Computing Platform.
 #### Data Center Approach
 - Requirement: Your company wants to host their website.
@@ -216,6 +224,25 @@ If someone gets your root account, he can do everything. However if someone gets
 - Add the required values to the fields
 - telnet ip port - It should work now.
 - And accessing via a browser it should display a nginx page once it is installed.
+
+###### Connecting to EC2 via Sesion Manager
+- Some AMI does not have the required configurations for this feature, so we can use `Amazon Linux AMIs` since they has all the required configurations/software for allowing connection via Sesion Manager. This does not need SSH keys.
+- For that we need to associate a `IAM Role` to the AMI instance.
+  - Steps:
+  - Select the instance
+  - Go to `Actions` menu in the top
+  - Hit `Security` menu
+  - And choose `Modify IAM role`
+  - The first time we do not have any IAM Role, so we will need to create one.
+  - Select of trusted entity `AWS Service`
+  - Choose an use case `EC2`
+  - The new role has to have the following permissions: `AmazonSSMManagedInstanceCore`
+  - Then complete the steps and saved it.
+  - Once we have your IAM role, we can assign the role to our instance.
+- After followed previous steps, when we go to the `connect` option and try to use `session manager`, we will still see a warning message like `We weren't able to connect your instance. Common reasons ....`
+- That is because it takes some minutes to update the instances with IAM role. We can see it in `AWS Systems Manager` since `Sesion Manager` is part of it.
+- Once it is ready, we can connect it with `Session Manager`.
+
 
 ###### Document - Installation Commands
 Amazon has come up with the new Amazon Linux 2 OS.
