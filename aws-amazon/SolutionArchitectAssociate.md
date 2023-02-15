@@ -779,7 +779,7 @@ One way is to use Classless Inter-Domain Routing (CIDR) notation. CIDR notation 
 
 CIDR notation is shown here.
 
-![Alt text](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*usoMZSgY4BXs2_W5Z1QRIA.png "CIDR Notation")
+![CIDR Notation](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*usoMZSgY4BXs2_W5Z1QRIA.png "CIDR Notation")
 
 The higher the number after the /, the smaller the number of IP addresses in your network. For example, a range of 192.168.1.0/24 is smaller than 192.168.1.0/16.
 
@@ -800,7 +800,7 @@ A virtual private cloud (VPC) is an isolated network that you create in the AWS 
 
 Using this information, AWS will provision a network and IP addresses for that network.
 
-![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/AmazonVPC.png "Amazon VPC")
+![Amazon VPC](SolutionArchitectAssociateResources/AmazonVPC.png "Amazon VPC")
 
 ##### Create a subnet
 
@@ -814,7 +814,7 @@ When you create a subnet, you must specify the following:
 
 When you launch an EC2 instance, you launch it inside a subnet, which will be located inside the Availability Zone you choose.
 
-![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/CreateSubnet.png "Create a subnet")
+![Create a subnet](SolutionArchitectAssociateResources/CreateSubnet.png "Create a subnet")
 
 ##### High availability with a VPC
 
@@ -822,7 +822,7 @@ When you create your subnets, keep high availability in mind. To maintain redund
 
 As you learned earlier, remember that “everything fails all of the time.” With the example network, if one of the AZs fails, you will still have your resources available in another AZ as backup.
 
-![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/HighAvailabilityWithVPC.png "High availability with a VPC")
+![High availability with a VPC](SolutionArchitectAssociateResources/HighAvailabilityWithVPC.png "High availability with a VPC")
 
 ##### Reserved IPs
 
@@ -830,7 +830,7 @@ For AWS to configure your VPC appropriately, AWS reserves five IP addresses in e
 
 For example, consider a VPC with the IP range 10.0.0.0/22. The VPC includes 1,024 total IP addresses. This is divided into four equal-sized subnets, each with a /24 IP range with 256 IP addresses. Out of each of those IP ranges, there are only 251 IP addresses that can be used because AWS reserves five.
 
-![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/ReservedIPs.jpg "Reserved IPs")
+![Reserved IPs](SolutionArchitectAssociateResources/ReservedIPs.jpg "Reserved IPs")
 
 The five reserved IP addresses can impact how you design your network. A common starting place for those who are new to the cloud is to create a VPC with an IP range of /16 and create subnets with an IP range of /24. This provides a large amount of IP addresses to work with at both the VPC and subnet levels.
 
@@ -860,7 +860,7 @@ The destination and target are two main parts of this route table.
 - The destination is a range of IP addresses where you want your traffic to go. In the example of sending a letter, you need a destination to route the letter to the appropriate place. The same is true for routing traffic. In this case, the destination is the VPC network's IP range.
 - The target is the connection through which to send the traffic. In this case, the traffic is routed through the local VPC network.
 
-![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/MainRouteTable.jpg "Main route table")
+![Main route table](SolutionArchitectAssociateResources/MainRouteTable.jpg "Main route table")
 
 ##### Custom route tables
 
@@ -868,7 +868,7 @@ While the main route table is used implicitly by subnets that do not have an exp
 
 If you associate a custom route table with a subnet, the subnet will use it instead of the main route table. Each custom route table you create will have the local route already inside it, allowing communication to flow between all resources and subnets inside the VPC. The local route cannot be deleted.
 
-![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/CustomRouteTables.jpg "Custom route tables")
+![Custom route tables](SolutionArchitectAssociateResources/CustomRouteTables.jpg "Custom route tables")
 
 #### Amazon VPC Security
 
@@ -913,7 +913,7 @@ Since network ACLs are configured by default to allow incoming and outgoing traf
 
 The next layer of security is for your EC2 Instances. Here, you can create a firewall called a security group. The default configuration of a security group blocks all inbound traffic and allows all outbound traffic.
 
-![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/SecureEC2WithSecurityGroups.jpg "Secure EC2 instances with security groups")
+![Secure EC2 instances with security groups](SolutionArchitectAssociateResources/SecureEC2WithSecurityGroups.jpg "Secure EC2 instances with security groups")
 
 You might be wondering, “Wouldn’t this block all EC2 instances from receiving the response of any customer requests?” Well, security groups are stateful. That means that they will remember if a connection is originally initiated by the EC2 instance or from the outside, and temporarily allow traffic to respond without modifying the inbound rules.
 
@@ -929,7 +929,7 @@ If you want your EC2 instance to accept traffic from the internet, you must open
 
 You learned in a previous unit that subnets can be used to segregate traffic between computers in your network. Security groups can be used in the same way. A common design pattern is to organize resources into different groups and create security groups for each to control network communication between them.
 
-![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/SecurityGroupSettings.jpg "Security group settings")
+![Security group settings](SolutionArchitectAssociateResources/SecurityGroupSettings.jpg "Security group settings")
 
 This example defines three tiers and isolates each tier with defined security group rules. In this case, internet traffic to the Web Tier is allowed over HTTPS, Web Tier to Application Tier traffic is allowed over HTTP, and Application tier to Database tier traffic is allowed over MySQL. This is different from traditional on-premises environments, in which you isolate groups of resources via a VLAN configuration. In AWS, security groups allow you to achieve the same isolation without tying it to your network.
 
@@ -961,7 +961,7 @@ While file storage treats files as a singular unit, block storage splits files i
 
 When data is requested, the addresses are used by the storage system to organize the blocks in the correct order to form a complete file to present back to the requestor. Outside of the address, no additional metadata is associated with each block. So, when you want to change a character in a file, you just change the block, or the piece of the file, that contains the character. This ease of access is why block storage solutions are fast and use less bandwidth.
 
-![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/BlockStorage.jpg "Block Storage")
+![Block Storage](SolutionArchitectAssociateResources/BlockStorage.jpg "Block Storage")
 
 Since block storage is optimized for low-latency operations, it is a typical storage choice for high-performance enterprise workloads, such as databases or enterprise resource planning (ERP) systems, that require low-latency storage.
 
@@ -971,7 +971,7 @@ Objects, much like files, are treated as a single unit of data when stored. Howe
 
 Changing just one character in an object is more difficult than with block storage. When you want to change one character in a file, the entire file must be updated.
 
-![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/ObjectStorage.jpg "Object Storage")
+![Object Storage](SolutionArchitectAssociateResources/ObjectStorage.jpg "Object Storage")
 
 With object storage, you can store almost any type of data, and there is no limit to the number of objects stored, which makes it readily scalable. Object storage is generally useful when storing large datasets; unstructured files, like media assets; and static assets, like photos.
 
@@ -1070,7 +1070,7 @@ When you choose a bucket name, it must be unique across all AWS accounts. AWS st
 
 AWS uses the bucket name as part of the object identifier. In S3, each object is identified using a URL, as shown.
 
-![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/ObjectIdentifier.jpg "Object identifier")
+![Object identifier](SolutionArchitectAssociateResources/ObjectIdentifier.jpg "Object identifier")
 
 After the **http://**, you can see the bucket name. In this example, the bucket is named **doc**. Then, the identifier uses the **s3** service name and the service provider, **amazonaws**. After that, you have an implied folder inside the bucket called **2006-03-01** and the object inside the folder that is named **AmazonS3.html**. The object name is often referred to as the key name.
 
@@ -1093,7 +1093,7 @@ Everything in Amazon S3 is private by default. This means that all S3 resources,
 
 If you decide that you want everyone on the internet to see your photos, you can choose to make your buckets, folders, and objects public. A public resource means that everyone on the internet can see it. Most of the time, you don’t want your permissions to be all or nothing. Typically, you want to be more granular about the way you provide access to your resources.
 
-![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/ChooseTheRightConnectivityForResources.png)
+![Alt text](SolutionArchitectAssociateResources/ChooseTheRightConnectivityForResources.png)
 
 To be more specific about who can do what with your Amazon S3 resources, Amazon S3 provides two main access management features – IAM policies and S3 bucket policies.
 
@@ -1154,7 +1154,7 @@ The employee.jpg file name is a common name for an employee photo object. You or
 You might want to preserve different versions of employee.jpg. Without versioning, if you wanted to create a new version of employee.jpg, you would need to upload the object and choose a different name for it. Having several objects all with slight differences in naming variations can cause confusion and clutter in S3 buckets.
 To counteract these issues, you can use S3 versioning. Versioning keeps multiple versions of a single object in the same bucket. This preserves old versions of an object without using different names, which helps with file recovery from accidental deletions, accidental overwrites, or  application failures.
 
-![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/AmazonS3Versioning.png "Amazon S3 Versioning")
+![Amazon S3 Versioning](SolutionArchitectAssociateResources/AmazonS3Versioning.png "Amazon S3 Versioning")
 
 If you enable versioning for a bucket, Amazon S3 automatically generates a unique version ID for the object. In one bucket, for example, you can have two objects with the same key, but different version IDs, such as employeephoto.gif (version 111111) and employeephoto.gif (version 121212).
 
@@ -1196,7 +1196,7 @@ If you keep manually changing your objects, such as your employee photos, from s
 
 For example, you might transition objects to S3 Standard-IA storage class 30 days after you create them, or archive objects to the S3 Glacier storage class one year after creating them.
 
-[Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/TransitionWithObjectLifecycleManagement.jpg "Transition with object lifecycle management")
+![Transition with object lifecycle management](SolutionArchitectAssociateResources/TransitionWithObjectLifecycleManagement.jpg "Transition with object lifecycle management")
 
 The following use cases are good candidates for lifecycle management:
 
@@ -1289,7 +1289,312 @@ A relational database organizes data into tables. Data in one table can be linke
 
 A table stores data in rows and columns. A row, often called a record, contains all information about a specific entry. Columns describe attributes of an entry. Here’s an example of three tables in a relational database.
 
-[Alt text](SolutionArchitectAssociateResources/TransitionWithObjectLifecycleManagement.jpg?raw=true "Relational databases")
+![Relational databases](SolutionArchitectAssociateResources/RelationalDatabases.png?raw=true "Relational databases")
+
+This shows a table for books, a table for sales, and a table for authors. In the books table, each row includes the book ISBN, title, author, and format. Each of these attributes is stored in its own column. The books table has something in common with the other two tables – the author attribute. That common column creates a relationship between the tables.
+
+The tables, rows, columns, and relationships between them is referred to as a logical schema. With relational databases, a schema is fixed. Once the database is operational, it becomes difficult to change the schema. This requires most of the data modeling to be done upfront before the database is active.
+
+##### Relational database management system
+
+A relational database management system (RDBMS) lets you create, update, and administer a relational database. Here are some common examples of relational database management systems:
+
+- MySQL
+- PostgresQL
+- Oracle
+- SQL server
+- Amazon Aurora
+
+You communicate with an RDBMS by using Structured Query Language (SQL) queries, similar to the following example:
+
+`SELECT * FROM table_name`
+
+This query selects all the data from a particular table. However, the real power of SQL queries is in creating more complex queries that help you pull data from several tables to piece together patterns and answers to business problems. For example, querying the sales table and the book table together to see sales in relation to an author’s books. This is made possible by a join.
+
+##### Relational database benefits
+
+Relational database offer a number of benefits, including the following:
+
+- **Joins:** You can join tables, enabling you to better understand relationships between your data.
+- **Reduced redundancy:** You can store data in one table and reference it from other tables instead of saving the same data in different places.
+- **Familiarity:** Relational databases have been a popular choice since the 1970s. Due to this popularity, technical professionals often have familiarity and experience with this type of database.
+- **Accuracy:** Relational databases ensure that your data is persisted with high integrity and adheres to the atomicity, consistency, isolation, durability (ACID) principle.
+
+##### Relational database use cases
+
+Much of the world runs on relational databases. In fact, they’re at the core of many mission-critical applications, some of which you might use in your day-to-day life. Here are some common use cases for relational databases.
+
+- Applications that have a solid schema that doesn’t change often, such as lift-and-shift applications that lift an app from on-premises and shifts it to the cloud, with little or no modifications.
+- Applications that need persistent storage that follow the ACID principle, such as:
+  - Enterprise resource planning (ERP) applications
+  - Customer relationship management (CRM) applications
+  - Commerce and financial applications
+
+##### Choose between unmanaged and managed databases
+
+If you want to run a relational database on AWS, you first need to select how you want to run it – managed or unmanaged. The paradigm of managed versus unmanaged services is similar to the shared responsibility model. The shared responsibility model distinguishes between AWS security responsibilities and the customer’s security responsibilities. Similarly, managed versus unmanaged can be understood as a tradeoff between convenience and control.
+
+###### On-premises database
+If you operate a relational database on-premises (in your own data center), you are responsible for all aspects of operation, including the data center's security and electricity, the host machine's management, database management, query optimization, and customer data management. You are responsible for absolutely everything, which means you have control over absolutely everything.
+
+- Unmanaged database
+![Unmanaged database](SolutionArchitectAssociateResources/UnmanagedDatabase.png?raw=true "Unmanaged database")
+
+Now, suppose you want to shift some of the work to AWS by running your relational database on Amazon EC2. If you host a database on Amazon EC2, AWS takes care of implementing and maintaining the physical infrastructure and hardware, and installing the operating system of the EC2 instance. However, you would still be responsible for managing the EC2 instance, managing the database on that host, optimizing queries, and managing customer data.
+
+This is referred to as an unmanaged database option. In this option, AWS is responsible for and has control over the hardware and underlying infrastructure, and you are responsible and have control over management of the host and database.
+
+- Managed database
+![Managed database](SolutionArchitectAssociateResources/ManagedDatabase.png?raw=true "Managed database")
+
+To shift more of the work to AWS, you can use a managed database service. These services provide the setup of both the EC2 instance and the database, and they provide systems for high availability, scalability, patching, and backups. However, in this model, you’re still responsible for database tuning, query optimization, and of course, ensuring that your customer data is secure. This option provides the ultimate convenience but the least amount of control compared to the two previous options.
+
+##### Resource
+- https://aws.amazon.com/relational-database/
+- https://aws.amazon.com/products/databases/
+
+#### Amazon Relational Database Service
+
+##### Amazon RDS
+
+Amazon Relational Database Service (Amazon RDS) lets customers create and manage relational databases in the cloud without the operational burden of traditional database management. For example, if you sell healthcare equipment and your goal is to be the number-one seller in the Pacific Northwest, building a database doesn’t directly help you achieve that goal, although having a database is necessary to achieve the goal.
+
+Amazon RDS offloads some of the unrelated work of creating and managing a database. You can focus on the tasks that differentiate your application, instead of focusing on infrastructure-related tasks, like provisioning, patching, scaling, and restoring.
+
+Amazon RDS supports most of the popular relational database management systems, ranging from commercial options, open source options, and even an AWS-specific option. The supported Amazon RDS engines are:
+
+- **Commercial:** Oracle, SQL Server
+- **Open Source:** MySQL, PostgreSQL, MariaDB
+- **Cloud Native:** Amazon Aurora
+
+![Database engines](SolutionArchitectAssociateResources/DatabaseEngines.png?raw=true "Database engines")
+
+The cloud native option, Amazon Aurora, is a MySQL- and PostgreSQL-compatible database built for the cloud. It is more durable, more available, and provides faster performance than the Amazon RDS version of MySQL and PostgreSQL. To learn more about Amazon Aurora, view the Amazon Aurora FAQs.
+
+##### DB instances
+
+Just like the databases that you build and manage yourself, Amazon RDS is built off of compute and storage. The compute portion is called the DB (database) instance, which runs the database engine. Depending on the engine of the DB instance you choose, the engine will have different supported features and configurations. A DB instance can contain multiple databases with the same engine, and each database can contain multiple tables.
+
+Underneath the DB instance is an EC2 instance. However, this instance is managed through the Amazon RDS console instead of the Amazon EC2 console. When you create your DB instance, you choose the instance type and size. Amazon RDS supports the following three instance families:
+
+- **Standard**, which includes general-purpose instances
+- **Memory Optimized**, which is optimized for memory-intensive applications
+- **Burstable Performance**, which provides a baseline performance level, with the ability to burst to full CPU usage
+
+![DB instance class](SolutionArchitectAssociateResources/DbInstanceClass.png?raw=true "DB instance class")
+
+The DB instance you choose affects how much processing power and memory it has. The available options depend on the selected engine. You can find more information about DB instance types in the Resources section.
+
+Much like a regular EC2 instance, a DB instance uses Amazon Elastic Block Store (EBS) volumes as its storage layer. You can choose from the following Amazon EBS volume storage types:
+
+- General purpose (SSD)
+- Provisioned IOPS (SSD)
+- Magnetic storage (not recommended)
+
+![DB storage type](SolutionArchitectAssociateResources/DbStorageType.jpg?raw=true "DB storage type")
+
+##### Amazon RDS in an Amazon Virtual Private Cloud
+
+When you create a DB instance, you select the Amazon Virtual Private Cloud (VPC) that your databases will live in. Then, you select the subnets that you want the DB instances to be placed in. This is referred to as a DB subnet group. To create a DB subnet group, you specify the following:
+
+- Availability Zones (AZs) that include the subnets you want to add
+- Subnets in the AZ where your DB instances are placed
+
+The subnets you add should be private, so they don’t have a route to the internet gateway. This ensures that your DB instance, and the data inside of it, can only be reached by the app backend.
+
+Access to the DB instance can be further restricted by using network access control lists (network ACLs) and security groups. With these firewalls, you can control, at a granular level, the type of traffic you want to allow into your database.
+
+Using these controls provide layers of security for your infrastructure. It reinforces that only the backend instances have access to the database.
+
+##### Secure Amazon RDS with AWS Identity and Access Management (IAM)
+
+Network ACLs and security groups help users dictate the flow of traffic. If you want to restrict the actions and resources others can access, you can use IAM policies. 
+
+##### Backup data
+
+You don’t want to lose you data. To take regular backups of your RDS instance, you can use:
+
+- Automatic backups
+- Manual snapshots
+
+###### Automatic backups
+Automated backups are turned on by default. This backs up your entire DB instance (not just individual databases on the instance) and your transaction logs. When you create your DB instance, you set a backup window that is the period of time that automatic backups occur. Typically, you want to set the windows during a time when your database experiences little activity, because it can cause increased latency and downtime.
+
+You can retain your automated backups between 0 and 35 days. You might ask yourself, “Why set automated backups for 0 days?” The 0 days setting actually disables automatic backups from happening. If you set it to 0, it will also delete all existing automated backups. This is not ideal. The benefit of having automated backups is to have the ability to do point-in-time recovery.
+
+![Automatic DB Backups](SolutionArchitectAssociateResources/AutomaticDbBackups.jpg?raw=true "Automatic DB Backups")
+
+Point-in-time recovery creates a new DB instance using data restored from a specific point in time. This restoration method provides more granularity by restoring the full backup and rolling back transactions up to the specified time range.
+
+###### Manual snapshots
+If you want to keep your automated backups longer than 35 days, use manual snapshots. Manual snapshots are similar to taking Amazon EBS snapshots, except that you manage them in the Amazon RDS console. These are backups that you can initiate at any time. They exist until you delete them. For example, to meet a compliance requirement that mandates you to keep database backups for a year, you would need to use manual snapshots. If you restore data from a manual snapshot, it creates a new DB instance using the data from the snapshot.
+
+![Manual DB Snapshots](SolutionArchitectAssociateResources/ManualDbSnapshots.jpg?raw=true "Manual DB Snapshots")
+
+##### Backup options
+
+It is advisable to deploy both options. Automated backups are beneficial for point-in-time recovery. Manual snapshots allow you to retain backups for longer than 35 days. 
+
+##### Redundancy with Amazon RDS Multi-AZ
+
+When you enable Amazon RDS Multi-AZ, Amazon RDS creates a redundant copy of your database in another AZ. You end up with two copies of your database – a primary copy in a subnet in one AZ and a standby copy in a subnet in a second AZ.
+
+The primary copy of your database provides access to your data so that applications can query and display the information. The data in the primary copy is synchronously replicated to the standby copy. The standby copy is not considered an active database, and it does not get queried by applications.
+
+To improve availability, Amazon RDS Multi-AZ ensures that you have two copies of your database running and that one of them is in the primary role. If an availability issue arises, such as the primary database loses connectivity, Amazon RDS triggers an automatic failover.
+
+When you create a DB instance, a Domain Name System (DNS) name is provided. AWS uses that DNS name to failover to the standby database. In an automatic failover, the standby database is promoted to the primary role, and queries are redirected to the new primary database.
+
+To ensure that you don’t lose Multi-AZ configuration, a new standby database is created by either:
+
+- Demoting the previous primary to standby if it’s still up and running
+- Standing up a new standby DB instance
+
+The reason you can select multiple subnets for an Amazon RDS database is because of the Multi-AZ configuration. You’ll want to ensure that you have used subnets in different AZs for your primary and standby copies.
+
+##### Resources
+- https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html
+- https://aws.amazon.com/rds/details/backup/
+- https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.IAMPolicy.html
+- https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.html
+
+
+#### Amazon DynamoDB
+
+##### Amazon DynamoDB introduction 
+
+Amazon DynamoDB is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability. DynamoDB lets you offload the administrative burdens of operating and scaling a distributed database so that you don't have to worry about hardware provisioning, setup and configuration, replication, software patching, or cluster scaling.
+
+With DynamoDB, you can create database tables that can store and retrieve any amount of data and serve any level of request traffic. You can scale up or scale down your tables' throughput capacity without downtime or performance degradation. You can use the AWS Management Console to monitor resource usage and performance metrics.
+
+DynamoDB automatically spreads the data and traffic for your tables over a sufficient number of servers to handle your throughput and storage requirements, while maintaining consistent and fast performance. All of your data is stored on solid-state disks (SSDs) and is automatically replicated across multiple Availability Zones in an AWS Region, providing built-in high availability and data durability.
+
+##### Amazon DynamoDB core components
+
+In DynamoDB, tables, items, and attributes are the core components that you work with. A table is a collection of items, and each item is a collection of attributes. DynamoDB uses primary keys to uniquely identify each item in a table and secondary indexes to provide more querying flexibility.
+
+The following are the basic DynamoDB components:
+
+- **Tables** – Similar to other database systems, DynamoDB stores data in tables. A table is a collection of data. For instance, you could have a table called People that you could use to store personal contact information about friends, family, or anyone else of interest. You could also have a Cars table to store information about vehicles that people drive.
+- **Items** – Each table contains zero or more items. An item is a group of attributes that is uniquely identifiable among all the other items. In a People table, each item represents a person. In a Cars table, each item represents one vehicle. Items in DynamoDB are similar in many ways to rows, records, or tuples in other database systems. In DynamoDB, there is no limit to the number of items you can store in a table.
+- **Attributes** – Each item is composed of one or more attributes. An attribute is a fundamental data element, something that does not need to be broken down any further. For example, an item in a People table might contain attributes called PersonID, LastName, FirstName, and so on. In a Department table, an item might have attributes such as DepartmentID, Name, Manager, and so on. Attributes in DynamoDB are similar in many ways to fields or columns in other database systems.
+
+##### Amazon DynamoDB security
+
+DynamoDB also offers encryption at rest, which eliminates the operational burden and complexity involved in protecting sensitive data. For more information, see [DynamoDB Encryption at Rest](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/EncryptionAtRest.html). 
+
+##### Resources
+- https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html
+
+#### Choose the Right Database Service
+
+##### AWS database services
+
+AWS has a variety of database options for different use cases. The following table provides a quick look at the AWS database portfolio. 
+
+| Database Type | Use Cases | AWS Service |
+|:--------------|:----------|:------------|
+| Relational | Traditional applications, ERP, CRM, e-commerce | Amazon RDS, Amazon Aurora, Amazon Redshift |
+| Key-value | High-traffic web apps, e-commerce systems, gaming applications | Amazon DynamoDB |
+| In-memory | Caching, session management, gaming leaderboards, geospatial applications | Amazon ElastiCache for Memcached, Amazon ElastiCache for Redis |
+| Document | Content management, catalogs, user profiles | Amazon DocumentDB (with MongoDB compatibility) |
+| Wide column | High-scale industrial apps for equipment maintenance, fleet management, and route optimization | Amazon Keyspaces (for Apache Cassandra) |
+| Graph | Fraud detection, social networking, recommendation engines | Amazon Neptune |
+| Time series | IoT applications, DevOps, industrial telemetry | Amazon Timestream |
+| Ledger | Systems of record, supply chain, registrations, banking transactions | Amazon QLDB |
+
+##### Breaking up applications and databases
+
+As the industry changes, applications and databases change too. Today, with larger applications, you no longer see just one database supporting it. Instead, applications are broken into smaller services, each with their own purpose-built database supporting it. This shift removes the idea of a one-size-fits-all database and replaces it with a complimentary database strategy. You can give each database the appropriate functionality, performance, and scale that the workload requires.
+
+##### Resources
+- https://aws.amazon.com/products/databases/
+- https://aws.amazon.com/blogs/database/?nc=sn&loc=4
+- https://aws.amazon.com/products/databases/freedom/?nc=sn&loc=5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
