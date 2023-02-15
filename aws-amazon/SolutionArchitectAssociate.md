@@ -1183,8 +1183,8 @@ To learn more about the six Amazon S3 storage classes, flip through the followin
 - **Amazon S3 Standard:** This is considered general purpose storage for cloud applications, dynamic websites, content distribution, mobile and gaming applications, and bi data analytics.
 - **Amazon S3 Intelligent-Tiering:** This tier is useful if your data has unkown or changin access patterns. S3 Intelligent-Tiering stores object in two tiers - a frequent access tier and an infrequent access tier. Amazon S3 monitors access patterns of your data and automatically moves your data to the most cost-effective storage tier based on frequency of access.
 - **Amazon S3 Standard-Infrequent Access (S3 Standard-IA):** This tier is for data that is accessed less frequently but requires rapid access when needed. S3 Standard-IA offers the high durability, high throughput, and low latency of S3 Standard, with a low per GB storage price and per GB retrieval fee. This storage tier is ideal if you want to store long-term backups, disaster recovery files, and so on.
-- **Amazon S3 One Zone-Infrequent Access (S3 One Zone-IA): ** Unlike other S3 storage classes that store data in a minimum of three Availability Zones (AZs), S3 One Zone-IA stores data in a single AZ and costs 20% less than S3 Standard-IA. S3 One Zone-IA is ideal for customers who want a lower-cost option for infrequently accessed data but do not require the availability and resilience of S3 Standard or S3 Standard-IA. It's a good choice for storing secondary backup copies of on-premises data or easily re-creatable data.
-- **Amazon S3 Glacier: ** is a secure, durable, and low cost storage class for data archiving. You can reliably store any amount of data at costs that are competitive with or cheaper that on-premises solutions. To keep costs low yet suitable for varying needs, S3 Glacier provides three retrieval options that range from a few minutes to hours.
+- **Amazon S3 One Zone-Infrequent Access (S3 One Zone-IA):** Unlike other S3 storage classes that store data in a minimum of three Availability Zones (AZs), S3 One Zone-IA stores data in a single AZ and costs 20% less than S3 Standard-IA. S3 One Zone-IA is ideal for customers who want a lower-cost option for infrequently accessed data but do not require the availability and resilience of S3 Standard or S3 Standard-IA. It's a good choice for storing secondary backup copies of on-premises data or easily re-creatable data.
+- **Amazon S3 Glacier:** is a secure, durable, and low cost storage class for data archiving. You can reliably store any amount of data at costs that are competitive with or cheaper that on-premises solutions. To keep costs low yet suitable for varying needs, S3 Glacier provides three retrieval options that range from a few minutes to hours.
 - **Amazon S3 Glacier Deep Archive:** is the lowest cost Amazon S3 storage class, and supports long-term retention and digital preservation for data that might be accessed once or twice a year. It is designed for customers - particularly those in highly regulated industries, such as the financial services, healthcare, and public sectors - that retain data sets for 7-10 years, or longer, to meet regulatory compliance requirements.
 
 ##### Automate tier transitions with object lifecycle management
@@ -1338,6 +1338,7 @@ If you want to run a relational database on AWS, you first need to select how yo
 If you operate a relational database on-premises (in your own data center), you are responsible for all aspects of operation, including the data center's security and electricity, the host machine's management, database management, query optimization, and customer data management. You are responsible for absolutely everything, which means you have control over absolutely everything.
 
 - Unmanaged database
+
 ![Unmanaged database](SolutionArchitectAssociateResources/UnmanagedDatabase.png?raw=true "Unmanaged database")
 
 Now, suppose you want to shift some of the work to AWS by running your relational database on Amazon EC2. If you host a database on Amazon EC2, AWS takes care of implementing and maintaining the physical infrastructure and hardware, and installing the operating system of the EC2 instance. However, you would still be responsible for managing the EC2 instance, managing the database on that host, optimizing queries, and managing customer data.
@@ -1345,7 +1346,8 @@ Now, suppose you want to shift some of the work to AWS by running your relationa
 This is referred to as an unmanaged database option. In this option, AWS is responsible for and has control over the hardware and underlying infrastructure, and you are responsible and have control over management of the host and database.
 
 - Managed database
-![Managed database](SolutionArchitectAssociateResources/ManagedDatabase.png?raw=true "Managed database")
+
+![Managed database](SolutionArchitectAssociateResources/ManagedDatabase.PNG?raw=true "Managed database")
 
 To shift more of the work to AWS, you can use a managed database service. These services provide the setup of both the EC2 instance and the database, and they provide systems for high availability, scalability, patching, and backups. However, in this model, you’re still responsible for database tuning, query optimization, and of course, ensuring that your customer data is secure. This option provides the ultimate convenience but the least amount of control compared to the two previous options.
 
@@ -1422,14 +1424,14 @@ Automated backups are turned on by default. This backs up your entire DB instanc
 
 You can retain your automated backups between 0 and 35 days. You might ask yourself, “Why set automated backups for 0 days?” The 0 days setting actually disables automatic backups from happening. If you set it to 0, it will also delete all existing automated backups. This is not ideal. The benefit of having automated backups is to have the ability to do point-in-time recovery.
 
-![Automatic DB Backups](SolutionArchitectAssociateResources/AutomaticDbBackups.jpg?raw=true "Automatic DB Backups")
+![Automatic DB Backups](SolutionArchitectAssociateResources/AutomaticBbBackups.jpg?raw=true "Automatic DB Backups")
 
 Point-in-time recovery creates a new DB instance using data restored from a specific point in time. This restoration method provides more granularity by restoring the full backup and rolling back transactions up to the specified time range.
 
 ###### Manual snapshots
 If you want to keep your automated backups longer than 35 days, use manual snapshots. Manual snapshots are similar to taking Amazon EBS snapshots, except that you manage them in the Amazon RDS console. These are backups that you can initiate at any time. They exist until you delete them. For example, to meet a compliance requirement that mandates you to keep database backups for a year, you would need to use manual snapshots. If you restore data from a manual snapshot, it creates a new DB instance using the data from the snapshot.
 
-![Manual DB Snapshots](SolutionArchitectAssociateResources/ManualDbSnapshots.jpg?raw=true "Manual DB Snapshots")
+![Manual DB Snapshots](SolutionArchitectAssociateResources/ManualDbSnaphots.jpg?raw=true "Manual DB Snapshots")
 
 ##### Backup options
 
