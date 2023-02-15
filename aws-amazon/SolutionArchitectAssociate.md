@@ -606,44 +606,165 @@ EC2 instances are live instantiations of what is defined in an AMI, much like a 
 | Accelerated computing | Use hardware accelerators or co-processors to perform functions such as floating-point number calculations, graphics processing, or data pattern matching more efficiently than is possible with conventional CPUs. | 3D visualizations, graphics-intensive remote workstations, 3D rendering, application streaming, video encoding, and other server-side graphics workloads |
 | Storage optimized | Designed for workloads that require high, sequential read and write access to large datasets on local storage. They are optimized to deliver tens of thousands of low-latency random I/O operations per second (IOPS) to applications that replicate their data across different instances. | NoSQL databases, such as Cassandra, MongoDB, and Redis, in-memory databases, scale-out transactional databases, data warehousing, Elasticsearch, and analytics |
 
+##### EC2 Instance lifecycle
+![Alt text](https://res.cloudinary.com/hy4kyit2a/f_auto,fl_lossy,q_70/learn/modules/aws-compute/review-the-amazon-ec2-instance-lifecycle-and-pricing/images/ac1abde05e0c7798246dc6309aede7ee_unit-4-pic-1-instance-lifecycle.png "EC2 Instance Lifecycle")
+
+1. When you launch an instance, it enters the **pending** state. When an instance is pending, billing has not started. At this stage, the instance is preparing to enter the running state. Pending is where AWS performs all actions needed to set up an instance, such as copying the AMI content to the root device and allocating the necessary networking components.
+2. When your instance is **running**, it's ready to use. This is also the stage where billing begins. As soon as an instance is running, you can take other actions on the instance, such as reboot, terminate, stop, and stop-hibernate.
+3. When you reboot an instance, it’s different than performing a stop action and then a start action. **Rebooting** an instance is equivalent to rebooting an operating system. The instance remains on the same host computer, and maintains its public and private IP address, in addition to any data on its instance store.
+4. It typically takes a few minutes for the reboot to complete. When you stop and start an instance, your instance may be placed on a new underlying physical server. Therefore, you lose any data on the instance store that were on the previous host computer. When you stop an instance, the instance gets a new public IP address but maintains the same private IP address. 
+
+##### Pricing
+###### Pay as you go with On-Demand Instances
+With On-Demand Instances, you pay for compute capacity with no long-term commitments. Billing begins whenever the instance is running, and billing stops when the instance is in a stopped or terminated state. The price per second for a running On-Demand Instance is fixed.
+
+For applications that require servers to be running all the time, you are less likely to benefit from the On-Demand pricing model, simply because there is no situation where you will need to turn servers off. For example, you might want the web server hosting the front end of your corporate directory application to be running 24/7 so that users can access the website at any time. Even if no users are connected to your website, you don’t want to shut down the servers supporting the site in case of potential user activity.
+
+In the case when servers cannot be stopped, consider using a Reserved Instance to save on costs.
+
+###### Reserve capacity with Reserved Instances (RIs)
+RIs provide you with a significant discount compared to On-Demand Instance pricing. RIs provide a discounted hourly rate and an optional capacity reservation for EC2 instances. You can choose between three payment options – All Upfront, Partial Upfront, or No Upfront. You can select either a 1-year or 3-year term for each of these options.
+
+Depending on which option you choose, you are discounted differently.
+
+- All Upfront offers a higher discount than Partial Upfront instances.
+- Partial Upfront instances offer a higher discount than No Upfront.
+- No Upfront offers a higher discount than On-Demand.
+
+On-Demand and No Upfront are similar, since both do not require any upfront payment. However, there is a major difference. When you choose an On-Demand Instance, you stop paying for the instance when you stop or terminate the instance. When you stop an RI, you still pay for it because you committed to a 1-year or 3-year term.
+
+Reserved Instances are associated with an instance type and an Availability Zone depending on how you reserve it. The discount applied by a Reserved Instance purchase is not directly associated with a specific instance ID, but with an instance type.
+
+###### Save on costs with Spot Instances
+Another way to pay for EC2 instances is by using Spot Instances. Amazon EC2 Spot Instances allow you to take advantage of unused EC2 capacity in the AWS Cloud. They are available at up to a 90% discount compared to On-Demand prices.
+
+With Spot Instances, you set a limit on how much you would like to pay for the instance hour. This is compared against the current Spot price that AWS determines. If the amount you pay is more than the current Spot price and there is capacity, then you will receive an instance. While they are very promising from the billing perspective, you must account for some architectural considerations to use them effectively.
+
+One consideration is that your Spot Instance might be interrupted. For example, if AWS determines that capacity is no longer available for a particular Spot Instance or if the Spot price exceeds how much you are willing to pay, AWS will give you a 2-minute warning before it interrupts your instance. That means any application or workload that runs on a Spot Instance must be able to be interrupted.
+
+Because of this unique consideration, inherently fault-tolerant workloads are typically good candidates to use with Spot Instances. These include big data, containerized workloads, continuous integration/continuous delivery (CI/CD), web servers, high-performance computing (HPC), image and media rendering, and other test and development workloads.
+
+##### Resources
+- https://aws.amazon.com/ec2/
+- https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html
+- https://d1.awsstatic.com/whitepapers/architecture/AWS-Reliability-Pillar.pdf
+- https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html
+- https://aws.amazon.com/ec2/pricing/
+- https://aws.amazon.com/ec2/pricing/on-demand/
+- https://aws.amazon.com/ec2/spot/pricing/
+- https://aws.amazon.com/ec2/pricing/reserved-instances/pricing/
 
 
+#### Container Services
+...
+...
+##### Manage containers with Amazon Elastic Container Service (Amazon ECS)
+To run and manage your containers, you need to install the Amazon ECS container agent on your EC2 instances. This agent is open source and responsible for communicating to the Amazon ECS service about cluster management details. You can run the agent on both Linux and Windows AMIs. An instance with the container agent installed is often called a container instance.
+
+To prepare your application to run on Amazon ECS, you create a task definition. The task definition is a text file, in JSON format, that describes one or more containers. A task definition is similar to a blueprint that describes the resources you need to run a container, such as CPU, memory, ports, images, storage, and networking information.
+
+Here is a simple task definition that you can use for your corporate directory application. In this example, this runs on the Nginx web server.
+
+```json
+{
+"family": "webserver",
+"containerDefinitions": [ {
+"name": "web",
+"image": "nginx",
+"memory": "100",
+"cpu": "99"
+} ],
+"requiresCompatibilities": [ "FARGATE" ],
+"networkMode": "awsvpc",
+"memory": "512",
+"cpu": "256"
+}
+```
+
+##### Use Kubernetes with Amazon Elastic Kubernetes Service (Amazon EKS)
+If you already use Kubernetes, you can use Amazon EKS to orchestrate the workloads in the AWS Cloud. Amazon EKS is conceptually similar to Amazon ECS, but with the following differences:
+
+- An EC2 instance with the ECS agent installed and configured is called a container instance. In Amazon EKS, it is called a worker node.
+- An ECS container is called a task. In Amazon EKS, it is called a pod.
+- While Amazon ECS runs on AWS native technology, Amazon EKS runs on top of Kubernetes.
+
+If you have containers running on Kubernetes and want an advanced orchestration solution that can provide simplicity, high availability, and fine-grained control over your infrastructure, Amazon EKS could be the tool for you.
+
+##### Resources
+- https://aws.amazon.com/containers/services/
+- https://www.docker.com/resources/what-container
+- https://aws.amazon.com/ecs/
+- https://github.com/aws/amazon-ecs-agent
+- https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_instances.html
+- https://www.coursera.org/learn/containerized-apps-on-aws
 
 
+#### AWS Lambda
+##### Remove the undifferentiated heavy lifting
+If you run your code on Amazon EC2, AWS is responsible for the physical hardware, and you are responsible for the logical controls, such as guest operating system, security and patching, networking, security, and scaling.
 
+If you run your code in containers on Amazon ECS and Amazon EKS, AWS is responsible for more of the container management, such as deploying containers across EC2 instances and managing the container cluster. However, when running ECS and EKS on EC2, you are still responsible for maintaining the underlying EC2 instances.
 
+If you want to deploy your workloads and applications without having to manage any EC2 instances, you can do that on AWS with serverless compute.
 
+##### Go serverless
 
+Every definition of serverless mentions the following four aspects:
 
+- No servers to provision or manage
+- Scales with usage
+- You never pay for idle resources
+- Availability and fault tolerance are built-in
 
+With serverless, you can spend time on the things that differentiate your application, rather than spend time on ensuring availability, scaling, and managing servers.
 
+AWS has several serverless compute options, including AWS Fargate and AWS Lambda.
 
+##### Explore serverless containers with AWS Fargate
+Amazon ECS and Amazon EKS enable you to run your containers in the following two modes:
 
+- Amazon EC2 mode
+- AWS Fargate mode
 
+Fargate abstracts the EC2 instance so that you’re not required to manage it. However, with Fargate, you can use all the same ECS primitives, APIs, and AWS integrations. It natively integrates with AWS Identity and Access Management (IAM) and Amazon Virtual Private Cloud (VPC). Having native integration with Amazon VPC allows you to launch Fargate containers inside your network and control connectivity to your applications.
 
+##### Run code on AWS Lambda
 
+If you want to deploy your workloads and applications without having to manage any EC2 instances or containers, you can use AWS Lambda.
 
+AWS Lambda requires zero administration from the user. You upload your source code, and Lambda takes care of everything required to run and scale your code with high availability. There are no servers to manage, bringing you continuous scaling with subsecond metering and consistent performance.
 
+How AWS Lambda works
 
+A Lambda function has three primary components – trigger, code, and configuration. 
 
+![Alt text](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHq5eHzGR_x4BBbkWtvi_B0uryGz82EwXHmg&usqp=CAU "How AWS Lambda works")
 
+The code is source code that describes what the Lambda function should run. It can be authored in three ways.
 
+- You create the code from scratch.
+- You use a blueprint that AWS provides.
+- You use some code from the AWS Serverless Application Repository, a resource that contains sample applications, such as “hello world” code, Amazon Alexa Skill sample code, image resizing code, video encoding, and more.
 
+Triggers describe when a Lambda function should run. A trigger integrates your Lambda function with other AWS services, enabling you to run your Lambda function in response to certain API calls that occur in your AWS account. This increases your ability to respond to events in your console without having to perform manual actions. All you need is the what, how, and when of a Lambda function to have functional compute capacity that runs only when you need it to.
 
+##### Billing granularity
+AWS Lambda lets you run code without provisioning or managing servers, and you pay only for what you use. You are charged for the number of times your code is triggered (requests) and for the time your code executes, rounded up to the nearest 1 ms (duration).
 
+AWS rounds up duration to the nearest millisecond with no minimum execution time. With this pricing, it can be cost effective to run functions whose execution time is very low, such as functions with durations under 100 ms or low latency APIs. Read more here: https://aws.amazon.com/blogs/aws/new-for-aws-lambda-1ms-billing-granularity-adds-cost-savings/
 
+##### Source Code Example
+You can find a tutorial on creating the AWS Lambda function as well as the code used in the AWS Lambda demo here: https://aws.amazon.com/blogs/compute/resize-images-on-the-fly-with-amazon-s3-aws-lambda-and-amazon-api-gateway/
 
-
-
-
-
-
-
-
-
-
-
-
+##### Sources
+- https://aws.amazon.com/serverless/#:~:text=Serverless%20is%20the%20native%20architecture,services%20without%20thinking%20about%20servers.
+- https://www.coursera.org/learn/building-modern-python-applications-on-aws
+- https://aws.amazon.com/serverless/resources/?serverless.sort-by=item.additionalFields.createdDate&serverless.sort-order=desc
+- https://aws.amazon.com/lambda/serverless-architectures-learn-more/
+- https://aws.amazon.com/blogs/compute/best-practices-for-organizing-larger-serverless-applications/
+- https://docs.aws.amazon.com/lambda/latest/dg/lambda-functions.html
+- https://aws.amazon.com/blogs/architecture/ten-things-serverless-architects-should-know/
+- https://alienattack.workshop.aws/
 
 
 
