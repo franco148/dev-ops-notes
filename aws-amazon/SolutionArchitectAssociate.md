@@ -800,7 +800,7 @@ A virtual private cloud (VPC) is an isolated network that you create in the AWS 
 
 Using this information, AWS will provision a network and IP addresses for that network.
 
-![Alt text](https://explore.skillbuilder.aws/files/a/w/aws_prod1_docebosaas_com/1676433600/f7zcEGMk8mUF7mcoGgfQTQ/tincan/d03722b85f9d2b3a05e4c74bd586ea9b1f52f81a/assets/8kXmOfxfIKxFvLC1_KKtsB2WCJm3nf8cP.png "Amazon VPC")
+![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/AmazonVPC.png "Amazon VPC")
 
 ##### Create a subnet
 
@@ -814,7 +814,7 @@ When you create a subnet, you must specify the following:
 
 When you launch an EC2 instance, you launch it inside a subnet, which will be located inside the Availability Zone you choose.
 
-![Alt text](https://explore.skillbuilder.aws/files/a/w/aws_prod1_docebosaas_com/1676433600/f7zcEGMk8mUF7mcoGgfQTQ/tincan/d03722b85f9d2b3a05e4c74bd586ea9b1f52f81a/assets/vZpR01LhiiYP4wmh_aU-cuzRVrh2oRrmu.png "Create a subnet")
+![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/CreateSubnet.png "Create a subnet")
 
 ##### High availability with a VPC
 
@@ -822,7 +822,7 @@ When you create your subnets, keep high availability in mind. To maintain redund
 
 As you learned earlier, remember that “everything fails all of the time.” With the example network, if one of the AZs fails, you will still have your resources available in another AZ as backup.
 
-![Alt text](https://explore.skillbuilder.aws/files/a/w/aws_prod1_docebosaas_com/1676433600/f7zcEGMk8mUF7mcoGgfQTQ/tincan/d03722b85f9d2b3a05e4c74bd586ea9b1f52f81a/assets/wPxuV_0JWkhj9dQV_InIjhnQ0x-d4xLbK.png "High availability with a VPC")
+![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/HighAvailabilityWithVPC.png "High availability with a VPC")
 
 ##### Reserved IPs
 
@@ -830,7 +830,7 @@ For AWS to configure your VPC appropriately, AWS reserves five IP addresses in e
 
 For example, consider a VPC with the IP range 10.0.0.0/22. The VPC includes 1,024 total IP addresses. This is divided into four equal-sized subnets, each with a /24 IP range with 256 IP addresses. Out of each of those IP ranges, there are only 251 IP addresses that can be used because AWS reserves five.
 
-![Alt text](https://explore.skillbuilder.aws/files/a/w/aws_prod1_docebosaas_com/1676433600/f7zcEGMk8mUF7mcoGgfQTQ/tincan/d03722b85f9d2b3a05e4c74bd586ea9b1f52f81a/assets/rMW_Z-uCrzlXDX6P_Vtr6qzn_A_IyobZs.jpg "Reserved IPs")
+![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/ReservedIPs.jpg "Reserved IPs")
 
 The five reserved IP addresses can impact how you design your network. A common starting place for those who are new to the cloud is to create a VPC with an IP range of /16 and create subnets with an IP range of /24. This provides a large amount of IP addresses to work with at both the VPC and subnet levels.
 
@@ -860,7 +860,7 @@ The destination and target are two main parts of this route table.
 - The destination is a range of IP addresses where you want your traffic to go. In the example of sending a letter, you need a destination to route the letter to the appropriate place. The same is true for routing traffic. In this case, the destination is the VPC network's IP range.
 - The target is the connection through which to send the traffic. In this case, the traffic is routed through the local VPC network.
 
-![Alt text](https://explore.skillbuilder.aws/files/a/w/aws_prod1_docebosaas_com/1676433600/f7zcEGMk8mUF7mcoGgfQTQ/tincan/d03722b85f9d2b3a05e4c74bd586ea9b1f52f81a/assets/vIZTs-87LdFIeKG9_-X2_R4cjJxpD1O-V.jpg "Main route table")
+![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/MainRouteTable.jpg "Main route table")
 
 ##### Custom route tables
 
@@ -868,7 +868,7 @@ While the main route table is used implicitly by subnets that do not have an exp
 
 If you associate a custom route table with a subnet, the subnet will use it instead of the main route table. Each custom route table you create will have the local route already inside it, allowing communication to flow between all resources and subnets inside the VPC. The local route cannot be deleted.
 
-![Alt text](https://explore.skillbuilder.aws/files/a/w/aws_prod1_docebosaas_com/1676433600/f7zcEGMk8mUF7mcoGgfQTQ/tincan/d03722b85f9d2b3a05e4c74bd586ea9b1f52f81a/assets/TOFyTY8NnEvCzqi3_NrsH76kCPC3B5ySy.jpg "Custom route tables")
+![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/CustomRouteTables.jpg "Custom route tables")
 
 #### Amazon VPC Security
 
@@ -913,7 +913,7 @@ Since network ACLs are configured by default to allow incoming and outgoing traf
 
 The next layer of security is for your EC2 Instances. Here, you can create a firewall called a security group. The default configuration of a security group blocks all inbound traffic and allows all outbound traffic.
 
-![Alt text](https://explore.skillbuilder.aws/files/a/w/aws_prod1_docebosaas_com/1676433600/f7zcEGMk8mUF7mcoGgfQTQ/tincan/d03722b85f9d2b3a05e4c74bd586ea9b1f52f81a/assets/SGo2r3D-rFt_5A57_LHSo8q3H-_Wuu73H.jpg "Secure EC2 instances with security groups")
+![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/SecureEC2WithSecurityGroups.jpg "Secure EC2 instances with security groups")
 
 You might be wondering, “Wouldn’t this block all EC2 instances from receiving the response of any customer requests?” Well, security groups are stateful. That means that they will remember if a connection is originally initiated by the EC2 instance or from the outside, and temporarily allow traffic to respond without modifying the inbound rules.
 
@@ -929,7 +929,7 @@ If you want your EC2 instance to accept traffic from the internet, you must open
 
 You learned in a previous unit that subnets can be used to segregate traffic between computers in your network. Security groups can be used in the same way. A common design pattern is to organize resources into different groups and create security groups for each to control network communication between them.
 
-![Alt text](https://explore.skillbuilder.aws/files/a/w/aws_prod1_docebosaas_com/1676433600/f7zcEGMk8mUF7mcoGgfQTQ/tincan/d03722b85f9d2b3a05e4c74bd586ea9b1f52f81a/assets/FgEhatXf6qnJQ1X1_scxJIDNUzFAqjZbL.jpg "Security group settings")
+![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/SecurityGroupSettings.jpg "Security group settings")
 
 This example defines three tiers and isolates each tier with defined security group rules. In this case, internet traffic to the Web Tier is allowed over HTTPS, Web Tier to Application Tier traffic is allowed over HTTP, and Application tier to Database tier traffic is allowed over MySQL. This is different from traditional on-premises environments, in which you isolate groups of resources via a VLAN configuration. In AWS, security groups allow you to achieve the same isolation without tying it to your network.
 
@@ -961,7 +961,7 @@ While file storage treats files as a singular unit, block storage splits files i
 
 When data is requested, the addresses are used by the storage system to organize the blocks in the correct order to form a complete file to present back to the requestor. Outside of the address, no additional metadata is associated with each block. So, when you want to change a character in a file, you just change the block, or the piece of the file, that contains the character. This ease of access is why block storage solutions are fast and use less bandwidth.
 
-![Alt text](https://explore.skillbuilder.aws/files/a/w/aws_prod1_docebosaas_com/1676444400/r82XMJj2nq09T-698GH20Q/tincan/d03722b85f9d2b3a05e4c74bd586ea9b1f52f81a/assets/nSSTDHtRgorYslrr_9YC0704E0N5gqLzH.jpg "Block Storage")
+![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/BlockStorage.jpg "Block Storage")
 
 Since block storage is optimized for low-latency operations, it is a typical storage choice for high-performance enterprise workloads, such as databases or enterprise resource planning (ERP) systems, that require low-latency storage.
 
@@ -971,7 +971,7 @@ Objects, much like files, are treated as a single unit of data when stored. Howe
 
 Changing just one character in an object is more difficult than with block storage. When you want to change one character in a file, the entire file must be updated.
 
-![Alt text](https://explore.skillbuilder.aws/files/a/w/aws_prod1_docebosaas_com/1676444400/r82XMJj2nq09T-698GH20Q/tincan/d03722b85f9d2b3a05e4c74bd586ea9b1f52f81a/assets/bO5GQx_uHhCzLKCR_IJHwRyjHzsjo1nEA.jpg "Object Storage")
+![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/ObjectStorage.jpg "Object Storage")
 
 With object storage, you can store almost any type of data, and there is no limit to the number of objects stored, which makes it readily scalable. Object storage is generally useful when storing large datasets; unstructured files, like media assets; and static assets, like photos.
 
@@ -1070,7 +1070,7 @@ When you choose a bucket name, it must be unique across all AWS accounts. AWS st
 
 AWS uses the bucket name as part of the object identifier. In S3, each object is identified using a URL, as shown.
 
-![Alt text](https://explore.skillbuilder.aws/files/a/w/aws_prod1_docebosaas_com/1676444400/r82XMJj2nq09T-698GH20Q/tincan/d03722b85f9d2b3a05e4c74bd586ea9b1f52f81a/assets/jTYMDYBtqcY52duD__k6Z7eiqnqOiV7OE.jpg "Object identifier")
+![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/ObjectIdentifier.jpg "Object identifier")
 
 After the **http://**, you can see the bucket name. In this example, the bucket is named **doc**. Then, the identifier uses the **s3** service name and the service provider, **amazonaws**. After that, you have an implied folder inside the bucket called **2006-03-01** and the object inside the folder that is named **AmazonS3.html**. The object name is often referred to as the key name.
 
@@ -1093,7 +1093,7 @@ Everything in Amazon S3 is private by default. This means that all S3 resources,
 
 If you decide that you want everyone on the internet to see your photos, you can choose to make your buckets, folders, and objects public. A public resource means that everyone on the internet can see it. Most of the time, you don’t want your permissions to be all or nothing. Typically, you want to be more granular about the way you provide access to your resources.
 
-![Alt text](https://explore.skillbuilder.aws/files/a/w/aws_prod1_docebosaas_com/1676444400/r82XMJj2nq09T-698GH20Q/tincan/d03722b85f9d2b3a05e4c74bd586ea9b1f52f81a/assets/tdqWRVkjrqaKcAF3_0M9ExB6uo3T8oZq0.png)
+![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/ChooseTheRightConnectivityForResources.png)
 
 To be more specific about who can do what with your Amazon S3 resources, Amazon S3 provides two main access management features – IAM policies and S3 bucket policies.
 
@@ -1154,7 +1154,7 @@ The employee.jpg file name is a common name for an employee photo object. You or
 You might want to preserve different versions of employee.jpg. Without versioning, if you wanted to create a new version of employee.jpg, you would need to upload the object and choose a different name for it. Having several objects all with slight differences in naming variations can cause confusion and clutter in S3 buckets.
 To counteract these issues, you can use S3 versioning. Versioning keeps multiple versions of a single object in the same bucket. This preserves old versions of an object without using different names, which helps with file recovery from accidental deletions, accidental overwrites, or  application failures.
 
-![Alt text](https://explore.skillbuilder.aws/files/a/w/aws_prod1_docebosaas_com/1676444400/r82XMJj2nq09T-698GH20Q/tincan/d03722b85f9d2b3a05e4c74bd586ea9b1f52f81a/assets/5Q8yQhygxxN_UF2r_Cbx4hXuVCWFPhJh4.png "Amazon S3 Versioning")
+![Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/AmazonS3Versioning.png "Amazon S3 Versioning")
 
 If you enable versioning for a bucket, Amazon S3 automatically generates a unique version ID for the object. In one bucket, for example, you can have two objects with the same key, but different version IDs, such as employeephoto.gif (version 111111) and employeephoto.gif (version 121212).
 
@@ -1196,7 +1196,7 @@ If you keep manually changing your objects, such as your employee photos, from s
 
 For example, you might transition objects to S3 Standard-IA storage class 30 days after you create them, or archive objects to the S3 Glacier storage class one year after creating them.
 
-[Alt text](https://explore.skillbuilder.aws/files/a/w/aws_prod1_docebosaas_com/1676444400/r82XMJj2nq09T-698GH20Q/tincan/d03722b85f9d2b3a05e4c74bd586ea9b1f52f81a/assets/qCUAPTIXWCtvNwWm_e9I6oE5HEKhzWY2m.jpg "Transition with object lifecycle management")
+[Alt text](https://raw.githubusercontent.com/franco148/dev-ops-notes/aws-amazon-solution-architect-associate/aws-amazon/SolutionArchitectAssociateResources/TransitionWithObjectLifecycleManagement.jpg "Transition with object lifecycle management")
 
 The following use cases are good candidates for lifecycle management:
 
