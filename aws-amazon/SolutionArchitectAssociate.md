@@ -942,90 +942,337 @@ This example defines three tiers and isolates each tier with defined security gr
 - https://aws.amazon.com/premiumsupport/knowledge-center/connect-http-https-ec2/
 
 
+### Module 3 - AWS Storage
 
+#### Storage Types
+AWS storage services are grouped into three categories – block storage, file storage, and object storage.
 
+##### File Storage
+File storage is ideal when you require centralized access to files that need to be easily shared and managed by multiple host computers. Typically, this storage is mounted onto multiple hosts, and requires file locking and integration with existing file system communication protocols.
 
+Common use cases for file storage include:
 
+- Large content repositories
+- Development environments
+- User home directories
 
+##### Block Storage
+While file storage treats files as a singular unit, block storage splits files into fixed-size chunks of data called blocks that have their own addresses. Since each block is addressable, blocks can be retrieved efficiently.
 
+When data is requested, the addresses are used by the storage system to organize the blocks in the correct order to form a complete file to present back to the requestor. Outside of the address, no additional metadata is associated with each block. So, when you want to change a character in a file, you just change the block, or the piece of the file, that contains the character. This ease of access is why block storage solutions are fast and use less bandwidth.
 
+![Alt text](https://explore.skillbuilder.aws/files/a/w/aws_prod1_docebosaas_com/1676444400/r82XMJj2nq09T-698GH20Q/tincan/d03722b85f9d2b3a05e4c74bd586ea9b1f52f81a/assets/nSSTDHtRgorYslrr_9YC0704E0N5gqLzH.jpg "Block Storage")
 
+Since block storage is optimized for low-latency operations, it is a typical storage choice for high-performance enterprise workloads, such as databases or enterprise resource planning (ERP) systems, that require low-latency storage.
 
+Object storage
 
+Objects, much like files, are treated as a single unit of data when stored. However, unlike file storage, these objects are stored in a flat structure instead of a hierarchy. Each object is a file with a unique identifier. This identifier, along with any additional metadata, is bundled with the data and stored.
 
+Changing just one character in an object is more difficult than with block storage. When you want to change one character in a file, the entire file must be updated.
 
+![Alt text](https://explore.skillbuilder.aws/files/a/w/aws_prod1_docebosaas_com/1676444400/r82XMJj2nq09T-698GH20Q/tincan/d03722b85f9d2b3a05e4c74bd586ea9b1f52f81a/assets/bO5GQx_uHhCzLKCR_IJHwRyjHzsjo1nEA.jpg "Object Storage")
 
+With object storage, you can store almost any type of data, and there is no limit to the number of objects stored, which makes it readily scalable. Object storage is generally useful when storing large datasets; unstructured files, like media assets; and static assets, like photos.
 
+##### Resources
+- https://aws.amazon.com/what-is-cloud-storage/
+- https://aws.amazon.com/what-is-cloud-object-storage/#types
 
+#### Amazon EC2 Instance Storage and Amazon Elastic Block Store
 
+##### Amazon EC2 instance store
 
+Amazon EC2 instance store provides temporary block-level storage for an instance. This storage is located on disks that are physically attached to the host computer. This ties the lifecycle of the data to the lifecycle of the EC2 instance. If you delete the instance, the instance store is deleted, as well. Due to this, instance store is considered ephemeral storage. Read more about it in the [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html).
 
+Instance store is ideal if you host applications that replicate data to other EC2 instances, such as Hadoop clusters. For these cluster-based workloads, having the speed of locally attached volumes and the resiliency of replicated data helps you achieve data distribution at high performance. It’s also ideal for temporary storage of information that changes frequently, such as buffers, caches, scratch data, and other temporary content.
 
+##### Amazon Elastic Block Storage (Amazon EBS)
 
+As the name implies, Amazon EBS is a block-level storage device that you can attach to an Amazon EC2 instance. These storage devices are called Amazon EBS volumes. EBS volumes are essentially drives of a user-configured size attached to an EC2 instance, similar to how you might attach an external drive to your laptop. EBS volumes act similarly to external drives in more than one way.
 
+- Most Amazon EBS volumes can only be connected with one computer at a time. Most EBS volumes have a one-to-one relationship with EC2 instances, so they cannot be shared by or attached to multiple instances at one time. (Recently, AWS announced the Amazon EBS multi-attach feature that enables volumes to be attached to multiple EC2 instances at one time. This feature is not available for all instance types, and all instances must be in the same Availability Zone. Read more about this scenario in the EBS documentation.)
+- You can detach an EBS volume from one EC2 instance and attach it to another EC2 instance in the same Availability Zone, to access the data on it.
+- The external drive is separate from the computer. That means, if an accident occurs and the computer goes down, you still have your data on your external drive. The same is true for EBS volumes.
+- You’re limited to the size of the external drive, since it has a fixed limit to how scalable it can be. For example, you might have a 2-TB external drive, which means you can only have 2 TB of content on it. This relates to EBS as well, since a volume also has a max limitation of how much content you can store on it.
 
+##### Scale Amazon EBS volumes
 
+You can scale Amazon EBS volumes in two ways.
 
+- Increase the volume size, as long as it doesn’t increase above the maximum size limit. For EBS volumes, the maximum amount of storage you can have is 16 TB. If you provision a 5-TB EBS volume, you can choose to increase the size of your volume until you get to 16 TB.
+- Attach multiple volumes to a single Amazon EC2 instance. EC2 has a one-to-many relationship with EBS volumes. You can add these additional volumes during or after EC2 instance creation to provide more storage capacity for your hosts.
 
+##### Amazon EBS use cases
 
+Amazon EBS is useful when you must retrieve data quickly and have data persist long-term. Volumes are commonly used in the following scenarios.
 
+- **Operating systems:** Boot/root volumes to store an operating system. The root device for an instance launched from an Amazon Machine Image (AMI) is typically an Amazon EBS volume. These are commonly referred to as EBS-backed AMIs.
+- **Databases:** A storage layer for databases running on Amazon EC2 that rely on transactional reads and writes.
+- **Enterprise applications:** Amazon EBS provides reliable block storage to run business-critical applications.
+- **Throughput-intensive applications:** Applications that perform long, continuous reads and writes.
 
+##### Amazon EBS volume types
 
+Amazon EBS volumes are organized into two main categories – solid-state drives (SSDs) and hard-disk drives (HDDs). SSDs provide strong performance for random input/output (I/O), while HDDs provide strong performance for sequential I/O. AWS offers two types of each.
 
+The following chart can help you decide which EBS volume is the right option for your workload.
 
+| Volume Types | Description | Use Cases | Volume Size | Max IOPS | Max Throughput |
+|:-------------|:------------|:----------|:------------|:---------|:---------------|
+| EBS Provisioned IOPS SSD | Highest performance SSD designed for latency-sensitive transactional workloads | I/O-intensive NoSQL and relational databases | 4 GB–
+16 TB | 64,000 | 1,000 MB/s |
+| EBS General Purpose SSD | General purpose SSD that balances price and performance for a wide variety of transactional workloads | Boot volumes, low-latency interactive apps, development, and test | 1 GB–16 TB | 16,000 | 250 MB/s |
+| Throughput Optimized HDD | Low-cost HDD designed for frequently accessed, throughput-intensive workloads | Big data, data warehouses, log processing | 500 GB–16 TB | 500 | 500 MB/s |
+| Cold HDD | Lowest cost HDD designed for less frequently accessed workloads | Colder data requiring fewer scans per day | 500 GB–16 TB | 250 | 250 MB/s |
 
+##### Amazon EBS benefits
 
+Here are the benefits of using Amazon EBS.
 
+- **High availability:** When you create an EBS volume, it is automatically replicated in its Availability Zone to prevent data loss from single points of failure.
+- **Data persistence:** The storage persists even when your instance doesn’t.
+- **Data encryption:** All EBS volumes support encryption.
+- **Flexibility:** EBS volumes support on-the-fly changes. You can modify volume type, volume size, and input/output operations per second (IOPS) capacity without stopping your instance.
+- **Backups:** Amazon EBS provides the ability to create backups of any EBS volume.
 
+##### Amazon EBS snapshots
 
+Errors happen. One error is not backing up data and then inevitably losing it. To prevent this from happening to you, always back up your data – even in AWS.
 
+Since your EBS volumes consist of the data from your Amazon EC2 instance, you should make backups of these volumes, called snapshots.
 
+EBS snapshots are incremental backups that only save the blocks on the volume that have changed after your most recent snapshot. For example, if you have 10 GB of data on a volume, and only 2 GB of data have been modified since your last snapshot, only the 2 GB that have been changed are written to Amazon Simple Storage Service (Amazon S3).
 
+When you take a snapshot of any of your EBS volumes, the backups are stored redundantly in multiple Availability Zones using Amazon S3. This aspect of storing the backup in Amazon S3 is handled by AWS, so you won’t need to interact with Amazon S3 to work with your EBS snapshots. You manage them in the Amazon EBS console, which is part of the Amazon EC2 console.
 
+EBS snapshots can be used to create multiple new volumes, whether they’re in the same Availability Zone or a different one. When you create a new volume from a snapshot, it’s an exact copy of the original volume at the time the snapshot was taken.
 
+##### Resources
+- https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html
+- https://aws.amazon.com/ebs/faqs/
 
+#### Object Storage with Amazon Simple Storage Service
 
+##### Amazon S3
 
+Unlike Amazon Elastic Block Store (Amazon EBS), Amazon Simple Storage Service (Amazon S3) is a standalone storage solution that isn’t tied to compute. It enables you to retrieve your data from anywhere on the web. If you have used an online storage service to back up the data from your local machine, then you most likely have used a service similar to Amazon S3. The big difference between those online storage services and Amazon S3 is the storage type.
 
+Amazon S3 is an object storage service. Object storage stores data in a flat structure, using unique identifiers to look up objects when requested. An object is  a file combined with metadata. You can store as many of these objects as you’d like. All of the characteristics of object storage are also characteristics of Amazon S3.
 
+##### Amazon S3 concepts
 
+In Amazon S3, you store your objects in containers called buckets. You can’t upload any object, not even a single photo, to Amazon S3 without creating a bucket first. When you create a bucket, you specify, at the very minimum, two details – the AWS Region you want the bucket to reside in and the bucket name.
 
+To choose a Region, you will typically select a Region that you have used for other resources, such as your compute. When you choose a Region for your bucket, all objects you put inside the bucket will be redundantly stored across multiple devices, across multiple Availability Zones. This level of redundancy is designed to provide Amazon S3 customers with 99.999999999% durability and 99.99% availability for objects over a given year.
 
+When you choose a bucket name, it must be unique across all AWS accounts. AWS stops you from choosing a bucket name that has already been chosen by someone else in another AWS account. Once you choose a name, that name is yours and cannot be claimed by anyone else unless you delete the bucket, which then releases the name for others to use.
 
+AWS uses the bucket name as part of the object identifier. In S3, each object is identified using a URL, as shown.
 
+![Alt text](https://explore.skillbuilder.aws/files/a/w/aws_prod1_docebosaas_com/1676444400/r82XMJj2nq09T-698GH20Q/tincan/d03722b85f9d2b3a05e4c74bd586ea9b1f52f81a/assets/jTYMDYBtqcY52duD__k6Z7eiqnqOiV7OE.jpg "Object identifier")
 
+After the **http://**, you can see the bucket name. In this example, the bucket is named **doc**. Then, the identifier uses the **s3** service name and the service provider, **amazonaws**. After that, you have an implied folder inside the bucket called **2006-03-01** and the object inside the folder that is named **AmazonS3.html**. The object name is often referred to as the key name.
 
+You can have folders inside of buckets to help you organize objects. However, remember that no actual file hierarchy supports this on the backend. It is instead a flat structure where all files and folders live at the same level. Using buckets and folders implies a hierarchy, which creates an understandable organization for users.
 
+##### Amazon S3 use cases
 
+Amazon S3 is a widely used storage service, with far more use cases than could fit on one screen. The following list summarizes some of the most common ways you can use Amazon S3:
 
+- **Backup and storage:** Amazon S3 is a natural place to back up files because it is highly redundant. As mentioned in the last unit, AWS stores your EBS snapshots in S3 to take advantage of its high availability.
+- **Media hosting:** Because you can store unlimited objects, and each individual object can be up to 5 TBs, Amazon S3 is an ideal location to host video, photo, and music uploads.
+- **Software delivery:** You can use Amazon S3 to host your software applications that customers can download.
+- **Data lakes:** Amazon S3 is an optimal foundation for a data lake because of its virtually unlimited scalability. You can increase storage from gigabytes to petabytes of content, paying only for what you use.
+- **Static websites:** You can configure your S3 bucket to host a static website of HTML, CSS, and client-side scripts.
+- **Static content:** Because of the limitless scaling, the support for large files, and the fact that you access any object over the web at any time, Amazon S3 is the perfect place to store static content.
 
+##### Choose the right connectivity option for resources
 
+Everything in Amazon S3 is private by default. This means that all S3 resources, such as buckets, folders, and objects can only be viewed by the user or AWS account that created that resource. Amazon S3 resources are all private and protected to begin with.
 
+If you decide that you want everyone on the internet to see your photos, you can choose to make your buckets, folders, and objects public. A public resource means that everyone on the internet can see it. Most of the time, you don’t want your permissions to be all or nothing. Typically, you want to be more granular about the way you provide access to your resources.
 
+![Alt text](https://explore.skillbuilder.aws/files/a/w/aws_prod1_docebosaas_com/1676444400/r82XMJj2nq09T-698GH20Q/tincan/d03722b85f9d2b3a05e4c74bd586ea9b1f52f81a/assets/tdqWRVkjrqaKcAF3_0M9ExB6uo3T8oZq0.png)
 
+To be more specific about who can do what with your Amazon S3 resources, Amazon S3 provides two main access management features – IAM policies and S3 bucket policies.
 
+##### IAM policies
 
+Previously, you learned about creating and using IAM policies. Now, you can apply that knowledge to Amazon S3. When IAM policies are attached to IAM users, groups, and roles, the policies define which actions they can perform. IAM policies are not tied to any one AWS service and can be used to define access to nearly any AWS action. 
 
+You should use IAM policies for private buckets in the following two scenarios:
 
+- You have many buckets with different permission requirements. Instead of defining many different S3 bucket policies, you can use IAM policies.
+- You want all policies to be in a centralized location. Using IAM policies allows you to manage all policy information in one location.
 
+##### S3 bucket policies
 
+Like IAM policies, Amazon S3 bucket policies are defined in a JSON format. The difference is IAM policies are attached to users, groups, and roles, whereas S3 bucket policies are only attached to S3 buckets. S3 bucket policies specify what actions are allowed or denied on the bucket.
 
+For example, if you have a bucket called employeebucket, you can attach an S3 bucket policy to it that allows another AWS account to put objects in that bucket.
 
+Or if you wanted to allow anonymous viewers to read the objects in employeebucket, then you can apply a policy to that bucket that allows anyone to read objects in the bucket using "Effect":Allow on the "Action:["s3:GetObject"]".
 
+Here’s an example of what the S3 bucket policy might look like.
 
+```json
+{
+"Version":"2012-10-17",
+"Statement":[{
+"Sid":"PublicRead",
+"Effect":"Allow",
+"Principal": "*",
+"Action":["s3:GetObject"],
+"Resource":["arn:aws:s3:::employeebucket/*"]
+}]
+}
+```
 
+S3 bucket policies can only be placed on buckets, and cannot be used for folders or objects. However, the policy that is placed on the bucket applies to every object in that bucket.
 
+You should use S3 bucket policies in the following scenarios:
 
+- You need a simple way to do cross-account access to S3, without using IAM roles.
+- Your IAM policies bump up against the defined size limit. S3 bucket policies have a larger size limit.
 
+##### Amazon S3 encryption
 
+Amazon S3 reinforces encryption in transit (as it travels to and from Amazon S3) and at rest. To protect data at rest, you can use encryption, as follows:
 
+- **Server-side encryption:** This allows Amazon S3 to encrypt your object before saving it on disks in its data centers and then decrypt it when you download the objects.
+- **Client-side encryption:** You can encrypt your data client-side and then upload the encrypted data to Amazon S3. In this case, you manage the encryption process, the encryption keys, and all related tools.
 
+To encrypt in transit, you can use client-side encryption or Secure Sockets Layer (SSL).
 
+##### Amazon S3 versioning
 
+As described earlier, Amazon S3 identifies objects in part by using the object name. For example, when you upload an employee photo to Amazon S3, you might name the object employee.jpg and store it in a folder called employees. If you don’t use Amazon S3 versioning, every time you upload an object called employee.jpg to the employees folder, it will overwrite the original file.
+This can be an issue for several reasons, including the following:
 
+The employee.jpg file name is a common name for an employee photo object. You or someone else who has access to the bucket might not have intended to overwrite it, but once it's overwritten, the original file can't be accessed.
+You might want to preserve different versions of employee.jpg. Without versioning, if you wanted to create a new version of employee.jpg, you would need to upload the object and choose a different name for it. Having several objects all with slight differences in naming variations can cause confusion and clutter in S3 buckets.
+To counteract these issues, you can use S3 versioning. Versioning keeps multiple versions of a single object in the same bucket. This preserves old versions of an object without using different names, which helps with file recovery from accidental deletions, accidental overwrites, or  application failures.
 
+![Alt text](https://explore.skillbuilder.aws/files/a/w/aws_prod1_docebosaas_com/1676444400/r82XMJj2nq09T-698GH20Q/tincan/d03722b85f9d2b3a05e4c74bd586ea9b1f52f81a/assets/5Q8yQhygxxN_UF2r_Cbx4hXuVCWFPhJh4.png "Amazon S3 Versioning")
 
+If you enable versioning for a bucket, Amazon S3 automatically generates a unique version ID for the object. In one bucket, for example, you can have two objects with the same key, but different version IDs, such as employeephoto.gif (version 111111) and employeephoto.gif (version 121212).
 
+Versioning-enabled buckets let you recover objects from accidental deletion or overwrite.
+
+- Deleting an object does not remove the object permanently. Instead, Amazon S3 puts a marker on the object that shows you tried to delete it. If you want to restore the object, you can remove the marker, and it reinstates the object.
+- If you overwrite an object, it results in a new object version in the bucket. You still have access to previous versions of the object.
+
+##### Versioning states
+
+Buckets can be in one of the following three states:
+
+- **Unversioned (default):** No new and existing objects in the bucket have a version.
+- **Versioning-enabled:** Versioning is enabled for all objects in the bucket.
+- **Versioning-suspended:** Versioning is suspended for new objects. All new objects in the bucket will not have a version. However, all existing objects keep their object versions.
+
+The versioning state applies to all objects in the bucket. Storage costs are incurred for all objects in your bucket, including all versions. To reduce your Amazon S3 bill, you might want to delete previous versions of your objects once they are no longer needed.
+
+##### Six Amazon S3 storage classes
+When you upload an object to Amazon S3 and you don’t specify the storage class, you upload it to the default storage class – often referred to as standard storage. In previous lessons, you learned about the Amazon S3 standard storage class without even knowing it!
+
+Amazon S3 storage classes let you change your storage tier when your data characteristics change. For example, if you are accessing your old photos infrequently, you might want to change the storage class for the photos to save costs.
+
+To learn more about the six Amazon S3 storage classes, flip through the following cards.
+
+- **Amazon S3 Standard:** This is considered general purpose storage for cloud applications, dynamic websites, content distribution, mobile and gaming applications, and bi data analytics.
+- **Amazon S3 Intelligent-Tiering:** This tier is useful if your data has unkown or changin access patterns. S3 Intelligent-Tiering stores object in two tiers - a frequent access tier and an infrequent access tier. Amazon S3 monitors access patterns of your data and automatically moves your data to the most cost-effective storage tier based on frequency of access.
+- **Amazon S3 Standard-Infrequent Access (S3 Standard-IA):** This tier is for data that is accessed less frequently but requires rapid access when needed. S3 Standard-IA offers the high durability, high throughput, and low latency of S3 Standard, with a low per GB storage price and per GB retrieval fee. This storage tier is ideal if you want to store long-term backups, disaster recovery files, and so on.
+- **Amazon S3 One Zone-Infrequent Access (S3 One Zone-IA): ** Unlike other S3 storage classes that store data in a minimum of three Availability Zones (AZs), S3 One Zone-IA stores data in a single AZ and costs 20% less than S3 Standard-IA. S3 One Zone-IA is ideal for customers who want a lower-cost option for infrequently accessed data but do not require the availability and resilience of S3 Standard or S3 Standard-IA. It's a good choice for storing secondary backup copies of on-premises data or easily re-creatable data.
+- **Amazon S3 Glacier: ** is a secure, durable, and low cost storage class for data archiving. You can reliably store any amount of data at costs that are competitive with or cheaper that on-premises solutions. To keep costs low yet suitable for varying needs, S3 Glacier provides three retrieval options that range from a few minutes to hours.
+- **Amazon S3 Glacier Deep Archive:** is the lowest cost Amazon S3 storage class, and supports long-term retention and digital preservation for data that might be accessed once or twice a year. It is designed for customers - particularly those in highly regulated industries, such as the financial services, healthcare, and public sectors - that retain data sets for 7-10 years, or longer, to meet regulatory compliance requirements.
+
+##### Automate tier transitions with object lifecycle management
+
+If you keep manually changing your objects, such as your employee photos, from storage tier to storage tier, you might want to automate the process with a lifecycle policy. When you define a lifecycle policy configuration for an object or group of objects, you can choose to automate two actions – transition and expiration actions.
+
+- **Transition actions** define when objects should transition to another storage class.
+- **Expiration actions** define when objects expire and should be permanently deleted.
+
+For example, you might transition objects to S3 Standard-IA storage class 30 days after you create them, or archive objects to the S3 Glacier storage class one year after creating them.
+
+[Alt text](https://explore.skillbuilder.aws/files/a/w/aws_prod1_docebosaas_com/1676444400/r82XMJj2nq09T-698GH20Q/tincan/d03722b85f9d2b3a05e4c74bd586ea9b1f52f81a/assets/qCUAPTIXWCtvNwWm_e9I6oE5HEKhzWY2m.jpg "Transition with object lifecycle management")
+
+The following use cases are good candidates for lifecycle management:
+
+- **Periodic logs:** If you upload periodic logs to a bucket, your application might need them for a week or a month. After that, you might want to delete them.
+- **Data that changes in access frequency:** Some documents are frequently accessed for a limited period of time. After that, they are infrequently accessed. At some point, you might not need real-time access to them, but your organization or regulations might require you to archive them for a specific period. After that, you can delete them.
+
+##### Resources
+- https://aws.amazon.com/s3/
+- https://aws.amazon.com/s3/storage-classes/
+- https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html
+
+#### Choose the Right Storage Service
+Here’s a recap of all the storage services mentioned so far. By the end of this reading, you should be able to better answer the question, “Which storage service should I use?” for some of the more common scenarios.
+
+##### Amazon EC2 instance store
+
+Instance store is ephemeral block storage. This is preconfigured storage that exists on the same physical server that hosts the EC2 instance and cannot be detached from Amazon EC2. You can think of it as a built-in drive for your EC2 instance. 
+
+Instance store is generally well-suited for temporary storage of information that is constantly changing, such as buffers, caches, and scratch data. It is not meant for data that is persistent or long-lasting. If you need persistent long-term block storage that can be detached from Amazon EC2 and provide you more management flexibility, such as increasing volume size or creating snapshots, then you should use Amazon EBS.
+
+##### Amazon EBS
+
+Amazon EBS is meant for data that changes frequently and needs to persist through instance stops, terminations, or hardware failures. Amazon EBS has two types of volumes – SSD-backed volumes and HDD-backed volumes.
+
+SSD-backed volumes have the following characteristics:
+
+- Performance depends on IOPS (input/output operations per second).
+- Ideal for transactional workloads, such as databases and boot volumes.
+
+HDD-backed volumes have the following characteristics:
+
+- Performance depends on MB/s.
+- Ideal for throughput-intensive workloads, such as big data, data warehouses, log processing, and sequential data I/O.
+
+Here are a few important features of Amazon EBS that you need to know when comparing it to other services.
+
+- It is block storage.
+- You pay for what you provision (you have to provision storage in advance).
+- EBS volumes are replicated across multiple servers in a single Availability Zone.
+- Most EBS volumes can only be attached to a single EC2 instance at a time.
+
+##### Amazon S3
+
+If your data doesn’t change that often, Amazon S3 might be a cost-effective and scalable storage solution for you. Amazon S3 is ideal for storing static web content and media, backups and archiving, and data for analytics. It can also host entire static websites with custom domain names.
+
+Here are a few important features of Amazon S3 to know about when comparing it to other services:
+
+- It is object storage.
+- You pay for what you use (you don’t have to provision storage in advance).
+- Amazon S3 replicates your objects across multiple Availability Zones in a Region.
+- Amazon S3 is not storage attached to compute.
+
+##### Amazon Elastic File System (Amazon EFS) and Amazon FSx
+
+In this module, you’ve already learned about Amazon S3 and Amazon EBS. You learned that S3 uses a flat namespace and isn’t meant to serve as a standalone file system. You also learned most EBS volumes can only be attached to one EC2 instance at a time. So, if you need file storage on AWS, which service should you use?
+
+For file storage that can mount on to multiple EC2 instances, you can use Amazon Elastic File System (Amazon EFS) or Amazon FSx. The following table provides more information about each service.
+
+| Service | Description | FAQs |
+|:--------|:------------|:-----|
+| Amazon Elastic File System (Amazon EFS) | Fully managed NFS file system | [EFS FAQs](https://aws.amazon.com/efs/faq/) |
+| Amazon FSx for Windows File Server | Fully managed file server built on Windows Server that supports the SMB protocol | [FSx for Windows File Server FAQs](https://aws.amazon.com/fsx/windows/faqs/?nc=sn&loc=8) |
+| Amazon FSx for Lustre | Fully managed Lustre file system that integrates with S3 | [FSx for Lustre FAQs](https://aws.amazon.com/fsx/lustre/faqs/?nc=sn&loc=5) |
+
+Here are a few important features of Amazon EFS and Amazon FSx to know about when comparing them to other services:
+
+- It is file storage.
+- You pay for what you use (you don’t have to provision storage in advance).
+- Amazon EFS and Amazon FSx can be mounted onto multiple EC2 instances.
+
+##### Resources
+- https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Storage.html
+- https://aws.amazon.com/products/storage/
+- https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html
+- https://aws.amazon.com/fsx/windows/
+- https://aws.amazon.com/fsx/lustre/
 
 
 
