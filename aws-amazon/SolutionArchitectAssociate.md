@@ -1971,12 +1971,19 @@ If your application scales based on average CPU utilization, average network uti
 - https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html
 
 
+## Migrating from MySQL to Amazon RDS
+### Introduction
+#### Why Amazon RDS?
+Below are the advantages of migrating to Amazon RDS
 
+![Advantages of migrating to Amazon RDS](SolutionArchitectAssociateResources/RDS-Advantages.png?raw=true "Advantages of migrating to Amazon RDS")
 
+Amazon RDS is a **fully managed service** for running relational databases on AWS. It handles instance failover, data backups, and software updates. It supports **six different database engines**, including open-source options such as MySQL, PostgreSQL, and MariaDB.
 
+With Amazon RDS, AWS manages your database operations, freeing your developers to **focus on innovation** that's core to your business. And finally, millions of customers around the world rely on the efficiencies of the **AWS Cloud** to provide fast, affordable, and reliable database options.
 
-
-
+##### Resources
+- https://aws.amazon.com/training/learn-about/databases/
 
 
 
