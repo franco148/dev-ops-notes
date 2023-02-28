@@ -2134,90 +2134,218 @@ An object is made up of a larger set of blocks organized by using a predetermine
 Object storage is recognized for its inherent availability of the file objects. Some systems support file versioning, file tracking, and file retention.
 
 
+#### Introduction to the AWS Storage Portfolio
 
+The AWS Storage portfolio consists of the core storage services and other closely associated services. You select the services you need based on what you are trying to accomplish.
 
+With AWS Storage, you can quickly provision the storage that is best suited for your application or use case. You can use a combination of storage services to meet your requirements without the need to provision, host, and maintain separate systems. 
 
+Because you pay for only the resources that you use, you can provision storage to do the following:
 
+- Test new applications
+- Test use cases
+- Try different storage services for your existing ones
 
+When you are finished, you can delete the storage resource. 
 
+All AWS Storage services include configurable security services. Your data is private by default. You must allow access to your data from the public, from other AWS services, or from other AWS accounts. Securing your data is a top-level concern.
 
+##### AWS Storage services
 
+![Core storage services](SolutionArchitectAssociateResources/ASS-003-CoreStorageServices.png?raw=true "Core storage services")
 
+The AWS core storage services are block, file, and object. Each offers its own advantages based on the workload and has its own use cases.
 
+###### Block Storage
 
+Some enterprise applications, such as databases or ERP systems, often require dedicated, low-latency storage for each host. This is analogous to direct-attached storage (DAS) or a Storage Area Network (SAN). Block-based cloud storage solutions are provisioned with each virtual server and offer the ultra low latency required for high-performance workloads.
 
+Amazon Elastic Block Store (Amazon EBS) is used to attach to Amazon Elastic Compute Cloud (Amazon EC2) instances. As with on-premises block storage, the operating system or application manages storage access. Amazon EBS is offered in different options to meet your organization's use case requirements.
 
+###### File Storage
 
+Some applications need to access shared files and require a file system. This type of storage is often supported with a Network Attached Storage (NAS) server. File storage solutions are ideal for use cases such as large content repositories, development environments, media stores, or user home directories.
 
+AWS currently offers file storage using five different services. These services are divided into two categories, Amazon's own cloud native file storage and the Amazon FSx file storage offerings. FSx stands for "file system X". These offering implement managed files storage using the commonly available file systems for on-premises solutions. 
 
+You also have the option to create self-managed files shares using Amazon EC2 instances with attached Amazon EBS volumes. 
 
+Each file service offers different feature sets to meet your requirements. 
 
+- Amazon Elastic File System (Amazon EFS) is a multi-Availability Zone file storage service that uses NFS access protocol. 
+- Amazon FSx for Lustre is built using the Lustre file system and is designed for high performance computing (HPC) and machine learning (ML) workloads. FSx for Lustre uses the Lustre client's POSIX-compliant access protocol.
+- Amazon FSx for Windows File Server is built using Windows File Server. The access protocol is Server Message Block (SMB) and designed for your Microsoft applications and Windows workloads.
+- Amazon FSx for NetApp ONTAP is built using the NetApp ONTAP operating system and is designed to provide both NetApp block and file storage. The access protocols are iSCSI for block storage, NFS and SMB for file storage.
+- Amazon FSx for OpenZFS  fully managed shared file storage built on the OpenZFS file system. With Amazon FSx for OpenZFS, you can migrate your on-premises OpenZFS storage to AWS with minimal effort. You can use the same access protocols now in the AWS Cloud.
 
+###### Object Storage
 
+Applications developed in the cloud often take advantage of object storage's vast scalability and metadata characteristics. Object storage solutions are ideal for building modern applications from the beginning that require scale and flexibility. The solution is also ideal for importing existing data stores for analytics, backup, or archive.
 
+Amazon Simple Storage Service (Amazon S3) is object storage in the AWS Cloud. Amazon S3 is offered with different storage classes or tiers to match your price, access, and availability requirements. Amazon S3 Glacier, for example, is used for archival storage at a lower cost per gigabyte (GB).
 
+AWS uses Amazon S3 as cost effective storage to store snapshots and backups of data stored in other core storage services such as Amazon EBS and Amazon EFS.
 
+###### Core AWS Storage services
 
+![Core AWS storage services](SolutionArchitectAssociateResources/ASS-004-CoreAWSStorageServices.jpg?raw=true "Core AWS storage services")
 
+##### Edge and hybrid cloud storage services
 
+![Edge and hybrid cloud storage services](SolutionArchitectAssociateResources/ASS-005-EdgeAndHybridStorageServices.png?raw=true "Edge and cloud storage services")
 
+AWS offers services that are designed to provide edge and hybrid cloud solutions. Edge compute and storage solutions for remote or disconnected locations and hybrid solutions to connect your on-premises infrastructure to storage services in the AWS Cloud.
 
+###### Edge - Local compute and storage
 
+With edge location compute and storage services, you can use compute resources and storage services even when disconnected from the AWS Cloud. They also provide a data transfer platform to copy your data in to and out from the AWS Cloud. You can transfer your data by shipping the devices to AWS for import or use the device as a remote data synchronization client. 
 
+Edge location devices include the AWS Snow Family of products: AWS Snowball devices, AWS Snowcone devices, and AWS Snowmobile service.
 
+- AWS Snowball is an edge computing, data migration, and edge storage device. You can use these devices for the following:
+  - Data collection
+  - Machine learning and processing
+  - Storage in environments with intermittent connectivity or in remote disconnected locations
+- Snowball Edge comes in two options: Storage Optimized for the highest storage capacity and Compute Optimized for more available vCPUs with a lower storage capacity.
+- AWS Snowcone is the smallest member of the AWS Snow Family of edge computing, edge storage, and data transfer devices, weighing in at 4.5 pounds (2.1 kg). Snowcone is ruggedized, secure, and purpose-built for use outside of a traditional data center.
+- AWS Snowmobile is an exabyte-scale data transfer service used to move large amounts of data to AWS. You can transfer up to 100 PB per Snowmobile, a 45-foot long ruggedized shipping container, pulled by a semitrailer truck. Snowmobile makes it easy to move massive volumes of data to the cloud, including video libraries, image repositories, or even a complete data center migration.
 
+###### Hybrid - On-premises cloud storage
 
+On-premises cloud storage is provided as part of an AWS Outposts implementation and includes Amazon EBS and Amazon S3 storage services. 
 
+AWS Outposts is a fully managed service that offers the same AWS infrastructure, AWS services, APIs, and tools to virtually any data center, colocation space, or on-premises facility. These capabilities provide a consistent hybrid experience. AWS Outposts is ideal for the following:
 
+- Workloads that require low latency access to on-premises systems, local data processing, and data residency
+- Migration of applications with local system interdependencies
 
+AWS compute, storage, database, and other services run locally on Outposts. You can access the full range of AWS services available in the Region to build, manage, and scale your on-premises applications using familiar AWS services and tools.
 
+###### Hybrid - On-premises gateways
 
+AWS Storage Gateway connects on-premises users and applications using a software appliance with cloud-based storage. It provides integration between an organization’s on-premises IT environment and the AWS storage infrastructure. You can use Storage Gateway to simplify storage management and reduce costs for key hybrid cloud storage use cases. 
 
+Use cases include the following: 
 
+- Moving backups to the cloud
+- Using on-premises file shares backed by cloud storage
+- Providing low-latency access to data in AWS for on-premises applications. Local caching reduces network latency for both read and write activities.
 
+Storage Gateway offers four different types of gateways: Amazon S3 File Gateway, Amazon FSx File Gateway, Volume Gateway, and Tape Gateway.
 
+- Amazon S3 File Gateway provides a seamless way to connect to the cloud to store application data files and backup images as durable objects in Amazon S3. Amazon S3 File Gateway offers SMB or NFS-based access to data in Amazon S3 with local caching. 
+- Amazon FSx File Gateway optimizes on-premises access to fully managed, highly reliable file shares in Amazon FSx for Windows File Server. Customers with unstructured or file data, whether from SMB-based group shares or business applications, might require on-premises access to meet low-latency requirements.
+- Volume Gateway presents cloud-backed iSCSI block storage volumes to your on-premises applications. Volume Gateway stores and manages on-premises data in Amazon S3 on your behalf and operates in cache mode or stored mode. 
+- Tape Gateway is used to replace physical tapes on premises with virtual tapes in AWS without changing existing backup workflows. Tape Gateway supports all leading backup applications and caches virtual tapes on premises for low-latency data access.
 
+###### Edge and hybrid cloud storage services
 
+![Data transfer and migration services](SolutionArchitectAssociateResources/ASS-006-EdgeAndHybridCloudStorageServices.png?raw=true "Data transfer and migration services")
 
+##### Data transfer and migration services
 
+![Edge and hybrid storage services](SolutionArchitectAssociateResources/ASS-007-EdgeAndHybridStorageServices.png?raw=true "Edge and hybrid storage services")
 
+Data transfer services are designed to copy or transfer your on-premises data to and from the core AWS Storage services in the AWS Cloud. 
 
+###### File transfer services
 
+The AWS Transfer Family provides fully managed support for file transfers directly into and out of Amazon S3 or Amazon EFS. AWS Transfer Family includes support for Secure File Transfer Protocol (SFTP), File Transfer Protocol over SSL (FTPS), and File Transfer Protocol (FTP). 
 
+The AWS Transfer Family helps you to migrate your file transfer workflows to AWS by doing the following so that nothing changes for you or your applications:
 
+- Integrating with the specified authentication system
+- Providing DNS routing with Amazon Route 53
 
+###### Data synchronization and online transfer services
 
+AWS DataSync is an online data transfer service that simplifies, automates, and accelerates moving data between on-premises storage systems and AWS Storage services and between AWS Storage services. You can use DataSync for the following operations:
 
+- Migrate active datasets to AWS
+- Archive data to free up on-premises storage capacity
+- Replicate data to AWS for business continuity
+- Transfer data to the cloud for analysis and processing 
 
+DataSync can copy data between the following resources or services:
 
+- Network File System (NFS) shares
+- SMB shares
+- Self-managed object storage
+- AWS Snowcone
+- Amazon S3 buckets
+- Amazon EFS file systems
+- Amazon FSx for Windows File Server file systems
 
+###### Offline data transfer and migration services
 
+Offline data transfers are performed using AWS Snow Family devices. The AWS Snow Family helps customers who need to run operations in austere, non-datacenter environments, and in locations where there’s lack of consistent network connectivity.
 
+The Snow Family, comprised of AWS Snowcone, AWS Snowball, and AWS Snowmobile, offers several physical devices and capacity points, most with built-in computing capabilities. These services help to physically transport up to exabytes of data into and out of AWS.
 
+AWS owns and manages Snow Family devices. The devices integrate with AWS security, monitoring, storage management, and computing capabilities.
 
+###### Migration services
 
+AWS Application Migration Service (AWS MGN), which includes CloudEndure Migration, is a highly automated lift-and-shift (rehost) solution. AWS MGN simplifies, expedites, and reduces the cost of migrating applications to the AWS Cloud, AWS GovCloud (US), and AWS Outposts.
 
+You can use AWS MGN or CloudEndure Migration by itself to quickly lift-and-shift physical, virtual, or cloud servers without compatibility issues, performance impact, or long cutover windows. AWS MGN continuously replicates your source servers to your AWS account. When you’re ready to migrate, it automatically converts and launches your servers on AWS.
 
+###### AWS data transfer and migration services
 
+![AWS data transfer and migration services](SolutionArchitectAssociateResources/ASS-008-TransferAndMigrationServices.png?raw=true "AWS data transfer and migration services")
 
+##### Data protection services
 
+![Data protection services](SolutionArchitectAssociateResources/ASS-009-DataProtectionServices.png?raw=true "Data protection services")
 
+Data protection services provide optional services to meet your data redundancy and disaster requirement needs. Some services are standalone service options and some are integrated into the core storage services.
 
+###### Backup and archive
 
+Using AWS Backup, you can centralize and automate data protection across AWS services. AWS Backup offers a cost-effective, fully managed, policy-based service that further simplifies data protection at scale. AWS Backup also helps you support your regulatory compliance or business policies for data protection.
 
+When you combine AWS Organizations with AWS Backup, you can deploy data protection policies centrally. Centrally deploy policies to configure, manage, and govern your backup activity across your company’s AWS accounts and resources. Resources include the following:
 
+- Amazon EC2 instances
+- Amazon EBS volumes
+- Amazon RDS databases (including Amazon Aurora clusters)
+- Amazon DynamoDB tables
+- Amazon Neptune databases
+- Amazon DocumentDB (with MongoDB compatibility) databases 
+- Amazon EFS
+- Amazon FSx for Lustre
+- Amazon FSx for Windows File Server
+- AWS Storage Gateway volumes
+- Amazon Simple Storage Service (Amazon S3) buckets
+- VMware workloads on premises and in VMware CloudTM on AWS
 
+###### Snapshots
 
+Native snapshot services are built into most core services. Snapshots create backup copies of your data. Snapshots are stored in a protected part of Amazon S3 as part of the managed service. Storing snapshots on Amazon S3 protects your data with 99.999999999 percent (11 9s) of durability and provides you Regional access and availability.
 
+Snapshots are incremental copies of the data, which means that only the data that has changed after your most recent snapshot is saved in the next incremental snapshot. Incremental snapshots reduce the time required to create the snapshot. These incremental snapshots save on storage costs by not duplicating previously saved data. Each snapshot contains all of the information for that point in time that is needed to restore your data.
 
+###### Replication
 
+Storage replication is an available built-in feature for some of the core storage services. How replication is implemented varies for each service. Replication increases availability and protects your data by creating additional copies. Replication can be between Availability Zones within an AWS Region or between AWS Regions.
 
+###### Disaster recovery services
 
+CloudEndure Disaster Recovery service provides a cost-effective disaster recovery option for your on-premises servers and applications. 
 
+CloudEndure Disaster Recovery continuously replicates your machines into a low-cost staging area in your target AWS account and preferred Region. Replication also includes operating system, system state configuration, databases, applications, and files. In the case of a disaster, you can instruct CloudEndure Disaster Recovery to automatically launch thousands of your machines in their fully provisioned state in minutes. 
 
+CloudEndure Disaster Recovery minimizes downtime and data loss by providing fast, reliable recovery of physical, virtual, and cloud-based servers into AWS Cloud, including AWS Regions, AWS GovCloud (US), and AWS Outposts.
 
+###### Data Protection Services
 
+![Data protection services](SolutionArchitectAssociateResources/ASS-010-DataProtectionServices.png?raw=true "Data protection services")
 
+##### AWS Storage services portfolio
+
+Now that you have a high-level understanding of what each of the services is, you will learn more about each of the services in more detail later in this series of courses. A view of the standalone services that comprise the AWS Storage portfolio is provided for your review.  
+
+![AWS Storage services portfolio](SolutionArchitectAssociateResources/ASS-011-StorageServicePortfolio.jpg?raw=true "AWS Storage services portfolio")
 
 
 
