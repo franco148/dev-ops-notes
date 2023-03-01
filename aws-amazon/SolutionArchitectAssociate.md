@@ -2348,6 +2348,300 @@ Now that you have a high-level understanding of what each of the services is, yo
 ![AWS Storage services portfolio](SolutionArchitectAssociateResources/ASS-011-StorageServicePortfolio.jpg?raw=true "AWS Storage services portfolio")
 
 
+#### Identifying the Right Storage Solution in the Cloud
+
+The optimal storage solution for a system varies based on the following:
+
+- Type of access method (block, file, or object)
+- Patterns of access (random or sequential)
+- Required throughput
+- Frequency of access (online, offline, archival)
+- Frequency of update (WORM, dynamic)
+- Availability and durability constraints
+
+The AWS Well-Architected systems use multiple storage solutions and enable different features to improve performance and use resources efficiently. 
+
+For additional information about AWS Well-Architected systems, refer to [AWS Well-Architected](https://aws.amazon.com/architecture/well-architected/?wa-lens-whitepapers.sort-by=item.additionalFields.sortDate&wa-lens-whitepapers.sort-order=desc) page on the AWS web site.
+
+![Core AWS Storage Services](SolutionArchitectAssociateResources/ASS-012-CoreAwsStorageServices.png?raw=true "Core AWS Storage Services")
+
+##### Storage characteristics and requirements
+
+You must understand the different characteristics of your application or workflow that are required to select the services that best fit your workload. Example characteristics are shareable, file size, cache size, access patterns, latency, throughput, and persistence of data. Those characteristics can lead you toward the best storage solution, such as block storage, file storage, or object storage.
+
+To optimize storage, the first step is to understand the performance profile for each of your workloads. Conduct a performance analysis to measure input/output operations per second (IOPS), throughput, and other variables. Define your storage performance requirements. Identify your workload’s most important storage performance metrics. Use those metrics to set boundaries. Implement improvement strategies as part of a data-driven approach, using benchmarking or load testing. Use this data to identify where your storage solution is or can be constrained. Examine storage and configuration options to improve the solution. 
+
+AWS storage services are optimized for different storage scenarios. No single data storage option is ideal for all workloads. When evaluating your storage requirements, consider data storage options for each workload separately.
+
+Determine the expected growth rate for your workload and choose a storage solution that will meet those rates. Object and file storage solutions, such as Amazon S3 and Amazon Elastic File System, enable unlimited storage.
+
+###### Questions to help determine storage requirements
+
+The following questions help you to segment data within each of your workloads and determine your storage requirements:
+
+- How often and how quickly do you need to access your data? AWS offers storage options and pricing tiers for frequently accessed, less frequently accessed, and infrequently accessed data.
+- Does your data store require high IOPS or throughput? AWS provides categories of storage that are optimized for performance and throughput. Understanding IOPS and throughput requirements will help you provision the right amount of storage and avoid overpaying.
+- What storage access protocols are required? Pre-existing applications are often developed based on specific operating systems. The operating system can affect the access protocol. For example, Linux-based applications that require file system access usually require NFS. Windows-based applications require SMB as the protocol. 
+- How critical (durable) is your data? Critical or regulated data needs to be retained at almost any expense and tends to be stored for a long time.
+- How sensitive is your data? Highly sensitive data must be protected from accidental and malicious changes, not only data loss or corruption. Durability, cost, and security are equally important to consider.
+- How large is your dataset? Knowing the total size of the dataset helps in estimating storage capacity and cost.
+- How transient is your data? Transient data is short-lived and typically does not require high durability. (Note: Durability refers to average annual expected data loss.) Clickstream and Twitter data are good examples of transient data.
+- How much are you prepared to pay to store the data? Setting a budget for data storage will inform your decisions about storage options.
+
+##### Evaluate available configuration options
+
+Evaluate the various characteristics and configuration options and how they relate to storage. Understand where and how to use the following elements to optimize storage space and performance for your workload:
+
+- Provisioned IOPS
+- Solid state drives (SSD)
+- Hard disk drives (HDD)
+- Object storage
+- Archival storage
+- Ephemeral (temporary) storage 
+
+##### Determine storage characteristics
+
+When you evaluate a storage solution, determine the available storage characteristics, such as the following:
+
+- Ability to share the storage
+- Ideal file size and maximum file size
+- Storage cache size
+- Average or expected latency
+- Maximum throughput
+- Maximum IOPS
+- Persistence of data
+
+Then match your requirements to the AWS service that best fits your needs.
+
+##### Make decisions based on access patterns and metrics
+
+Choose storage systems based on your workload's access patterns. Configure them by determining how the workload accesses data. You can sometimes increase storage efficiency or increase a performance metric by choosing a different storage type. Configure the storage options you choose to match your data access patterns. 
+
+- **Optimize your storage usage and access patterns** – Choose storage systems based on your workload's access patterns and the characteristics of the available storage options. Determine the best place to store data so that you can meet your requirements while reducing overhead. Use performance optimizations and access patterns when configuring and interacting with data based on the characteristics of your storage (for example, striping volumes or partitioning data).
+- **Select appropriate metrics for storage options** – Ensure that you select the appropriate storage metrics for the workload. Each storage option offers various metrics to track how your workload performs over time. Make sure that you are measuring against any storage metrics indicating peak performance and trends. For storage systems that are fixed sized, such as Amazon Elastic Block Store (Amazon EBS) or Amazon FSx, ensure that you are monitoring the amount of storage used against the overall storage size. Create automation when possible to increase the storage size when reaching a threshold.
+- **Monitor metrics** – Amazon CloudWatch can collect metrics across the resources in your architecture. You can also collect and publish custom metrics to surface business metrics or derived metrics. Use CloudWatch or third-party solutions to set alarms that indicate when thresholds are breached.
+
+For additional information, see [Storage Architecture Selection](https://docs.aws.amazon.com/wellarchitected/latest/performance-efficiency-pillar/storage-architecture-selection.html) in the AWS Well-Architected Framework.
+
+
+### Core AWS Storage Services
+
+#### Block Storage: Amazon EBS
+
+The AWS block storage portfolio consists of two types of block storage services: Amazon Elastic Compute Cloud (Amazon EC2) instance storage and Amazon Elastic Block Store (Amazon EBS). Amazon EBS also includes an integrated snapshot service. Amazon EBS is the primary block storage service. 
+
+Amazon FSx for NetApp ONTAP also offers block storage services over an iSCSI access protocol. These block services use NetApp's application programming interface (API) calls and management interface. For customer's seeking an integrated NetApp approach, block storage is available as part of the Amazon FSx service.
+
+![Block Storage](SolutionArchitectAssociateResources/ASS-013-BlockStorage.png?raw=true "Block Storage")
+
+##### Amazon EC2 instance store
+
+An instance store provides temporary (ephemeral) block-level storage for your instance. This storage is located on disks that are physically attached to the host computer where the compute instance is. Instance stores resemble Amazon EBS storage in initial configuration options. However, their architecture most closely resembles direct attached disk drives. An instance store provides submillisecond latencies between the EC2 instance and the storage.
+
+Only specific Amazon EC2 instance types support instance stores. The available storage type is directly associated to the EC2 instance type. An instance store consists of one or more instance store volumes exposed as block devices. The size of an instance store and the number of devices available vary by instance type. 
+
+Instance store is ideal for the following use cases:
+
+- Temporary storage of information that changes frequently, such as buffers, caches, scratch data, and other temporary content
+- Data that is replicated across a fleet of instances, such as a load-balanced pool of web servers
+
+Instances stores are not recommended for most block storage workloads.
+
+As ephemeral storage, instance stores are not replicated or spread across multiple devices to improve durability and availability. An instance store is nonpersistent and is terminated when the associated EC2 instance is terminated.
+
+###### Instance store lifetime
+
+The data in an instance store persists only during the lifetime of its associated EC2 instance. If an instance reboots (intentionally or unintentionally), data in the instance store persists. However, data in the instance store is lost under any of the following circumstances:
+
+- The underlying disk drive fails
+- The instance stops
+- The instance hibernates
+- The instance terminates
+
+Therefore, do not rely on an instance store for valuable, long-term data. Instead, use more durable data storage, such as Amazon EBS, for your block storage requirements.
+
+##### Amazon EBS overview
+
+Amazon EBS is an easy-to-use, high performance, block storage service. It is designed for use with Amazon EC2 compute instances for both throughput and transaction-intensive workloads at any scale. 
+
+AWS recommends Amazon EBS for data that must be quickly accessible and requires long-term persistence. EBS volumes are well suited for use as the primary storage for file systems, databases, or any applications that require fine granular updates and access to raw, unformatted, block-level storage. Amazon EBS is well suited to both database-style applications that rely on random reads and writes and to throughput-intensive applications that perform long, sequential reads and writes.
+
+EBS volumes behave like raw, unformatted block devices. You can mount these block devices as EBS volumes on your EC2 instances. EBS volumes that are attached to an EC2 instance are exposed as raw block storage volumes that persist independently from the life of the instance. You can create a file system on top of these volumes or use them in any way you would use a block device (such as a hard drive). You can dynamically change the configuration of a volume attached to an EC2 instance, unlike traditional disk drives that come in fixed sizes.
+
+You can choose from different EBS volume types to balance optimal price and performance. You can achieve single-digit millisecond latency for high-performance database workloads, such as SAP HANA, or gigabyte-per-second throughput for large, sequential workloads such as Apache Hadoop. You can change EBS volume types, tune performance, or increase volume size without disrupting your critical applications. Amazon EBS provides you cost-effective block storage when you need it.
+
+Designed for mission-critical systems, EBS volumes are replicated within an AWS Availability Zone and can scale to store petabytes of data. Also, you can use EBS snapshots with automated lifecycle policies to back up your volumes in Amazon Simple Storage Service (Amazon S3). You can do this  while ensuring geographic protection of your data and business continuity.
+
+With Amazon EBS, you pay only for the storage and resources that you provision.
+
+##### Amazon EBS features
+
+###### Single Availability Zone
+
+You create an EBS volume in a specific Availability Zone, and then attach it to an EC2 instance in that same Availability Zone. The proximity of your Amazon EBS volume to your Amazon EC2 instance provides low latency and high-performance block storage for your workload.
+
+To make a volume available outside of the Availability Zone, you can create a snapshot and restore that snapshot to a new volume anywhere in the same AWS Region. You can also copy snapshots to other AWS Regions and then restore them to new volumes there. Snapshots make it easier to use multiple AWS Regions for geographical expansion, data center migration, and disaster recovery.
+
+###### Persistent
+
+Amazon EBS volumes are durable and persistent by default. Your EBS volume survives even if your EC2 instance is terminated. Your data is preserved for your future use and persists until you decide to delete it. Root EBS volumes created with an EC2 instance are terminated with the instance by default. However, you can modify the volume to be persistent.
+
+EBS volumes are managed independently from the Amazon EC2 instances to which they are attached. You can detach an existing EBS volume from an EC2 instance and reattach it to a different EC2 instance. This provides you the ability to change EC2 instance types to meet your performance requirements and optimize your Amazon EC2 costs. 
+
+###### Volume types
+
+Amazon EBS provides multiple volume types that you can use to optimize storage performance and cost for a broad range of applications. These volume types are divided into two major categories: SSD-backed storage for transactional workloads, such as databases, virtual desktops, and boot volumes, and HDD-backed storage for throughput-intensive workloads, such as MapReduce and log processing. 
+
+- SSD-based volumes include two levels to meet your application requirements: General Purpose SSD volumes and Provisioned IOPS SSD volumes.  
+  - General Purpose SSD volumes (gp3 and gp2) balance price and performance for transactional applications, including virtual desktops, test and development environments, and interactive gaming applications.
+  - Provisioned IOPS SSD volumes are the highest performance EBS volumes (io2 and io1) for your most demanding transactional applications, including SAP HANA, Microsoft SQL Server, and IBM DB2.
+- HDD-based volumes include Throughput Optimized HDD (st1) for frequently accessed, throughput-intensive workloads and the lowest cost Cold HDD (sc1) for less frequently accessed data.
+
+You can choose the volume type that best meets your application and use case requirements. You can change from one volume type to another.
+
+###### Elastic volumes
+
+Using the Elastic Volumes feature, you can adapt your volumes as the needs of your applications change. Use this feature to increase capacity, tune performance, and change the type of any new or existing current generation volume dynamically, with no downtime or performance impact. You can easily right-size your deployment and adapt to performance changes.
+
+The Elastic Volumes feature makes it easier to adapt your resources to changing application demands. You can make modifications in the future as your business needs change.
+
+###### High availability and high durability
+
+EBS volumes are designed to be highly available, reliable, and durable at no additional charge to you. EBS volume data is replicated across multiple servers in an Availability Zone to prevent the loss of data from the failure of any single component. 
+
+Amazon EBS volumes are designed to provide 99.8–99.9 percent durability with an annual failure rate (AFR) of 0.1–0.2 percent. Amazon EBS also supports a snapshot feature, which is a good way to take point-in-time backups of your data. 
+
+Amazon EBS offers a higher durability io2 volume that is designed to provide 99.999 percent durability with an AFR of 0.001 percent. In this case, failure refers to a complete or partial loss of the volume. This makes io2 ideal for business-critical applications, such as SAP HANA, Oracle, Microsoft SQL Server, and IBM DB2, that will benefit from higher uptime. 
+
+###### Data Encryption
+
+You can create your EBS volumes as encrypted volumes to meet a wide range of data-at-rest encryption requirements for regulated/audited data and applications. When you create an encrypted EBS volume and attach it to a supported instance type, data stored at rest on the volume, disk I/O, and snapshots that were created from the volume are all encrypted. The encryption occurs on the servers that host EC2 instances, providing encryption of data in transit from EC2 instances to Amazon EBS storage.
+
+###### Native snapshot support
+
+You can create point-in-time snapshots of EBS volumes, which are persisted to Amazon S3. Snapshots protect data for long-term durability. You can use snapshots to restore your data to new volumes, expand the size of a volume, or move volumes across Availability Zones. The same snapshot can be used to instantiate as many volumes as you want. You can copy these snapshots across AWS Regions. You pay for only the storage capacity consumed for your snapshot data.
+
+Snapshots let you geographically protect your data and achieve business continuity. You can use Amazon Data Lifecycle Manager (Amazon DLM) to automate snapshot management without any additional overhead or cost.
+
+###### AWS Backup support
+
+AWS Backup supports backing up your EBS volumes. With AWS Backup, you can centralize and automate data protection across multiple Amazon EBS volumes. AWS Backup offers a cost-effective, fully managed, policy-based service that further simplifies data protection at scale. 
+
+AWS Backup also helps you support your regulatory compliance obligations and meet your business continuity goals.
+
+###### Performance monitoring
+
+Performance metrics, such as bandwidth, throughput, latency, and average queue length, are available through the AWS Management Console. Amazon CloudWatch provides these metrics so that you can monitor the performance of your volumes. You can make sure that you are providing enough performance for your applications and paying only for resources you need.
+
+##### Amazon EBS use cases
+
+The functionality and available performance options make Amazon EBS a good storage option for many workloads and use cases. In this section, you will learn about the most common use cases for Amazon EBS storage, including enterprise applications, relational databases, nonrelational (NoSQL) databases, big data analytics, and file systems and media workflows.
+
+![Wide range of Amazon EBS workloads](SolutionArchitectAssociateResources/ASS-014-AmazonEbsWorkloads.png?raw=true "Wide range of Amazon EBS workloads")
+
+- [Lift-and-Shift Application Workloads](https://aws.amazon.com/products/storage/lift-and-shift/)
+- [Slack Case Study](https://aws.amazon.com/solutions/case-studies/slack/)
+- [CrowdStrike Case Study](https://aws.amazon.com/solutions/case-studies/crowdstrike/)
+- [Videology Case Study](https://aws.amazon.com/solutions/case-studies/videology/)
+- [Geodata Case Study](https://aws.amazon.com/solutions/case-studies/geodata/)
+
+###### Lift and shift on-premises applications using Amazon EBS
+
+Most organizations have on-premises applications burdened with high capital expenses, complex management, scalability challenges, and hardware that needs to be replaced every 3–5 years.
+
+Maintaining existing on-premises infrastructure results in increased operational burden. This maintenance drains IT budgets for organizations that are already budget and resource strapped. With these on-premises challenges, IT organizations want to move to the cloud and away from the traditional, costly lifecycle of buying, managing, and replacing on-premises hardware, software, services, and networking.
+
+Most cloud migrations happen in phases to minimize risk and shorten time to production. The most common approach is to lift and shift an application and its data with as few changes as possible to similar services running in the cloud. This provides the fastest time to production. After the application is on AWS, you can modernize and re-architect application elements to take advantage of the cloud services and optimizations that provide the most significant benefits.
+
+AWS offers lift-and-shift migration by providing automated tools such as [AWS Application Migration Service (AWS MGN)](https://aws.amazon.com/application-migration-service/?nc2=h_ql_prod_mt_ams) and [AWS Server Migration Service (AWS SMS)](https://aws.amazon.com/server-migration-service/).
+
+
+##### Pricing
+
+With Amazon EBS, you pay only for what you use. Pricing for EBS volumes is based on the volume type, provisioned volume size, and the provisioned IOPS and throughput performance. EBS volume pricing varies based on the Availability Zone where it resides. The pricing for Amazon EBS snapshots is based on the actual amount of storage space that you use.
+
+For additional information about EBS volume and EBS snapshot pricing, see [Amazon Elastic Block Store Pricing](https://aws.amazon.com/ebs/pricing/) page on the AWS website.
+
+#### File Storage Overview
+
+AWS currently offers three different managed file storage services to meet your application, workflow, and use-case requirements. In addition, you can use Amazon EBS to create self-managed file systems.
+
+![File Storage Overview](SolutionArchitectAssociateResources/ASS-015-FileStorageOverview.png?raw=true "File Storage Overview")
+
+For running file systems workflows on AWS, you can select from Amazon Elastic File System (Amazon EFS), Amazon FSx for Lustre, Amazon FSx for NetApp ONTAP, Amazon FSx for OpenZFS, Amazon FSx for Windows File Server, or you can build your own high-performance network file system designed for your workload protocol.
+
+- Amazon EFS is a scalable, elastic, cloud-native file system for Linux. Amazon EFS supports the Network File System (NFS) protocol.
+- Amazon FSx for Lustre is an AWS fully managed parallel file system built on Lustre for high performance computing (HPC) workloads. FSx for Lustre supports the Lustre POSIX-compliant protocol.
+- Amazon FSx for NetApp ONTAP is the NetApp ONTAP operating system implemented as a fully managed service. FSx for NetApp ONTAP support iSCSI for block storage, NFS protocol for POSIX-compliant access, and SMB protocol for Windows-compatible access.
+- Amazon FSx for OpenZFS is an AWS fully managed implementation of the Open Zettabyte File System (ZFS). FSx for OpenZFS supports NFS and SMB protocols for a wide range of application implementations. 
+  - Note: SMB protocol access is not support at initial service launch.
+- Amazon FSx for Windows File Server is an AWS fully managed file system for Windows environments. FSx for Windows File Server supports the Server Message Block (SMB) protocol.
+- Using Amazon EC2 and Amazon EBS, you can quickly create your own high-performance block storage for building your own network file system, including the following protocols and systems:
+  - SMB
+  - NFS
+  - Extents File System (XFS) 
+  - General Parallel File System (GPFS)
+  - Zettabyte File System (ZFS)
+  - Other customer files systems
+
+You can choose the file system that you need to optimize your applications or workflows. You can bring your media workflows and use their native file system running on EC2 instances and store your data on EBS volumes.
+
+![Running file systems on AWS](SolutionArchitectAssociateResources/ASS-016-RunningFileSystemsOnAWS.png?raw=true "Running file systems on AWS")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
