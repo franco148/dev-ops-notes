@@ -2192,7 +2192,7 @@ AWS uses Amazon S3 as cost effective storage to store snapshots and backups of d
 
 ##### Edge and hybrid cloud storage services
 
-![Edge and hybrid cloud storage services](SolutionArchitectAssociateResources/ASS-005-EdgeAndHybridStorageServices.png?raw=true "Edge and cloud storage services")
+![Edge and hybrid cloud storage services](SolutionArchitectAssociateResources/ASS-005-EdgeAndHybridCloudStorageServices.png?raw=true "Edge and cloud storage services")
 
 AWS offers services that are designed to provide edge and hybrid cloud solutions. Edge compute and storage solutions for remote or disconnected locations and hybrid solutions to connect your on-premises infrastructure to storage services in the AWS Cloud.
 
@@ -2240,7 +2240,7 @@ Storage Gateway offers four different types of gateways: Amazon S3 File Gateway,
 
 ###### Edge and hybrid cloud storage services
 
-![Data transfer and migration services](SolutionArchitectAssociateResources/ASS-006-EdgeAndHybridCloudStorageServices.png?raw=true "Data transfer and migration services")
+![Data transfer and migration services](SolutionArchitectAssociateResources/ASS-006-DataTransferAndMigrationServices.png?raw=true "Data transfer and migration services")
 
 ##### Data transfer and migration services
 
@@ -2292,7 +2292,7 @@ You can use AWS MGN or CloudEndure Migration by itself to quickly lift-and-shift
 
 ###### AWS data transfer and migration services
 
-![AWS data transfer and migration services](SolutionArchitectAssociateResources/ASS-008-TransferAndMigrationServices.png?raw=true "AWS data transfer and migration services")
+![AWS data transfer and migration services](SolutionArchitectAssociateResources/ASS-008-TransferAndMigrationServices.PNG?raw=true "AWS data transfer and migration services")
 
 ##### Data protection services
 
