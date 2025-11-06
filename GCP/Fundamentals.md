@@ -8,7 +8,6 @@
 - **Cloud Run Functions:** Cloud run functions.
 
 ## Key Storage & Database Services
-
 - **Cloud Storage:** Object storage which is almost accessible from any service, any application over an API.
 - **Persistent Disk:** Block storage that brings persistence to Compute Engine and Kubernetes Engine applications. So we can mount a disk and write data directly to the disk.
 - **Cloud Bigtable:** A reliable columnar storage to store very diversa data.
@@ -16,7 +15,12 @@
 - **Cloud SQL:**
 - **Cloud Spanner:**
 
-
+## Key Data & Analytics Services
+- **Big Query:** A flagship service which is a data warehouse in the cloud.
+- **Pub/Sub:** Is essentially a message-oriented communication between varios applications and services.
+- **Dataflow:** Meant for creating pipelines and processing data at scale.
+- **Dataproc:** Is a managed service that is going to process big data, either through Apache Hadoop, or Apache Spark.
+- **Looker:** Business intelligence visualization tool.
 
 
 
